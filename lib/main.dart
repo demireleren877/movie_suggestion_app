@@ -3,7 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_application/core/routes/routes.dart';
 
-void main() => runApp(const MyApp());
+import 'core/locator/locator.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  setupLocator();
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -11,7 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(375, 667),
+      designSize: const Size(412, 798),
       builder: () => MaterialApp(
         themeMode: ThemeMode.dark,
         debugShowCheckedModeBanner: false,
@@ -96,7 +102,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
         title: 'Material App',
-        initialRoute: Routes.home,
+        initialRoute: Routes.init,
         routes: Routes.routes,
       ),
     );
