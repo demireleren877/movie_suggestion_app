@@ -7,7 +7,7 @@ class Routes {
   static const String home = '/';
   static const String init = '/init';
   static final routes = <String, WidgetBuilder>{
-    home: (BuildContext context) => HomePage(),
+    home: (BuildContext context) => const HomeScreen(),
     init: (BuildContext context) => const InitScreen(),
   };
 }
