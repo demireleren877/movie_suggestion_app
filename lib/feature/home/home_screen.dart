@@ -19,8 +19,15 @@ class HomeScreen extends StatelessWidget {
             appBar: AppBar(
               title: const Text('Home'),
             ),
-            body: Center(
-              child: Text(state.movies![0].title),
+            body: ListView.builder(
+              itemCount: state.movies?.length ?? 0,
+              itemBuilder: (BuildContext context, int index) {
+                return Card(
+                  child: ListTile(
+                    title: Text(state.movies?[index].title ?? ''),
+                  ),
+                );
+              },
             ),
           );
         } else {
