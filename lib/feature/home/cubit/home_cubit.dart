@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
-import 'package:movie_application/core/models/popular_movie_model.dart';
+import 'package:movie_application/feature/home/components/image_card.dart';
 
 import '../../../core/services/api_services.dart';
 

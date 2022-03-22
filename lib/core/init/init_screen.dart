@@ -13,7 +13,7 @@ class _InitScreenState extends State<InitScreen> {
   @override
   void initState() {
     Future.delayed(const Duration(seconds: 2), () {
-      Navigator.pushNamed(context, Routes.home);
+      Navigator.pushNamedAndRemoveUntil(context, Routes.home, (route) => false);
     });
     super.initState();
   }

@@ -10,7 +10,7 @@ class HomeInitial extends HomeState {}
 class HomeLoading extends HomeState {}
 
 class HomeLoaded extends HomeState {
-  List<Movie>? movies;
+  List<ImageCard> movies;
   HomeLoaded({required this.movies});
 }
 
