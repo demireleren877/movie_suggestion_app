@@ -13,7 +13,6 @@ class ImageCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Swipable(
-      onSwipeLeft: (context) => print('left'),
       verticalSwipe: false,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(15.r),

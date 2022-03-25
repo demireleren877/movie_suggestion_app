@@ -1,96 +1,93 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kartal/kartal.dart';
-import 'package:movie_application/core/components/centered_progress.dart';
-import 'package:movie_application/feature/home/cubit/home_cubit.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  HomeScreen({Key? key}) : super(key: key);
+  final PersistentTabController _controller =
+      PersistentTabController(initialIndex: 0);
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HomeCubit, HomeState>(
-      builder: (context, state) {
-        if (state is HomeInitial) {
-          return const CenteredProgressIndicator();
-        } else if (state is HomeLoading) {
-          return const CenteredProgressIndicator();
-        } else if (state is HomeLoaded) {
-          return Scaffold(
-            body: Padding(
-              padding: context.paddingNormal,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: context.height * 0.8,
-                    child: Stack(
-                      children: state.movies,
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Container(
-                        height: 60.h,
-                        width: 60.w,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.blueGrey[800],
-                        ),
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.clear,
-                            color: Colors.red,
-                            size: 35,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height: 60.h,
-                        width: 60.w,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.blueGrey[800],
-                        ),
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.star_rounded,
-                            color: Colors.yellow,
-                            size: 35,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height: 60.h,
-                        width: 60.w,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.blueGrey[800],
-                        ),
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.favorite,
-                            color: Colors.green,
-                            size: 35,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.light,
+      child: Scaffold(
+        body: PersistentTabView(context,
+            controller: _controller,
+            screens: _buildScreens(),
+            items: _navBarsItems(),
+            confineInSafeArea: true,
+            handleAndroidBackButtonPress: true,
+            resizeToAvoidBottomInset: true,
+            stateManagement: true,
+            navBarHeight: 75.h,
+            backgroundColor: Colors.blueGrey.shade900,
+            hideNavigationBarWhenKeyboardShows: true,
+            popAllScreensOnTapOfSelectedTab: true,
+            popActionScreens: PopActionScreensType.all,
+            itemAnimationProperties: const ItemAnimationProperties(
+              duration: Duration(milliseconds: 200),
+              curve: Curves.ease,
             ),
-          );
-        } else {
-          return const Text("Error");
-        }
-      },
+            screenTransitionAnimation: const ScreenTransitionAnimation(
+              animateTabTransition: true,
+              curve: Curves.ease,
+              duration: Duration(milliseconds: 200),
+            ),
+            navBarStyle: NavBarStyle.style1),
+      ),
     );
   }
+}
+
+List<Widget> _buildScreens() {
+  return [
+    const Scaffold(),
+    Container(color: Colors.amber),
+    Container(color: Colors.amber),
+    Container(color: Colors.amber),
+  ];
+}
+
+List<PersistentBottomNavBarItem> _navBarsItems() {
+  return [
+    PersistentBottomNavBarItem(
+      icon: Icon(
+        Icons.home,
+        size: 35.sp,
+      ),
+      title: ("Home"),
+      activeColorPrimary: CupertinoColors.activeBlue,
+      inactiveColorPrimary: CupertinoColors.systemGrey,
+    ),
+    PersistentBottomNavBarItem(
+      icon: Icon(
+        Icons.favorite,
+        size: 35.sp,
+      ),
+      title: ("Favorites"),
+      activeColorPrimary: CupertinoColors.destructiveRed,
+      inactiveColorPrimary: CupertinoColors.systemGrey,
+    ),
+    PersistentBottomNavBarItem(
+      icon: Icon(
+        Icons.list_alt_outlined,
+        size: 35.sp,
+      ),
+      title: ("Later"),
+      activeColorPrimary: CupertinoColors.activeOrange,
+      inactiveColorPrimary: CupertinoColors.systemGrey,
+    ),
+    PersistentBottomNavBarItem(
+      icon: Icon(
+        Icons.domain_verification_outlined,
+        size: 35.sp,
+      ),
+      title: ("Watched"),
+      activeColorPrimary: CupertinoColors.activeGreen,
+      inactiveColorPrimary: CupertinoColors.systemGrey,
+    ),
+  ];
 }

@@ -1,12 +1,16 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_application/core/routes/routes.dart';
-import 'package:movie_application/feature/home/cubit/home_cubit.dart';
+
+import 'feature/movie_tinder/cubit/movie_tinder_cubit.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky,
+      overlays: [SystemUiOverlay.top]);
   runApp(const MyApp());
 }
 
@@ -18,7 +22,7 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(412, 798),
       builder: () => BlocProvider(
-        create: (context) => HomeCubit()..getPopularMovies(),
+        create: (context) => MovieTinderCubit()..getPopularMovies(),
         child: MaterialApp(
           themeMode: ThemeMode.dark,
           debugShowCheckedModeBanner: false,
