@@ -1,93 +1,51 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kartal/kartal.dart';
+
+import '../../core/components/centered_progress.dart';
+import 'cubit/home_cubit.dart';
+import 'playing_movies/components/playing_movies_title.dart';
+import 'playing_movies/playing_movies_slider.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({Key? key}) : super(key: key);
-  final PersistentTabController _controller =
-      PersistentTabController(initialIndex: 0);
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle.light,
-      child: Scaffold(
-        body: PersistentTabView(context,
-            controller: _controller,
-            screens: _buildScreens(),
-            items: _navBarsItems(),
-            confineInSafeArea: true,
-            handleAndroidBackButtonPress: true,
-            resizeToAvoidBottomInset: true,
-            stateManagement: true,
-            navBarHeight: 75.h,
-            backgroundColor: Colors.blueGrey.shade900,
-            hideNavigationBarWhenKeyboardShows: true,
-            popAllScreensOnTapOfSelectedTab: true,
-            popActionScreens: PopActionScreensType.all,
-            itemAnimationProperties: const ItemAnimationProperties(
-              duration: Duration(milliseconds: 200),
-              curve: Curves.ease,
+    return BlocBuilder<HomeCubit, HomeState>(
+      builder: (context, state) {
+        if (state is HomeInitial) {
+          return const CenteredProgressIndicator();
+        } else if (state is HomeLoading) {
+          return const CenteredProgressIndicator();
+        } else if (state is HomeLoaded) {
+          return Scaffold(
+            body: ListView(
+              shrinkWrap: true,
+              physics: const BouncingScrollPhysics(),
+              children: [
+                Container(
+                  height: context.height,
+                  padding: context.paddingLow,
+                  width: context.width,
+                  alignment: Alignment.center,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      context.emptySizedHeightBoxLow3x,
+                      const PlayingMoviesTitle(),
+                      context.emptySizedHeightBoxLow3x,
+                      PlayingMoviesSlider(state: state),
+                    ],
+                  ),
+                )
+              ],
             ),
-            screenTransitionAnimation: const ScreenTransitionAnimation(
-              animateTabTransition: true,
-              curve: Curves.ease,
-              duration: Duration(milliseconds: 200),
-            ),
-            navBarStyle: NavBarStyle.style1),
-      ),
+          );
+        } else {
+          return const Center(child: Text("Some error occured."));
+        }
+      },
     );
   }
-}
-
-List<Widget> _buildScreens() {
-  return [
-    const Scaffold(),
-    Container(color: Colors.amber),
-    Container(color: Colors.amber),
-    Container(color: Colors.amber),
-  ];
-}
-
-List<PersistentBottomNavBarItem> _navBarsItems() {
-  return [
-    PersistentBottomNavBarItem(
-      icon: Icon(
-        Icons.home,
-        size: 35.sp,
-      ),
-      title: ("Home"),
-      activeColorPrimary: CupertinoColors.activeBlue,
-      inactiveColorPrimary: CupertinoColors.systemGrey,
-    ),
-    PersistentBottomNavBarItem(
-      icon: Icon(
-        Icons.favorite,
-        size: 35.sp,
-      ),
-      title: ("Favorites"),
-      activeColorPrimary: CupertinoColors.destructiveRed,
-      inactiveColorPrimary: CupertinoColors.systemGrey,
-    ),
-    PersistentBottomNavBarItem(
-      icon: Icon(
-        Icons.list_alt_outlined,
-        size: 35.sp,
-      ),
-      title: ("Later"),
-      activeColorPrimary: CupertinoColors.activeOrange,
-      inactiveColorPrimary: CupertinoColors.systemGrey,
-    ),
-    PersistentBottomNavBarItem(
-      icon: Icon(
-        Icons.domain_verification_outlined,
-        size: 35.sp,
-      ),
-      title: ("Watched"),
-      activeColorPrimary: CupertinoColors.activeGreen,
-      inactiveColorPrimary: CupertinoColors.systemGrey,
-    ),
-  ];
 }

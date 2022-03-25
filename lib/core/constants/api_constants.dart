@@ -1,7 +1,4 @@
 class ApiConstants {
-  static const String appTitle = "Movies List";
-  static const String popularMoviesTitle = "Popular Movies";
-  static const String upcomingTitle = "Upcoming Movies List";
   static const String apiKey = "563bef0fff48f59e1353e61b6458f472";
   static const String baseUrl = "https://api.themoviedb.org/3";
   static const String popularMovies = "/movie/popular";
