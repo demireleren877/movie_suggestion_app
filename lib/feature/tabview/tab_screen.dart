@@ -66,11 +66,11 @@ List<PersistentBottomNavBarItem> _navBarsItems() {
     ),
     PersistentBottomNavBarItem(
       icon: Icon(
-        Icons.favorite,
+        Icons.explore_outlined,
         size: 35.sp,
       ),
       textStyle: TextStyle(fontSize: 14.sp),
-      title: ("Favorites"),
+      title: ("Explore"),
       activeColorPrimary: CupertinoColors.destructiveRed,
       inactiveColorPrimary: CupertinoColors.systemGrey,
     ),

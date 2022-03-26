@@ -9,7 +9,8 @@ class HomeLoading extends HomeState {}
 
 class HomeLoaded extends HomeState {
   final List<SlideCard> playingMovies;
-  HomeLoaded({required this.playingMovies});
+  final List<Movie> popularMovies;
+  HomeLoaded({required this.playingMovies, required this.popularMovies});
 }
 
 class HomeError extends HomeState {}

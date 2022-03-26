@@ -14,7 +14,7 @@ class VoteRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(Icons.star, size: 20.sp, color: Colors.yellow.shade900),
+        Icon(Icons.star, size: 20.sp, color: Colors.yellow),
         Text(
           voteAverage,
           style: context.textTheme.subtitle1,

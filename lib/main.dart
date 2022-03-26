@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       builder: () => MultiBlocProvider(
         providers: [
           BlocProvider<HomeCubit>(
-            create: (context) => HomeCubit()..getPlayingMovies(),
+            create: (context) => HomeCubit()..getAllMovies(),
           ),
           BlocProvider(
             create: (context) => MovieTinderCubit()..getPopularMovies(),
