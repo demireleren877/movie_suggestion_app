@@ -8,9 +8,9 @@ import '../constants/api_constants.dart';
 
 class ApiServices {
   Future<List<ImageCard>> getMovieTinderFromApi() async {
-    const String url = ApiConstants.baseUrl +
+    String url = ApiConstants.baseUrl +
         ApiConstants.popularMovies +
-        ApiConstants.apiParam +
+        ApiConstants.apiKeyParam +
         ApiConstants.apiKey;
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
@@ -30,11 +30,13 @@ class ApiServices {
     return [];
   }
 
-  Future<List<Movie>> getMoviesFromApi(String movieType) async {
+  Future<List<Movie>> getMoviesFromApi(String movieType, int page) async {
     String url = ApiConstants.baseUrl +
         movieType +
-        ApiConstants.apiParam +
-        ApiConstants.apiKey;
+        ApiConstants.apiKeyParam +
+        ApiConstants.apiKey +
+        ApiConstants.apiPageParam +
+        page.toString();
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       final json = jsonDecode(response.body);

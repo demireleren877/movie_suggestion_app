@@ -24,7 +24,7 @@ class VoteAverage extends StatelessWidget {
         ),
         Icon(
           Icons.star,
-          size: 18.w,
+          size: 18.sp,
           color: Colors.yellow,
         ),
       ],

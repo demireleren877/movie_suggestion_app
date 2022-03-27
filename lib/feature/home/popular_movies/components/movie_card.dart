@@ -19,10 +19,6 @@ class MovieCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: context.horizontalPaddingLow,
-      decoration: BoxDecoration(
-        color: Colors.blueGrey.shade800,
-        borderRadius: context.lowBorderRadius,
-      ),
       child: Column(
         children: [
           MovieImage(index: index, state: state),
@@ -30,7 +26,7 @@ class MovieCard extends StatelessWidget {
           MovieName(index: index, state: state),
           context.emptySizedHeightBoxLow,
           MovieDetails(state: state, index: index),
-          context.emptySizedHeightBoxLow,
+          context.emptySizedHeightBoxLow
         ],
       ),
     );

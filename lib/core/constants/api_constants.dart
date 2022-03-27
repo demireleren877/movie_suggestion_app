@@ -7,6 +7,7 @@ class ApiConstants {
   static const String playingMovies = "/movie/now_playing";
   static const String upcomingMovies = "/movie/upcoming";
   static const String topratedMovies = "/movie/top_rated";
-  static const String apiParam = "?api_key=";
+  static const String apiKeyParam = "?api_key=";
+  static const String apiPageParam = "&page=";
   static const String imageurl = "https://image.tmdb.org/t/p/w500";
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kartal/kartal.dart';
+import 'package:movie_application/feature/home/popular_movies/popular_movies_screen.dart';
 
 import '../../core/components/centered_progress.dart';
 import 'cubit/home_cubit.dart';
@@ -48,6 +49,8 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
           );
+        } else if (state is SeeAllPopularMovies) {
+          return PopularMoviesScreen(state: state);
         } else {
           return const Center(child: Text("Some error occured."));
         }

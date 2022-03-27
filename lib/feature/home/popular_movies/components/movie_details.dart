@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kartal/kartal.dart';
 import 'package:movie_application/feature/home/cubit/home_cubit.dart';
 
@@ -28,10 +29,14 @@ class MovieDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         VoteAverage(state: state, index: index),
         context.emptySizedWidthBoxNormal,
-        Text(emoji(state.popularMovies[index].originalLanguage))
+        Text(
+          emoji(state.popularMovies[index].originalLanguage),
+          style: TextStyle(fontSize: 16.sp),
+        )
       ],
     );
   }

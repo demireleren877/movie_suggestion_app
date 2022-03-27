@@ -17,10 +17,9 @@ class MovieImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Flexible(
       child: ClipRRect(
-        borderRadius: BorderRadius.vertical(top: context.lowRadius),
+        borderRadius: context.lowBorderRadius,
         child: Image.network(
           ApiConstants.imageurl + state.popularMovies[index].posterPath,
-          fit: BoxFit.cover,
         ),
       ),
     );

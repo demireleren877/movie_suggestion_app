@@ -14,7 +14,7 @@ class PopularMovieList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: context.dynamicHeight(0.4),
+      height: context.dynamicHeight(0.38),
       child: ListView.builder(
         physics: const BouncingScrollPhysics(),
         itemCount: state.popularMovies.length,

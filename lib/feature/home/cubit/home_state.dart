@@ -13,4 +13,15 @@ class HomeLoaded extends HomeState {
   HomeLoaded({required this.playingMovies, required this.popularMovies});
 }
 
+class SeeAllPopularMovies extends HomeState {
+  final List<Movie> popularMovies;
+  final ScrollController scrollController;
+  final bool isLoading;
+  SeeAllPopularMovies({
+    required this.popularMovies,
+    required this.scrollController,
+    this.isLoading = false,
+  });
+}
+
 class HomeError extends HomeState {}

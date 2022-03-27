@@ -61,8 +61,8 @@ class MovieTinderScreen extends StatelessWidget {
                         ),
                         child: IconButton(
                           onPressed: () {
-                            ApiServices()
-                                .getMoviesFromApi(ApiConstants.playingMovies);
+                            ApiServices().getMoviesFromApi(
+                                ApiConstants.playingMovies, 1);
                           },
                           icon: const Icon(
                             Icons.star_rounded,

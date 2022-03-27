@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/material.dart';
 import 'package:movie_application/core/constants/api_constants.dart';
 
 import '../../../core/models/popular_movie_model.dart';
@@ -15,13 +15,46 @@ class HomeCubit extends Cubit<HomeState> {
     emit(HomeLoading());
     try {
       final playingMovieList =
-          await ApiServices().getMoviesFromApi(ApiConstants.playingMovies);
+          await ApiServices().getMoviesFromApi(ApiConstants.playingMovies, 1);
       final popularMovieList =
-          await ApiServices().getMoviesFromApi(ApiConstants.popularMovies);
+          await ApiServices().getMoviesFromApi(ApiConstants.popularMovies, 1);
 
       emit(HomeLoaded(
           playingMovies: getSliderCards(playingMovieList),
           popularMovies: popularMovieList));
+    } catch (e) {
+      emit(HomeError());
+    }
+  }
+
+  void seeAllPopularMovies() async {
+    emit(HomeLoading());
+    try {
+      final ScrollController scrollController = ScrollController();
+      int page = 1;
+      final popularMovieList = await ApiServices()
+          .getMoviesFromApi(ApiConstants.popularMovies, page);
+      scrollController.addListener(() async {
+        if (scrollController.position.maxScrollExtent ==
+            scrollController.offset) {
+          page++;
+          print("page: $page");
+          final newMovies = await ApiServices()
+              .getMoviesFromApi(ApiConstants.popularMovies, page);
+          if (newMovies.length > 1) {
+            emit(HomeLoading());
+            popularMovieList.addAll(newMovies);
+            emit(SeeAllPopularMovies(
+                popularMovies: popularMovieList,
+                scrollController: scrollController));
+          }
+        }
+      });
+
+      emit(SeeAllPopularMovies(
+        popularMovies: popularMovieList,
+        scrollController: scrollController,
+      ));
     } catch (e) {
       emit(HomeError());
     }
