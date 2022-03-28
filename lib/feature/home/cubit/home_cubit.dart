@@ -38,7 +38,6 @@ class HomeCubit extends Cubit<HomeState> {
         if (scrollController.position.maxScrollExtent ==
             scrollController.offset) {
           page++;
-          print("page: $page");
           final newMovies = await ApiServices()
               .getMoviesFromApi(ApiConstants.popularMovies, page);
           if (newMovies.length > 1) {

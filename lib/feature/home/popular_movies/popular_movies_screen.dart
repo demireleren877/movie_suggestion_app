@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kartal/kartal.dart';
 import 'package:movie_application/feature/home/popular_movies/components/movie_card.dart';
+import 'package:movie_application/feature/home/popular_movies/components/shimmer_widget.dart';
 import '../cubit/home_cubit.dart';
 
 class PopularMoviesScreen extends StatelessWidget {
@@ -28,7 +29,7 @@ class PopularMoviesScreen extends StatelessWidget {
               shrinkWrap: true,
               physics: const BouncingScrollPhysics(),
               controller: state.scrollController,
-              itemCount: state.popularMovies.length,
+              itemCount: state.popularMovies.length + 2,
               gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                 maxCrossAxisExtent: context.width * 0.5,
                 crossAxisSpacing: 15.w,
@@ -36,6 +37,10 @@ class PopularMoviesScreen extends StatelessWidget {
                 mainAxisSpacing: 15.h,
               ),
               itemBuilder: (context, index) {
+                if (index == state.popularMovies.length ||
+                    index == state.popularMovies.length + 1) {
+                  return const ShimmerWidget();
+                }
                 return MovieCard(
                     popularMovies: state.popularMovies, index: index);
               },

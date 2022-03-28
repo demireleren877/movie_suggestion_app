@@ -1,16 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kartal/kartal.dart';
 
-import '../../cubit/home_cubit.dart';
-
-class PopularMoviesTitle extends StatelessWidget {
-  const PopularMoviesTitle({
+class HomeTitle extends StatelessWidget {
+  const HomeTitle({
     Key? key,
+    required this.title,
+    required this.onPress,
   }) : super(key: key);
+  final String title;
+  final VoidCallback onPress;
 
   @override
   Widget build(BuildContext context) {
@@ -18,15 +19,13 @@ class PopularMoviesTitle extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          'Popular Movies',
+          title,
           style: context.textTheme.headline3?.copyWith(
             fontFamily: GoogleFonts.josefinSans().fontFamily,
           ),
         ),
         TextButton(
-          onPressed: () {
-            context.read<HomeCubit>().seeAllPopularMovies();
-          },
+          onPressed: () => onPress(),
           child: Text(
             'See All',
             style: context.textTheme.bodyLarge?.copyWith(

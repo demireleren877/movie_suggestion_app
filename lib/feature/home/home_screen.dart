@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kartal/kartal.dart';
+import 'package:movie_application/core/components/home_title.dart';
 import 'package:movie_application/feature/home/popular_movies/popular_movies_screen.dart';
 
 import '../../core/components/centered_progress.dart';
 import 'cubit/home_cubit.dart';
-import 'playing_movies/components/playing_movies_title.dart';
 import 'playing_movies/playing_movies_slider.dart';
-import 'popular_movies/components/popular_movies_title.dart';
 import 'popular_movies/popular_movie_list.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -36,11 +35,15 @@ class HomeScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       context.emptySizedHeightBoxLow3x,
-                      const PlayingMoviesTitle(),
+                      HomeTitle(title: "Playing Movies", onPress: () {}),
                       context.emptySizedHeightBoxLow3x,
                       PlayingMoviesSlider(state: state),
                       context.emptySizedHeightBoxNormal,
-                      const PopularMoviesTitle(),
+                      HomeTitle(
+                          title: "Popular Movies",
+                          onPress: () {
+                            context.read<HomeCubit>().seeAllPopularMovies();
+                          }),
                       context.emptySizedHeightBoxLow3x,
                       PopularMovieList(popularMovies: state.popularMovies),
                     ],
