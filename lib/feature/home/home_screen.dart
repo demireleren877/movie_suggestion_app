@@ -42,7 +42,7 @@ class HomeScreen extends StatelessWidget {
                       context.emptySizedHeightBoxNormal,
                       const PopularMoviesTitle(),
                       context.emptySizedHeightBoxLow3x,
-                      PopularMovieList(state: state),
+                      PopularMovieList(popularMovies: state.popularMovies),
                     ],
                   ),
                 )

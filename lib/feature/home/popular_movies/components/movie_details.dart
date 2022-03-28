@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kartal/kartal.dart';
-import 'package:movie_application/feature/home/cubit/home_cubit.dart';
 
+import '../../../../core/models/popular_movie_model.dart';
 import 'vote_average.dart';
 
 class MovieDetails extends StatelessWidget {
-  const MovieDetails({Key? key, required this.state, required this.index})
+  const MovieDetails(
+      {Key? key, required this.popularMovies, required this.index})
       : super(key: key);
-  final HomeLoaded state;
+  final List<Movie> popularMovies;
   final int index;
 
   emoji(String code) {
@@ -31,10 +32,10 @@ class MovieDetails extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        VoteAverage(state: state, index: index),
+        VoteAverage(popularMovies: popularMovies, index: index),
         context.emptySizedWidthBoxNormal,
         Text(
-          emoji(state.popularMovies[index].originalLanguage),
+          emoji(popularMovies[index].originalLanguage),
           style: TextStyle(fontSize: 16.sp),
         )
       ],

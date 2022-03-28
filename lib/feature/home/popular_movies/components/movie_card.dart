@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
-import '../../cubit/home_cubit.dart';
+import '../../../../core/models/popular_movie_model.dart';
 import 'movie_details.dart';
 import 'movie_image.dart';
 import 'movie_name.dart';
@@ -9,10 +9,10 @@ import 'movie_name.dart';
 class MovieCard extends StatelessWidget {
   const MovieCard({
     Key? key,
-    required this.state,
+    required this.popularMovies,
     required this.index,
   }) : super(key: key);
-  final HomeLoaded state;
+  final List<Movie> popularMovies;
   final int index;
 
   @override
@@ -21,11 +21,11 @@ class MovieCard extends StatelessWidget {
       margin: context.horizontalPaddingLow,
       child: Column(
         children: [
-          MovieImage(index: index, state: state),
+          MovieImage(index: index, popularMovies: popularMovies),
           context.emptySizedHeightBoxLow,
-          MovieName(index: index, state: state),
+          MovieName(index: index, popularMovies: popularMovies),
           context.emptySizedHeightBoxLow,
-          MovieDetails(state: state, index: index),
+          MovieDetails(index: index, popularMovies: popularMovies),
           context.emptySizedHeightBoxLow
         ],
       ),

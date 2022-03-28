@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:kartal/kartal.dart';
-import '../../../core/constants/api_constants.dart';
+import 'package:movie_application/feature/home/popular_movies/components/movie_card.dart';
 import '../cubit/home_cubit.dart';
 
 class PopularMoviesScreen extends StatelessWidget {
@@ -37,65 +36,8 @@ class PopularMoviesScreen extends StatelessWidget {
                 mainAxisSpacing: 15.h,
               ),
               itemBuilder: (context, index) {
-                return Container(
-                  margin: context.horizontalPaddingLow,
-                  child: Column(
-                    children: [
-                      ClipRRect(
-                        borderRadius: context.lowBorderRadius,
-                        child: Image.network(
-                          ApiConstants.imageurl +
-                              state.popularMovies[index].posterPath,
-                          fit: BoxFit.contain,
-                        ),
-                      ),
-                      context.emptySizedHeightBoxLow,
-                      Container(
-                        alignment: Alignment.center,
-                        width: 150.w,
-                        child: Text(
-                          state.popularMovies[index].title,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: context.textTheme.bodyLarge?.copyWith(
-                            fontSize: 18.sp,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: GoogleFonts.josefinSans().fontFamily,
-                          ),
-                        ),
-                      ),
-                      context.emptySizedHeightBoxLow,
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Row(
-                            children: [
-                              Text(
-                                state.popularMovies[index].voteAverage
-                                    .toString(),
-                                style: context.textTheme.bodyLarge?.copyWith(
-                                  fontSize: 18.sp,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily:
-                                      GoogleFonts.josefinSans().fontFamily,
-                                ),
-                              ),
-                              Icon(
-                                Icons.star,
-                                size: 18.w,
-                                color: Colors.yellow,
-                              ),
-                            ],
-                          ),
-                          context.emptySizedWidthBoxNormal,
-                          Text(emoji(
-                              state.popularMovies[index].originalLanguage))
-                        ],
-                      ),
-                      context.emptySizedHeightBoxLow,
-                    ],
-                  ),
-                );
+                return MovieCard(
+                    popularMovies: state.popularMovies, index: index);
               },
             ),
           ),
