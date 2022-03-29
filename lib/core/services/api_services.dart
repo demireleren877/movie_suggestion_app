@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:movie_application/core/models/movie_detail_model.dart';
+import 'package:movie_application/core/models/movie_images_model.dart';
 import 'package:movie_application/core/models/popular_movie_model.dart';
 
 import '../../feature/movie_tinder/components/image_card.dart';
@@ -58,6 +59,7 @@ class ApiServices {
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       MovieDetail movieDetail = MovieDetail.fromJson(jsonDecode(response.body));
+      movieDetail.movieImage = await getMovieImages(id);
       return movieDetail;
     }
     return MovieDetail(
@@ -73,5 +75,23 @@ class ApiServices {
         voteAverage: "voteAverage",
         voteCount: "voteCount",
         genres: []);
+  }
+
+  Future<MovieImage> getMovieImages(int id) async {
+    String url = ApiConstants.baseUrl +
+        "/movie/" +
+        id.toString() +
+        "/images" +
+        ApiConstants.apiKeyParam +
+        ApiConstants.apiKey;
+    final response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      MovieImage movieImage = MovieImage.fromJson(jsonDecode(response.body));
+      return movieImage;
+    }
+    return const MovieImage(
+      backdrops: [],
+      posters: [],
+    );
   }
 }

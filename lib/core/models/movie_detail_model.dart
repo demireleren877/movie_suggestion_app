@@ -1,3 +1,5 @@
+import 'movie_images_model.dart';
+
 class MovieDetail {
   final String id;
   final String title;
@@ -12,11 +14,12 @@ class MovieDetail {
   final String voteAverage;
   final String voteCount;
 
-  //MovieImage movieImage;
+  MovieImage? movieImage;
 
   //List<Cast> castList;
 
   MovieDetail({
+    this.movieImage,
     required this.genres,
     required this.posterPath,
     required this.id,
