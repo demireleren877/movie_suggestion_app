@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kartal/kartal.dart';
 
 class MovieTitle extends StatelessWidget {
@@ -14,7 +15,7 @@ class MovieTitle extends StatelessWidget {
     return Flexible(
       child: Text(
         title,
-        style: context.textTheme.headline6,
+        style: context.textTheme.headline6?.copyWith(fontSize: 22.sp),
         overflow: TextOverflow.ellipsis,
         maxLines: 1,
       ),

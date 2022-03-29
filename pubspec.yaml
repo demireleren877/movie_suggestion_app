@@ -12,6 +12,7 @@ dependencies:
   build_runner: ^2.1.4
   carousel_slider: ^4.0.0
   cupertino_icons: ^1.0.2
+  equatable: ^2.0.3
   flex_color_scheme: ^4.2.0
   flutter:
     sdk: flutter

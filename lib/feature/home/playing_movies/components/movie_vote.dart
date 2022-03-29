@@ -17,7 +17,7 @@ class VoteRow extends StatelessWidget {
         Icon(Icons.star, size: 20.sp, color: Colors.yellow),
         Text(
           voteAverage,
-          style: context.textTheme.subtitle1,
+          style: context.textTheme.subtitle1?.copyWith(fontSize: 18.sp),
         ),
       ],
     );

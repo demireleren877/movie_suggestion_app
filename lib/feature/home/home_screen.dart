@@ -40,10 +40,11 @@ class HomeScreen extends StatelessWidget {
                       PlayingMoviesSlider(state: state),
                       context.emptySizedHeightBoxNormal,
                       HomeTitle(
-                          title: "Popular Movies",
-                          onPress: () {
-                            context.read<HomeCubit>().seeAllPopularMovies();
-                          }),
+                        title: "Popular Movies",
+                        onPress: () {
+                          context.read<HomeCubit>().seeAllPopularMovies();
+                        },
+                      ),
                       context.emptySizedHeightBoxLow3x,
                       PopularMovieList(popularMovies: state.popularMovies),
                     ],

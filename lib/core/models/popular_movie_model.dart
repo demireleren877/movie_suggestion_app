@@ -1,6 +1,7 @@
 class Movie {
   final String backdropPath;
   final int id;
+  final List<int> genreIds;
   final String originalLanguage;
   final String originalTitle;
   final String overview;
@@ -10,8 +11,11 @@ class Movie {
   final bool video;
   final int voteCount;
   final String voteAverage;
+  final int runtime;
 
   Movie({
+    required this.runtime,
+    required this.genreIds,
     required this.backdropPath,
     required this.id,
     required this.originalLanguage,
@@ -27,6 +31,8 @@ class Movie {
 
   factory Movie.fromJson(dynamic json) {
     return Movie(
+        runtime: json['runtime'] ?? 000,
+        genreIds: List<int>.from(json['genre_ids']),
         backdropPath: json['backdrop_path'] ?? "",
         id: json['id'] ?? 0,
         originalLanguage: json['original_language'] ?? "en",

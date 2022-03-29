@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:movie_application/core/models/movie_detail_model.dart';
 import 'package:movie_application/core/models/popular_movie_model.dart';
 
 import '../../feature/movie_tinder/components/image_card.dart';
@@ -46,5 +47,31 @@ class ApiServices {
       return movieList;
     }
     return [];
+  }
+
+  Future<MovieDetail> getMovieDetails(int id) async {
+    String url = ApiConstants.baseUrl +
+        "/movie/" +
+        id.toString() +
+        ApiConstants.apiKeyParam +
+        ApiConstants.apiKey;
+    final response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      MovieDetail movieDetail = MovieDetail.fromJson(jsonDecode(response.body));
+      return movieDetail;
+    }
+    return MovieDetail(
+        posterPath: "",
+        id: "",
+        title: "title",
+        backdropPath: "backdropPath",
+        budget: "budget",
+        originalTitle: "originalTitle",
+        overview: "overview",
+        releaseDate: "releaseDate",
+        runtime: "runtime",
+        voteAverage: "voteAverage",
+        voteCount: "voteCount",
+        genres: []);
   }
 }

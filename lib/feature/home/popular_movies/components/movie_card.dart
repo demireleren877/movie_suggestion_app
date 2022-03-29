@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
+import 'package:movie_application/feature/movie_details/detail_screen.dart';
 
 import '../../../../core/models/popular_movie_model.dart';
 import 'movie_details.dart';
@@ -17,17 +18,29 @@ class MovieCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: context.horizontalPaddingLow,
-      child: Column(
-        children: [
-          MovieImage(index: index, popularMovies: popularMovies),
-          context.emptySizedHeightBoxLow,
-          MovieName(index: index, popularMovies: popularMovies),
-          context.emptySizedHeightBoxLow,
-          MovieDetails(index: index, popularMovies: popularMovies),
-          context.emptySizedHeightBoxLow
-        ],
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => DetailScreen(
+              movieId: popularMovies[index].id,
+            ),
+          ),
+        );
+      },
+      child: Container(
+        margin: context.horizontalPaddingLow,
+        child: Column(
+          children: [
+            MovieImage(index: index, popularMovies: popularMovies),
+            context.emptySizedHeightBoxLow,
+            MovieName(index: index, popularMovies: popularMovies),
+            context.emptySizedHeightBoxLow,
+            MovieDetails(index: index, popularMovies: popularMovies),
+            context.emptySizedHeightBoxLow
+          ],
+        ),
       ),
     );
   }
