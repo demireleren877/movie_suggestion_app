@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:movie_application/feature/movie_details/detail_screen.dart';
 
-import '../../../../core/models/popular_movie_model.dart';
+import '../../../../core/models/movie_model.dart';
 import 'movie_details.dart';
 import 'movie_image.dart';
 import 'movie_name.dart';

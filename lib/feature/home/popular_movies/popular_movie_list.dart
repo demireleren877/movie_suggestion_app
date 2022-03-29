@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
-import '../../../core/models/popular_movie_model.dart';
+import '../../../core/models/movie_model.dart';
 import 'components/movie_card.dart';
 
 class PopularMovieList extends StatelessWidget {

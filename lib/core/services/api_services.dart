@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:movie_application/core/models/cast_list_model.dart';
 import 'package:movie_application/core/models/movie_detail_model.dart';
 import 'package:movie_application/core/models/movie_images_model.dart';
-import 'package:movie_application/core/models/popular_movie_model.dart';
+import 'package:movie_application/core/models/movie_model.dart';
 
 import '../../feature/movie_tinder/components/image_card.dart';
 import '../constants/api_constants.dart';

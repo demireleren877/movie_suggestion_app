@@ -22,4 +22,13 @@ class SeeAllPopularMovies extends HomeState {
   });
 }
 
+class SeeAllPlayingMovies extends HomeState {
+  final List<Movie> playingMovies;
+  final ScrollController scrollController;
+  SeeAllPlayingMovies({
+    required this.playingMovies,
+    required this.scrollController,
+  });
+}
+
 class HomeError extends HomeState {}

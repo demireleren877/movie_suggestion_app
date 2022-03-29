@@ -4,7 +4,7 @@ import 'package:kartal/kartal.dart';
 import 'package:movie_application/feature/home/popular_movies/components/bookmark_button.dart';
 
 import '../../../../core/constants/api_constants.dart';
-import '../../../../core/models/popular_movie_model.dart';
+import '../../../../core/models/movie_model.dart';
 
 class MovieImage extends StatelessWidget {
   const MovieImage({
