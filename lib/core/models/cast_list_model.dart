@@ -18,7 +18,7 @@ class Cast {
   factory Cast.fromJson(dynamic json) {
     return Cast(
         name: json['name'],
-        profilePath: json['profile_path'],
+        profilePath: json['profile_path'] ?? "",
         character: json['character']);
   }
 }

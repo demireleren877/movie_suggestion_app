@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:movie_application/core/models/cast_list_model.dart';
 import 'package:movie_application/core/models/movie_detail_model.dart';
 import 'package:movie_application/core/models/movie_images_model.dart';
 import 'package:movie_application/core/models/popular_movie_model.dart';
@@ -60,6 +61,7 @@ class ApiServices {
     if (response.statusCode == 200) {
       MovieDetail movieDetail = MovieDetail.fromJson(jsonDecode(response.body));
       movieDetail.movieImage = await getMovieImages(id);
+      movieDetail.castList = await getCastList(id);
       return movieDetail;
     }
     return MovieDetail(
@@ -93,5 +95,23 @@ class ApiServices {
       backdrops: [],
       posters: [],
     );
+  }
+
+  Future<List<Cast>> getCastList(int id) async {
+    String url = ApiConstants.baseUrl +
+        "/movie/" +
+        id.toString() +
+        "/credits" +
+        ApiConstants.apiKeyParam +
+        ApiConstants.apiKey;
+    final response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      List<Cast> castList =
+          (jsonDecode(response.body)["cast"] as List).map((cast) {
+        return Cast.fromJson(cast);
+      }).toList();
+      return castList;
+    }
+    return [];
   }
 }

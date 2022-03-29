@@ -14,22 +14,20 @@ class ScreenshotList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: context.height * 0.2,
+      height: context.height * 0.25,
       child: ListView.builder(
         physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
         itemCount: detail.movieImage?.backdrops.length,
         itemBuilder: (BuildContext context, int index) {
           return Container(
-            width: context.width * 0.8,
+            width: context.width * 0.9,
             margin: context.horizontalPaddingLow,
             child: ClipRRect(
               borderRadius: context.lowBorderRadius,
               child: Image.network(
                 ApiConstants.imageurl +
                     (detail.movieImage?.backdrops[index].imagePath ?? ""),
-                height: context.height * 0.2,
-                width: context.width * 0.3,
                 fit: BoxFit.cover,
               ),
             ),

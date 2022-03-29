@@ -7,6 +7,8 @@ import 'package:movie_application/feature/movie_details/components/details_heade
 import 'package:movie_application/feature/movie_details/components/details_page_title.dart';
 import 'package:movie_application/feature/movie_details/cubit/movie_details_cubit.dart';
 
+import 'components/cast_list.dart';
+import 'components/little_detail_list.dart';
 import 'components/movie_genres.dart';
 import 'components/overview_text.dart';
 import 'components/screenshot_list.dart';
@@ -29,9 +31,12 @@ class DetailScreen extends StatelessWidget {
             return Scaffold(
               body: Center(
                 child: ListView(
+                  physics: const AlwaysScrollableScrollPhysics(),
                   children: [
                     DetailsHeader(detail: state.detail),
                     MovieGenres(detail: state.detail),
+                    const DetailPageDivider(),
+                    LittleMovieDetails(detail: state.detail),
                     const DetailPageDivider(),
                     const DetailsPageTitle(title: "Overview"),
                     OverviewText(detail: state.detail),
@@ -39,7 +44,10 @@ class DetailScreen extends StatelessWidget {
                     const DetailsPageTitle(title: "Screenshots"),
                     context.emptySizedHeightBoxLow3x,
                     ScreenshotList(detail: state.detail),
-                    context.emptySizedHeightBoxLow3x
+                    const DetailPageDivider(),
+                    const DetailsPageTitle(title: "Cast"),
+                    CastListWidget(detail: state.detail),
+                    context.emptySizedHeightBoxLow3x,
                   ],
                 ),
               ),

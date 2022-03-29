@@ -29,7 +29,7 @@ class MovieGenres extends StatelessWidget {
             child: Center(
               child: Text(
                 detail.genres[index]['name'],
-                style: const TextStyle(fontSize: 16),
+                style: TextStyle(fontSize: 16.sp),
               ),
             ),
           );

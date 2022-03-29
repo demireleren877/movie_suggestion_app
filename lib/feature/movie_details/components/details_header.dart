@@ -18,45 +18,9 @@ class DetailsHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        ClipRRect(
-          borderRadius: context.lowBorderRadius,
-          child: Image.network(
-            ApiConstants.imageurl + detail.posterPath,
-            height: context.height * 0.5,
-            width: double.infinity,
-            fit: BoxFit.cover,
-          ),
-        ),
-        Container(
-          height: context.height * 0.5,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.bottomCenter,
-              end: Alignment.topCenter,
-              colors: [
-                const Color(0xFF252a31).withOpacity(1),
-                const Color(0xFF252a31).withOpacity(0.0),
-                const Color(0xFF252a31).withOpacity(0.3),
-                const Color(0xFF252a31).withOpacity(0.15),
-              ],
-            ),
-          ),
-        ),
-        Positioned(
-          left: 10.w,
-          bottom: 20.h,
-          child: SizedBox(
-            width: context.width * 0.7,
-            child: Text(
-              detail.title + "  " + '(${detail.releaseDate.split('-')[0]})',
-              style: context.textTheme.headline4?.copyWith(
-                color: Colors.white,
-                fontFamily: GoogleFonts.josefinSans().fontFamily,
-              ),
-            ),
-          ),
-        ),
+        HeaderImage(detail: detail),
+        const HeaderShadow(),
+        HeaderTitle(detail: detail),
         BackButton(
           color: Colors.white,
           onPressed: () {
@@ -64,6 +28,79 @@ class DetailsHeader extends StatelessWidget {
           },
         ),
       ],
+    );
+  }
+}
+
+class HeaderTitle extends StatelessWidget {
+  const HeaderTitle({
+    Key? key,
+    required this.detail,
+  }) : super(key: key);
+
+  final MovieDetail detail;
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      left: 10.w,
+      bottom: 20.h,
+      child: SizedBox(
+        width: context.width * 0.7,
+        child: Text(
+          detail.title + "  " + '(${detail.releaseDate.split('-')[0]})',
+          style: context.textTheme.headline4?.copyWith(
+            fontSize: 28.sp,
+            color: Colors.white,
+            fontFamily: GoogleFonts.josefinSans().fontFamily,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class HeaderShadow extends StatelessWidget {
+  const HeaderShadow({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: context.height * 0.5,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.bottomCenter,
+          end: Alignment.topCenter,
+          colors: [
+            const Color(0xFF252a31).withOpacity(1),
+            const Color(0xFF252a31).withOpacity(0.0),
+            const Color(0xFF252a31).withOpacity(0.3),
+            const Color(0xFF252a31).withOpacity(0.15),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class HeaderImage extends StatelessWidget {
+  const HeaderImage({
+    Key? key,
+    required this.detail,
+  }) : super(key: key);
+
+  final MovieDetail detail;
+
+  @override
+  Widget build(BuildContext context) {
+    return Image.network(
+      ApiConstants.imageurl + detail.posterPath,
+      height: context.height * 0.5,
+      width: double.infinity,
+      fit: BoxFit.cover,
     );
   }
 }

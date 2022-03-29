@@ -1,3 +1,4 @@
+import 'cast_list_model.dart';
 import 'movie_images_model.dart';
 
 class MovieDetail {
@@ -16,9 +17,10 @@ class MovieDetail {
 
   MovieImage? movieImage;
 
-  //List<Cast> castList;
+  List<Cast>? castList;
 
   MovieDetail({
+    this.castList,
     this.movieImage,
     required this.genres,
     required this.posterPath,
