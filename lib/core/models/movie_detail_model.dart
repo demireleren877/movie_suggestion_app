@@ -6,7 +6,6 @@ class MovieDetail {
   final String title;
   final List genres;
   final String posterPath;
-  final String backdropPath;
   final String budget;
   final String originalTitle;
   final String overview;
@@ -26,7 +25,6 @@ class MovieDetail {
     required this.posterPath,
     required this.id,
     required this.title,
-    required this.backdropPath,
     required this.budget,
     required this.originalTitle,
     required this.overview,
@@ -42,7 +40,6 @@ class MovieDetail {
         posterPath: json['poster_path'],
         id: json['id'].toString(),
         title: json['title'],
-        backdropPath: json['backdrop_path'],
         budget: json['budget'].toString(),
         originalTitle: json['original_title'],
         overview: json['overview'],

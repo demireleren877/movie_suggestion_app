@@ -65,7 +65,7 @@ class ExploreCubit extends Cubit<ExploreState> {
       final upcomingMovies =
           await ApiServices().getMoviesFromApi(ApiConstants.upcomingMovies, 1);
       final topRatedMovies =
-          await ApiServices().getMoviesFromApi(ApiConstants.topratedMovies, 1);
+          await ApiServices().getMoviesByGenre(selectedGenre);
       emit(ExploreLoaded(
         selectedGenre: selectedGenre,
         genres: genres,

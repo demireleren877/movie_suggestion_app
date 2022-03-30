@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kartal/kartal.dart';
 import 'package:movie_application/core/components/centered_progress.dart';
 import 'package:movie_application/core/components/home_title.dart';
 import 'package:movie_application/feature/explore/cubit/explore_cubit.dart';
 import 'package:movie_application/core/components/all_movies_gridview.dart';
 
+import '../../core/models/movie_model.dart';
 import '../home/popular_movies/components/movie_card.dart';
 
 class ExploreScreen extends StatelessWidget {
@@ -36,81 +38,11 @@ class ExploreScreen extends StatelessWidget {
                     },
                   ),
                   context.emptySizedHeightBoxLow,
-                  SizedBox(
-                    height: context.dynamicHeight(0.38),
-                    child: ListView.builder(
-                      physics: const BouncingScrollPhysics(),
-                      scrollDirection: Axis.horizontal,
-                      itemCount: state.upcomingMovies.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return MovieCard(
-                          index: index,
-                          movies: state.upcomingMovies,
-                        );
-                      },
-                    ),
-                  ),
+                  UpcomingMoviesList(upcomingMovies: state.upcomingMovies),
                   context.emptySizedHeightBoxLow3x,
-                  SizedBox(
-                    height: context.dynamicHeight(0.05),
-                    child: ListView.builder(
-                      physics: const BouncingScrollPhysics(),
-                      scrollDirection: Axis.horizontal,
-                      itemCount: state.genres.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return GestureDetector(
-                          onTap: () {
-                            context
-                                .read<ExploreCubit>()
-                                .changeGenre(state.genres[index].id, state);
-                          },
-                          child: Container(
-                            padding: context.paddingLow,
-                            margin: context.horizontalPaddingLow,
-                            decoration: BoxDecoration(
-                              borderRadius: context.normalBorderRadius,
-                              border: Border.all(
-                                color: Colors.white,
-                              ),
-                              color: state.genres[index].id ==
-                                      context.read<ExploreCubit>().selectedGenre
-                                  ? Colors.white70
-                                  : const Color(0xFF252a31),
-                            ),
-                            height: context.dynamicHeight(0.05),
-                            child: Center(
-                              child: Text(
-                                state.genres[index].name,
-                                style: context.textTheme.bodyText1?.copyWith(
-                                  color: state.genres[index].id ==
-                                          context
-                                              .read<ExploreCubit>()
-                                              .selectedGenre
-                                      ? const Color(0xFF252a31)
-                                      : Colors.white70,
-                                ),
-                              ),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
+                  GenreList(state: state),
                   context.emptySizedHeightBoxLow3x,
-                  SizedBox(
-                    height: context.dynamicHeight(0.38),
-                    child: ListView.builder(
-                      physics: const BouncingScrollPhysics(),
-                      scrollDirection: Axis.horizontal,
-                      itemCount: state.topRatedMovies.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return MovieCard(
-                          index: index,
-                          movies: state.topRatedMovies,
-                        );
-                      },
-                    ),
-                  ),
+                  TopratedMovieList(topRatedMovies: state.topRatedMovies),
                 ],
               ),
             ),
@@ -130,6 +62,115 @@ class ExploreScreen extends StatelessWidget {
           );
         }
       },
+    );
+  }
+}
+
+class TopratedMovieList extends StatelessWidget {
+  const TopratedMovieList({
+    Key? key,
+    required this.topRatedMovies,
+  }) : super(key: key);
+  final List<Movie> topRatedMovies;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: context.dynamicHeight(0.38),
+      child: ListView.builder(
+        physics: const BouncingScrollPhysics(),
+        scrollDirection: Axis.horizontal,
+        itemCount: topRatedMovies.length,
+        itemBuilder: (BuildContext context, int index) {
+          return MovieCard(
+            index: index,
+            movies: topRatedMovies,
+          );
+        },
+      ),
+    );
+  }
+}
+
+class GenreList extends StatelessWidget {
+  const GenreList({
+    Key? key,
+    required this.state,
+  }) : super(key: key);
+  final ExploreLoaded state;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: context.horizontalPaddingLow,
+      height: context.dynamicHeight(0.05),
+      child: ListView.builder(
+        physics: const BouncingScrollPhysics(),
+        scrollDirection: Axis.horizontal,
+        itemCount: state.genres.length,
+        itemBuilder: (BuildContext context, int index) {
+          return GestureDetector(
+            onTap: () {
+              context
+                  .read<ExploreCubit>()
+                  .changeGenre(state.genres[index].id, state);
+            },
+            child: Container(
+              padding: context.paddingLow,
+              margin: context.horizontalPaddingLow,
+              decoration: BoxDecoration(
+                borderRadius: context.normalBorderRadius,
+                border: Border.all(
+                  color: Colors.white,
+                ),
+                color: state.genres[index].id ==
+                        context.read<ExploreCubit>().selectedGenre
+                    ? Colors.white70
+                    : const Color(0xFF252a31),
+              ),
+              height: context.dynamicHeight(0.05),
+              child: Center(
+                child: Text(
+                  state.genres[index].name,
+                  style: context.textTheme.bodyText1?.copyWith(
+                    fontSize: 16.sp,
+                    color: state.genres[index].id ==
+                            context.read<ExploreCubit>().selectedGenre
+                        ? const Color(0xFF252a31)
+                        : Colors.white70,
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class UpcomingMoviesList extends StatelessWidget {
+  const UpcomingMoviesList({
+    Key? key,
+    required this.upcomingMovies,
+  }) : super(key: key);
+
+  final List<Movie> upcomingMovies;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: context.dynamicHeight(0.38),
+      child: ListView.builder(
+        physics: const BouncingScrollPhysics(),
+        scrollDirection: Axis.horizontal,
+        itemCount: upcomingMovies.length,
+        itemBuilder: (BuildContext context, int index) {
+          return MovieCard(
+            index: index,
+            movies: upcomingMovies,
+          );
+        },
+      ),
     );
   }
 }

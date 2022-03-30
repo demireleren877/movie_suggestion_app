@@ -68,15 +68,14 @@ class ApiServices {
     return MovieDetail(
         posterPath: "",
         id: "",
-        title: "title",
-        backdropPath: "backdropPath",
-        budget: "budget",
-        originalTitle: "originalTitle",
-        overview: "overview",
-        releaseDate: "releaseDate",
-        runtime: "runtime",
-        voteAverage: "voteAverage",
-        voteCount: "voteCount",
+        title: "",
+        budget: "",
+        originalTitle: "",
+        overview: "",
+        releaseDate: "",
+        runtime: "",
+        voteAverage: "",
+        voteCount: "",
         genres: []);
   }
 
@@ -117,21 +116,26 @@ class ApiServices {
   }
 
   Future<List<Movie>> getMoviesByGenre(int genreId) async {
-    String url = ApiConstants.baseUrl +
-        ApiConstants.topratedMovies +
-        ApiConstants.apiKeyParam +
-        ApiConstants.apiKey;
-    final response = await http.get(Uri.parse(url));
-    if (response.statusCode == 200) {
-      final json = jsonDecode(response.body);
-      var movies = json["results"] as List;
-      List<Movie> movieList = movies
-          .map((movie) => Movie.fromJson(movie))
-          .where((element) => element.genreIds.contains(genreId))
-          .toList();
-      return movieList;
+    List<Movie> movieList = [];
+
+    for (int page = 1; page < 6; page++) {
+      String url = ApiConstants.baseUrl +
+          "/discover/movie" +
+          ApiConstants.apiKeyParam +
+          ApiConstants.apiKey +
+          ApiConstants.apiPageParam +
+          page.toString();
+      final response = await http.get(Uri.parse(url));
+      if (response.statusCode == 200) {
+        final json = jsonDecode(response.body);
+        var movies = json["results"] as List;
+        movieList.addAll(movies
+            .map((movie) => Movie.fromJson(movie))
+            .where((element) => element.genreIds.contains(genreId))
+            .toList());
+      }
     }
-    return [];
+    return movieList;
   }
 
   Future<List<Genre>> getGenres() async {

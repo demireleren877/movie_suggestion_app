@@ -99,6 +99,7 @@ class HomeCubit extends Cubit<HomeState> {
           image: movies[i].backdropPath,
           title: movies[i].title,
           voteAverage: movies[i].voteAverage,
+          movieId: movies[i].id,
         ),
       );
     }

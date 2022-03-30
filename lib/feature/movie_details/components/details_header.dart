@@ -2,33 +2,63 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kartal/kartal.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../../core/constants/api_constants.dart';
 import '../../../core/models/movie_detail_model.dart';
 
 class DetailsHeader extends StatelessWidget {
-  const DetailsHeader({
+  DetailsHeader({
     Key? key,
     required this.detail,
   }) : super(key: key);
 
   final MovieDetail detail;
+  YoutubePlayerController controller = YoutubePlayerController(
+    initialVideoId: '3U7KaI_NPGg',
+    flags: const YoutubePlayerFlags(
+        disableDragSeek: true,
+        useHybridComposition: true,
+        autoPlay: false,
+        mute: false,
+        hideThumbnail: true),
+  );
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        HeaderImage(detail: detail),
-        const HeaderShadow(),
-        HeaderTitle(detail: detail),
-        BackButton(
-          color: Colors.white,
-          onPressed: () {
-            Navigator.pop(context);
-          },
+    return YoutubePlayerBuilder(
+        //Hide navbar when player fullscreen
+
+        player: YoutubePlayer(
+          bottomActions: [
+            CurrentPosition(),
+            ProgressBar(isExpanded: true),
+            RemainingDuration(),
+            FullScreenButton(),
+          ],
+          controller: controller,
+          showVideoProgressIndicator: true,
+          progressIndicatorColor: Colors.amber,
+          progressColors: const ProgressBarColors(
+            playedColor: Colors.amber,
+            handleColor: Colors.amberAccent,
+          ),
         ),
-      ],
-    );
+        builder: (context, player) {
+          return Stack(
+            children: [
+              const HeaderShadow(),
+              HeaderTitle(detail: detail),
+              BackButton(
+                color: Colors.white,
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+              player,
+            ],
+          );
+        });
   }
 }
 
@@ -98,9 +128,9 @@ class HeaderImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Image.network(
       ApiConstants.imageurl + detail.posterPath,
-      height: context.height * 0.5,
+      height: context.height * 0.6,
       width: double.infinity,
-      fit: BoxFit.cover,
+      fit: BoxFit.fitWidth,
     );
   }
 }

@@ -47,7 +47,7 @@ class TabViewScreen extends StatelessWidget {
 List<Widget> _buildScreens() {
   return [
     const HomeScreen(),
-    ExploreScreen(),
+    const ExploreScreen(),
     Container(color: Colors.amber),
     Container(color: Colors.amber),
   ];
