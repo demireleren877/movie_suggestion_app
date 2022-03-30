@@ -13,6 +13,7 @@ class MovieDetail {
   final String runtime;
   final String voteAverage;
   final String voteCount;
+  final String videoId;
 
   MovieImage? movieImage;
 
@@ -21,6 +22,7 @@ class MovieDetail {
   MovieDetail({
     this.castList,
     this.movieImage,
+    required this.videoId,
     required this.genres,
     required this.posterPath,
     required this.id,
@@ -46,6 +48,9 @@ class MovieDetail {
         releaseDate: json['release_date'],
         runtime: json['runtime'].toString(),
         voteAverage: json['vote_average'].toString(),
-        voteCount: json['vote_count'].toString());
+        voteCount: json['vote_count'].toString(),
+        videoId: json["videos"]["results"].isNotEmpty
+            ? json['videos']['results'].last["key"]
+            : "");
   }
 }

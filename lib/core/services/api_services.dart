@@ -57,7 +57,8 @@ class ApiServices {
         "/movie/" +
         id.toString() +
         ApiConstants.apiKeyParam +
-        ApiConstants.apiKey;
+        ApiConstants.apiKey +
+        ApiConstants.appendVideoParam;
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       MovieDetail movieDetail = MovieDetail.fromJson(jsonDecode(response.body));
@@ -76,7 +77,8 @@ class ApiServices {
         runtime: "",
         voteAverage: "",
         voteCount: "",
-        genres: []);
+        genres: [],
+        videoId: '');
   }
 
   Future<MovieImage> getMovieImages(int id) async {
