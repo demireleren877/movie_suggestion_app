@@ -8,6 +8,7 @@ import 'package:movie_application/core/models/movie_model.dart';
 
 import '../../feature/movie_tinder/components/image_card.dart';
 import '../constants/api_constants.dart';
+import '../models/genre_model.dart';
 
 class ApiServices {
   Future<List<ImageCard>> getMovieTinderFromApi() async {
@@ -111,6 +112,40 @@ class ApiServices {
         return Cast.fromJson(cast);
       }).toList();
       return castList;
+    }
+    return [];
+  }
+
+  Future<List<Movie>> getMoviesByGenre(int genreId) async {
+    String url = ApiConstants.baseUrl +
+        ApiConstants.topratedMovies +
+        ApiConstants.apiKeyParam +
+        ApiConstants.apiKey;
+    final response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      final json = jsonDecode(response.body);
+      var movies = json["results"] as List;
+      List<Movie> movieList = movies
+          .map((movie) => Movie.fromJson(movie))
+          .where((element) => element.genreIds.contains(genreId))
+          .toList();
+      return movieList;
+    }
+    return [];
+  }
+
+  Future<List<Genre>> getGenres() async {
+    String url = ApiConstants.baseUrl +
+        "/genre/movie/list" +
+        ApiConstants.apiKeyParam +
+        ApiConstants.apiKey;
+    final response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      List<Genre> genreList =
+          (jsonDecode(response.body)["genres"] as List).map((genre) {
+        return Genre.fromJson(genre);
+      }).toList();
+      return genreList;
     }
     return [];
   }

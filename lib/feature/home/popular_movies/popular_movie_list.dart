@@ -23,7 +23,7 @@ class PopularMovieList extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           return MovieCard(
             index: index,
-            popularMovies: popularMovies,
+            movies: popularMovies,
           );
         },
       ),

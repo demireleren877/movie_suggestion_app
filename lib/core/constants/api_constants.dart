@@ -10,4 +10,5 @@ class ApiConstants {
   static const String apiKeyParam = "?api_key=";
   static const String apiPageParam = "&page=";
   static const String imageurl = "https://image.tmdb.org/t/p/w500";
+  static const String genreParam = "/discover/movie?with_genres=";
 }

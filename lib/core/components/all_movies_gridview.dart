@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kartal/kartal.dart';
 import 'package:movie_application/core/models/movie_model.dart';
 
-import '../cubit/home_cubit.dart';
-import '../popular_movies/components/movie_card.dart';
-import '../popular_movies/components/shimmer_widget.dart';
+import '../../feature/home/popular_movies/components/movie_card.dart';
+import '../../feature/home/popular_movies/components/shimmer_widget.dart';
 
 class MoviesGridview extends StatelessWidget {
   const MoviesGridview({
@@ -14,17 +12,19 @@ class MoviesGridview extends StatelessWidget {
     required this.title,
     required this.scrollController,
     required this.movies,
+    required this.onBackPressed,
   }) : super(key: key);
   final String title;
   final ScrollController scrollController;
   final List<Movie> movies;
+  final VoidCallback onBackPressed;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(
-          onPressed: context.read<HomeCubit>().getAllMovies,
+          onPressed: onBackPressed,
         ),
         centerTitle: true,
         title: Text(title),
@@ -49,7 +49,7 @@ class MoviesGridview extends StatelessWidget {
                   return const ShimmerWidget();
                 }
                 return MovieCard(
-                  popularMovies: movies,
+                  movies: movies,
                   index: index,
                 );
               },

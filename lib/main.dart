@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_application/core/routes/routes.dart';
 import 'package:movie_application/core/theme/theme_data.dart';
+import 'package:movie_application/feature/explore/cubit/explore_cubit.dart';
 import 'package:movie_application/feature/home/cubit/home_cubit.dart';
 
 import 'feature/movie_tinder/cubit/movie_tinder_cubit.dart';
@@ -30,6 +31,9 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) => MovieTinderCubit()..getPopularMovies(),
+          ),
+          BlocProvider(
+            create: (context) => ExploreCubit()..loadExplore(),
           ),
         ],
         child: MaterialApp(
