@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kartal/kartal.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/constants/api_constants.dart';
 import '../../../core/models/movie_detail_model.dart';
@@ -60,7 +61,9 @@ class HeaderTitle extends StatelessWidget {
           ),
           context.emptySizedWidthBoxNormal,
           GestureDetector(
-            onTap: () {},
+            onTap: () async {
+              await launch("https://www.youtube.com/watch?v=${detail.videoId}");
+            },
             child: Icon(
               Icons.play_circle_outline,
               color: Colors.white,

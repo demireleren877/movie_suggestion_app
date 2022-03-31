@@ -14,7 +14,7 @@ class MovieGenres extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 30.h,
+      height: detail.genres.isNotEmpty ? 30.h : 0,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: detail.genres.length,

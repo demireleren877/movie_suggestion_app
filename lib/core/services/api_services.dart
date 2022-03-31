@@ -120,7 +120,7 @@ class ApiServices {
   Future<List<Movie>> getMoviesByGenre(int genreId) async {
     List<Movie> movieList = [];
 
-    for (int page = 1; page < 6; page++) {
+    for (int page = 1; page < 4; page++) {
       String url = ApiConstants.baseUrl +
           "/discover/movie" +
           ApiConstants.apiKeyParam +
