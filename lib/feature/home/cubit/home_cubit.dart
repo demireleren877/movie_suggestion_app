@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_application/core/constants/api_constants.dart';
 
@@ -11,22 +10,6 @@ part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeInitial());
-
-  void changeLocale(Locale locale, BuildContext context) async {
-    try {
-      context.setLocale(locale);
-      final playingMovieList =
-          await ApiServices().getMoviesFromApi(ApiConstants.playingMovies, 1);
-      final popularMovieList =
-          await ApiServices().getMoviesFromApi(ApiConstants.popularMovies, 1);
-
-      emit(HomeLoaded(
-          playingMovies: getSliderCards(playingMovieList),
-          popularMovies: popularMovieList));
-    } catch (e) {
-      emit(HomeError());
-    }
-  }
 
   void getAllMovies() async {
     emit(HomeLoading());

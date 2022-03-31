@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kartal/kartal.dart';
 import 'package:movie_application/core/components/centered_progress.dart';
 import 'package:movie_application/core/components/home_title.dart';
+import 'package:movie_application/core/localization/app_localizations.dart';
 import 'package:movie_application/feature/explore/cubit/explore_cubit.dart';
 import 'package:movie_application/core/components/all_movies_gridview.dart';
 
@@ -32,7 +33,9 @@ class ExploreScreen extends StatelessWidget {
                 children: [
                   context.emptySizedHeightBoxLow,
                   HomeTitle(
-                    title: "Upcoming Movies",
+                    title: AppLocalizations.of(context)
+                            ?.translate("upcoming_movie_title") ??
+                        "",
                     onPress: () {
                       context.read<ExploreCubit>().seeAllUpcomingMovies();
                     },

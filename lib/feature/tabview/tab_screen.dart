@@ -19,7 +19,7 @@ class TabViewScreen extends StatelessWidget {
         context,
         controller: _controller,
         screens: _buildScreens(),
-        items: _navBarsItems(),
+        items: _navBarsItems(context, _controller),
         confineInSafeArea: true,
         handleAndroidBackButtonPress: true,
         resizeToAvoidBottomInset: true,
@@ -53,7 +53,8 @@ List<Widget> _buildScreens() {
   ];
 }
 
-List<PersistentBottomNavBarItem> _navBarsItems() {
+List<PersistentBottomNavBarItem> _navBarsItems(
+    BuildContext context, PersistentTabController controller) {
   return [
     PersistentBottomNavBarItem(
       icon: Icon(
