@@ -1,4 +1,16 @@
 {
   "playing_movie_title": "Playing Movies",
-  "upcoming_movie_title": "Upcoming Movies"
+  "upcoming_movie_title": "Upcoming Movies",
+  "budget": "Budget",
+  "casts": "Cast",
+  "discover": "Discover",
+  "image_viewer_title": "Image Viewer",
+  "min": "min",
+  "overview": "Overview",
+  "popular_movie_title": "Popular Movies",
+  "release_date": "Release Date",
+  "runtime": "Runtime",
+  "screenshots": "Screenshots",
+  "see_all": "See All",
+  "discover_page_title": "Discover New Movies"
 }

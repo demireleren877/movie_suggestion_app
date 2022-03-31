@@ -52,7 +52,9 @@ class ExploreScreen extends StatelessWidget {
           );
         } else if (state is SeeAllUpcomingMovies) {
           return MoviesGridview(
-            title: "All Upcoming Movies",
+            title:
+                AppLocalizations.instance.translate("upcoming_movie_title") ??
+                    "",
             scrollController: state.scrollController,
             movies: state.movies,
             onBackPressed: () {
@@ -61,7 +63,8 @@ class ExploreScreen extends StatelessWidget {
           );
         } else if (state is DiscoverNewMovies) {
           return MoviesGridview(
-            title: "Discover New Movies",
+            title: AppLocalizations.instance.translate("discover_page_title") ??
+                "",
             scrollController: state.scrollController,
             movies: state.movies,
             onBackPressed: () {

@@ -1,4 +1,16 @@
 {
   "playing_movie_title": "Yayındaki Filmler",
-  "upcoming_movie_title": "Gelecek Filmler"
+  "upcoming_movie_title": "Gelecek Filmler",
+  "budget": "Bütçe",
+  "casts": "Oyuncular",
+  "discover": "Keşfet",
+  "image_viewer_title": "Fotoğrafı Görüntüle",
+  "min": "dk",
+  "overview": "Özet",
+  "popular_movie_title": "Popüler Filmler",
+  "release_date": "Çıkış Tarihi",
+  "runtime": "Süre",
+  "screenshots": "Fotoğraflar",
+  "see_all": "Daha Fazla",
+  "discover_page_title": "Yeni Filmler Keşfet"
 }

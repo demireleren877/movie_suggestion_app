@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kartal/kartal.dart';
 import 'package:movie_application/core/components/centered_progress.dart';
 import 'package:movie_application/core/components/divider.dart';
+import 'package:movie_application/core/localization/app_localizations.dart';
 import 'package:movie_application/feature/movie_details/components/details_header.dart';
 import 'package:movie_application/feature/movie_details/components/details_page_title.dart';
 import 'package:movie_application/feature/movie_details/cubit/movie_details_cubit.dart';
@@ -38,14 +39,22 @@ class DetailScreen extends StatelessWidget {
                     const DetailPageDivider(),
                     LittleMovieDetails(detail: state.detail),
                     const DetailPageDivider(),
-                    const DetailsPageTitle(title: "Overview"),
+                    DetailsPageTitle(
+                        title:
+                            AppLocalizations.instance.translate("overview") ??
+                                ""),
                     OverviewText(detail: state.detail),
                     const DetailPageDivider(),
-                    const DetailsPageTitle(title: "Screenshots"),
+                    DetailsPageTitle(
+                        title: AppLocalizations.instance
+                                .translate("screenshots") ??
+                            ""),
                     context.emptySizedHeightBoxLow3x,
                     ScreenshotList(detail: state.detail),
                     const DetailPageDivider(),
-                    const DetailsPageTitle(title: "Cast"),
+                    DetailsPageTitle(
+                        title:
+                            AppLocalizations.instance.translate("casts") ?? ""),
                     CastListWidget(detail: state.detail),
                     context.emptySizedHeightBoxLow3x,
                   ],

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kartal/kartal.dart';
+import 'package:movie_application/core/localization/app_localizations.dart';
 
 class HomeTitle extends StatelessWidget {
   const HomeTitle({
@@ -27,7 +28,7 @@ class HomeTitle extends StatelessWidget {
         TextButton(
           onPressed: () => onPress(),
           child: Text(
-            'See All',
+            AppLocalizations.instance.translate("see_all") ?? "",
             style: context.textTheme.bodyLarge?.copyWith(
               fontWeight: FontWeight.w800,
               fontSize: 18.sp,

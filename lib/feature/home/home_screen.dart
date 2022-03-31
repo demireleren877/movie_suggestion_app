@@ -4,6 +4,7 @@ import 'package:kartal/kartal.dart';
 import 'package:movie_application/core/components/home_title.dart';
 import 'package:movie_application/core/components/all_movies_gridview.dart';
 import 'package:movie_application/core/localization/app_localizations.dart';
+import 'package:movie_application/core/localization/cubit/localization_cubit.dart';
 import '../../core/components/all_movies_gridview.dart';
 import '../../core/components/centered_progress.dart';
 import 'cubit/home_cubit.dart';
@@ -37,11 +38,20 @@ class HomeScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      FloatingActionButton(
+                          onPressed: () {
+                            if (AppLocalizations.of(context)!.isEnLocale) {
+                              context.read<LocalizationCubit>().toTurkish();
+                            } else {
+                              context.read<LocalizationCubit>().toEnglish();
+                            }
+                          },
+                          child: const Icon(Icons.language)),
                       context.emptySizedHeightBoxLow3x,
                       HomeTitle(
-                        title: AppLocalizations.of(context)
-                                ?.translate("playing_movie_title") ??
-                            "ssss",
+                        title: AppLocalizations.instance
+                                .translate("playing_movie_title") ??
+                            "",
                         onPress: () {
                           context.read<HomeCubit>().seeAllPlayingMovies();
                         },
@@ -50,7 +60,9 @@ class HomeScreen extends StatelessWidget {
                       PlayingMoviesSlider(state: state),
                       context.emptySizedHeightBoxNormal,
                       HomeTitle(
-                        title: "Popular Movies",
+                        title: AppLocalizations.instance
+                                .translate("popular_movie_title") ??
+                            "",
                         onPress: () {
                           context.read<HomeCubit>().seeAllPopularMovies();
                         },
@@ -65,7 +77,8 @@ class HomeScreen extends StatelessWidget {
           );
         } else if (state is SeeAllPopularMovies) {
           return MoviesGridview(
-            title: "All Popular Movies",
+            title: AppLocalizations.instance.translate("popular_movie_title") ??
+                "",
             scrollController: state.scrollController,
             movies: state.popularMovies,
             onBackPressed: () {
@@ -76,7 +89,8 @@ class HomeScreen extends StatelessWidget {
           return MoviesGridview(
             movies: state.playingMovies,
             scrollController: state.scrollController,
-            title: "All Playing Movies",
+            title: AppLocalizations.instance.translate("playing_movie_title") ??
+                "",
             onBackPressed: () {
               context.read<HomeCubit>().getAllMovies();
             },

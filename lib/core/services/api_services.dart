@@ -8,6 +8,7 @@ import 'package:movie_application/core/models/movie_model.dart';
 
 import '../../feature/movie_tinder/components/image_card.dart';
 import '../constants/api_constants.dart';
+import '../localization/app_localizations.dart';
 import '../models/genre_model.dart';
 
 class ApiServices {
@@ -15,7 +16,9 @@ class ApiServices {
     String url = ApiConstants.baseUrl +
         ApiConstants.popularMovies +
         ApiConstants.apiKeyParam +
-        ApiConstants.apiKey;
+        ApiConstants.apiKey +
+        ApiConstants.languageParam +
+        AppLocalizations.instance.locale.toString();
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       final json = jsonDecode(response.body);
@@ -40,7 +43,9 @@ class ApiServices {
         ApiConstants.apiKeyParam +
         ApiConstants.apiKey +
         ApiConstants.apiPageParam +
-        page.toString();
+        page.toString() +
+        ApiConstants.languageParam +
+        AppLocalizations.instance.locale.toString();
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       final json = jsonDecode(response.body);
@@ -58,6 +63,8 @@ class ApiServices {
         id.toString() +
         ApiConstants.apiKeyParam +
         ApiConstants.apiKey +
+        ApiConstants.languageParam +
+        AppLocalizations.instance.locale.toString() +
         ApiConstants.appendVideoParam;
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
@@ -87,7 +94,9 @@ class ApiServices {
         id.toString() +
         "/images" +
         ApiConstants.apiKeyParam +
-        ApiConstants.apiKey;
+        ApiConstants.apiKey +
+        ApiConstants.languageParam +
+        AppLocalizations.instance.locale.toString();
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       MovieImage movieImage = MovieImage.fromJson(jsonDecode(response.body));
@@ -105,7 +114,9 @@ class ApiServices {
         id.toString() +
         "/credits" +
         ApiConstants.apiKeyParam +
-        ApiConstants.apiKey;
+        ApiConstants.apiKey +
+        ApiConstants.languageParam +
+        AppLocalizations.instance.locale.toString();
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       List<Cast> castList =
@@ -126,7 +137,9 @@ class ApiServices {
           ApiConstants.apiKeyParam +
           ApiConstants.apiKey +
           ApiConstants.apiPageParam +
-          page.toString();
+          page.toString() +
+          ApiConstants.languageParam +
+          AppLocalizations.instance.locale.toString();
       final response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
         final json = jsonDecode(response.body);
@@ -144,7 +157,9 @@ class ApiServices {
     String url = ApiConstants.baseUrl +
         "/genre/movie/list" +
         ApiConstants.apiKeyParam +
-        ApiConstants.apiKey;
+        ApiConstants.apiKey +
+        ApiConstants.languageParam +
+        AppLocalizations.instance.locale.toString();
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       List<Genre> genreList =

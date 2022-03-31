@@ -13,4 +13,5 @@ class ApiConstants {
   static const String genreParam = "/discover/movie?with_genres=";
   static const String appendVideoParam = "&append_to_response=videos";
   static const String discoverParam = "/discover/movie";
+  static const String languageParam = "&language=";
 }

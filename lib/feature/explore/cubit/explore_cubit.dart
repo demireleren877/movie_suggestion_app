@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_application/core/constants/api_constants.dart';
+import 'package:movie_application/core/localization/app_localizations.dart';
 import 'package:movie_application/core/models/genre_model.dart';
 
 import '../../../core/models/movie_model.dart';
@@ -95,7 +96,9 @@ class ExploreCubit extends Cubit<ExploreState> {
     emit(ExploreLoading());
     try {
       List<Genre> genres = [];
-      genres.add(Genre(id: 000, name: "Discover"));
+      genres.add(Genre(
+          id: 000,
+          name: AppLocalizations.instance.translate("discover") ?? ""));
       genres.addAll(await ApiServices().getGenres());
 
       final upcomingMovies =

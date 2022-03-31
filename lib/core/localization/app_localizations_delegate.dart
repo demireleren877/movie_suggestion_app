@@ -3,7 +3,7 @@ import 'app_localizations.dart';
 
 class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
   const AppLocalizationsDelegate();
-
+  static late AppLocalizations instance;
   @override
   bool isSupported(Locale locale) {
     return ['en', 'tr'].contains(locale.languageCode);
@@ -11,9 +11,12 @@ class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
 
   @override
   Future<AppLocalizations> load(Locale locale) async {
-    AppLocalizations appLocalizations = AppLocalizations(locale);
-    await appLocalizations.load();
-    return appLocalizations;
+    AppLocalizations localizations = AppLocalizations(locale);
+    await localizations.load();
+
+    instance = localizations;
+
+    return localizations;
   }
 
   @override
