@@ -10,10 +10,12 @@ class DetailsPageTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: context.horizontalPaddingNormal,
-      child: Text(title,
-          style: context.textTheme.headline5?.copyWith(
-            fontSize: 24.sp,
-          )),
+      child: Text(
+        title,
+        style: context.textTheme.headline5?.copyWith(
+          fontSize: 24.sp,
+        ),
+      ),
     );
   }
 }

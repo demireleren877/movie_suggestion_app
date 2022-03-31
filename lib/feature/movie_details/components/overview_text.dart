@@ -19,7 +19,9 @@ class OverviewText extends StatelessWidget {
       child: Text(
         detail.overview,
         style: context.textTheme.bodyText1?.copyWith(
-            fontSize: 20.sp, fontFamily: GoogleFonts.quicksand().fontFamily),
+          fontSize: 20.sp,
+          fontFamily: GoogleFonts.quicksand().fontFamily,
+        ),
       ),
     );
   }

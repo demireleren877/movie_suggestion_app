@@ -61,6 +61,10 @@ List<PersistentBottomNavBarItem> _navBarsItems(
         Icons.home,
         size: 35.sp,
       ),
+      inactiveIcon: Icon(
+        Icons.home_outlined,
+        size: 35.sp,
+      ),
       title: ("Home"),
       textStyle: TextStyle(fontSize: 14.sp),
       activeColorPrimary: CupertinoColors.activeBlue,
@@ -68,31 +72,43 @@ List<PersistentBottomNavBarItem> _navBarsItems(
     ),
     PersistentBottomNavBarItem(
       icon: Icon(
+        Icons.explore,
+        size: 35.sp,
+      ),
+      inactiveIcon: Icon(
         Icons.explore_outlined,
         size: 35.sp,
       ),
       textStyle: TextStyle(fontSize: 14.sp),
       title: ("Explore"),
-      activeColorPrimary: CupertinoColors.destructiveRed,
-      inactiveColorPrimary: CupertinoColors.systemGrey,
-    ),
-    PersistentBottomNavBarItem(
-      icon: Icon(
-        Icons.list_alt_outlined,
-        size: 35.sp,
-      ),
-      textStyle: TextStyle(fontSize: 14.sp),
-      title: ("Later"),
       activeColorPrimary: CupertinoColors.activeOrange,
       inactiveColorPrimary: CupertinoColors.systemGrey,
     ),
     PersistentBottomNavBarItem(
       icon: Icon(
-        Icons.domain_verification_outlined,
+        Icons.favorite,
+        size: 35.sp,
+      ),
+      inactiveIcon: Icon(
+        Icons.favorite_outline,
         size: 35.sp,
       ),
       textStyle: TextStyle(fontSize: 14.sp),
-      title: ("Watched"),
+      title: ("Later"),
+      activeColorPrimary: CupertinoColors.systemRed,
+      inactiveColorPrimary: CupertinoColors.systemGrey,
+    ),
+    PersistentBottomNavBarItem(
+      icon: Icon(
+        Icons.person,
+        size: 35.sp,
+      ),
+      inactiveIcon: Icon(
+        Icons.person_outline,
+        size: 35.sp,
+      ),
+      textStyle: TextStyle(fontSize: 14.sp),
+      title: ("Settings"),
       activeColorPrimary: CupertinoColors.activeGreen,
       inactiveColorPrimary: CupertinoColors.systemGrey,
     ),
