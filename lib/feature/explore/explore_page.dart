@@ -56,6 +56,15 @@ class ExploreScreen extends StatelessWidget {
               context.read<ExploreCubit>().loadExplore();
             },
           );
+        } else if (state is DiscoverNewMovies) {
+          return MoviesGridview(
+            title: "Discover New Movies",
+            scrollController: state.scrollController,
+            movies: state.movies,
+            onBackPressed: () {
+              context.read<ExploreCubit>().loadExplore();
+            },
+          );
         } else {
           return const Center(
             child: Text('Something went wrong'),
@@ -106,13 +115,15 @@ class GenreList extends StatelessWidget {
       child: ListView.builder(
         physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
-        itemCount: state.genres.length,
+        itemCount: state.genres.length + 1,
         itemBuilder: (BuildContext context, int index) {
           return GestureDetector(
             onTap: () {
-              context
-                  .read<ExploreCubit>()
-                  .changeGenre(state.genres[index].id, state);
+              index != 0
+                  ? context
+                      .read<ExploreCubit>()
+                      .changeGenre(state.genres[index].id, state)
+                  : context.read<ExploreCubit>().discoverMovies();
             },
             child: Container(
               padding: context.paddingLow,
@@ -120,7 +131,7 @@ class GenreList extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: context.normalBorderRadius,
                 border: Border.all(
-                  color: Colors.white,
+                  color: index != 0 ? Colors.white : Colors.blue,
                 ),
                 color: state.genres[index].id ==
                         context.read<ExploreCubit>().selectedGenre

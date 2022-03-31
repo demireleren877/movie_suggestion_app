@@ -24,6 +24,15 @@ class ExploreLoaded extends ExploreState {
   });
 }
 
+class DiscoverNewMovies extends ExploreState {
+  final List<Movie> movies;
+  final ScrollController scrollController;
+  const DiscoverNewMovies({
+    required this.movies,
+    required this.scrollController,
+  });
+}
+
 class SeeAllUpcomingMovies extends ExploreState {
   final List<Movie> movies;
   final ScrollController scrollController;

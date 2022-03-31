@@ -12,4 +12,5 @@ class ApiConstants {
   static const String imageurl = "https://image.tmdb.org/t/p/w500";
   static const String genreParam = "/discover/movie?with_genres=";
   static const String appendVideoParam = "&append_to_response=videos";
+  static const String discoverParam = "/discover/movie";
 }

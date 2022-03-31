@@ -58,10 +58,46 @@ class ExploreCubit extends Cubit<ExploreState> {
     }
   }
 
+  void discoverMovies() async {
+    emit(ExploreLoading());
+    try {
+      final ScrollController scrollController = ScrollController();
+      int page = 1;
+      final movies = await ApiServices()
+          .getMoviesFromApi(ApiConstants.discoverParam, page);
+      scrollController.addListener(() async {
+        if (scrollController.position.maxScrollExtent ==
+            scrollController.offset) {
+          page++;
+          final newMovies = await ApiServices()
+              .getMoviesFromApi(ApiConstants.discoverParam, page);
+          if (newMovies.length > 1) {
+            emit(ExploreLoading());
+            movies.addAll(newMovies);
+            emit(DiscoverNewMovies(
+              movies: movies,
+              scrollController: scrollController,
+            ));
+          }
+        }
+      });
+
+      emit(DiscoverNewMovies(
+        movies: movies,
+        scrollController: scrollController,
+      ));
+    } catch (e) {
+      emit(ExploreError());
+    }
+  }
+
   void loadExplore() async {
     emit(ExploreLoading());
     try {
-      final genres = await ApiServices().getGenres();
+      List<Genre> genres = [];
+      genres.add(Genre(id: 000, name: "Discover"));
+      genres.addAll(await ApiServices().getGenres());
+
       final upcomingMovies =
           await ApiServices().getMoviesFromApi(ApiConstants.upcomingMovies, 1);
       final topRatedMovies =
