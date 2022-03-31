@@ -115,7 +115,7 @@ class GenreList extends StatelessWidget {
       child: ListView.builder(
         physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
-        itemCount: state.genres.length + 1,
+        itemCount: state.genres.length,
         itemBuilder: (BuildContext context, int index) {
           return GestureDetector(
             onTap: () {

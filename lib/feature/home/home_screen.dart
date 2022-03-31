@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kartal/kartal.dart';
 import 'package:movie_application/core/components/home_title.dart';
 import 'package:movie_application/core/components/all_movies_gridview.dart';
+import 'package:movie_application/core/translations/locale_keys.g.dart';
 
 import '../../core/components/all_movies_gridview.dart';
 import '../../core/components/centered_progress.dart';
@@ -21,12 +23,21 @@ class HomeScreen extends StatelessWidget {
           return const CenteredProgressIndicator();
         } else if (state is HomeLoading) {
           return const CenteredProgressIndicator();
+        } else if (state is ChangeLanguage) {
+          return const CenteredProgressIndicator();
         } else if (state is HomeLoaded) {
           return Scaffold(
             body: ListView(
               shrinkWrap: true,
               physics: const BouncingScrollPhysics(),
               children: [
+                FloatingActionButton(
+                    onPressed: () {
+                      context
+                          .read<HomeCubit>()
+                          .changeLocale(const Locale("tr"), context);
+                    },
+                    child: const Icon(Icons.search)),
                 Container(
                   height: context.height,
                   padding: context.paddingLow,
@@ -37,7 +48,7 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       context.emptySizedHeightBoxLow3x,
                       HomeTitle(
-                        title: "Playing Movies",
+                        title: LocaleKeys.playing_movie_title.tr(),
                         onPress: () {
                           context.read<HomeCubit>().seeAllPlayingMovies();
                         },
@@ -46,7 +57,7 @@ class HomeScreen extends StatelessWidget {
                       PlayingMoviesSlider(state: state),
                       context.emptySizedHeightBoxNormal,
                       HomeTitle(
-                        title: "Popular Movies",
+                        title: LocaleKeys.popular_movie_title.tr(),
                         onPress: () {
                           context.read<HomeCubit>().seeAllPopularMovies();
                         },

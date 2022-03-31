@@ -22,6 +22,11 @@ class SeeAllPopularMovies extends HomeState {
   });
 }
 
+class ChangeLanguage extends HomeState {
+  final Locale locale;
+  ChangeLanguage({required this.locale});
+}
+
 class SeeAllPlayingMovies extends HomeState {
   final List<Movie> playingMovies;
   final ScrollController scrollController;
