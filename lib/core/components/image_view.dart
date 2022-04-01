@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
+import 'package:movie_application/core/localization/app_localizations.dart';
 
 class ImageViewer extends StatelessWidget {
   const ImageViewer({Key? key, required this.image}) : super(key: key);
@@ -10,7 +11,9 @@ class ImageViewer extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Image Viewer'),
+        title: Text(
+            AppLocalizations.of(context)!.translate("image_viewer_title") ??
+                ""),
       ),
       body: Center(
         child: SizedBox(

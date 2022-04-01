@@ -39,12 +39,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 width: 2.0,
               ),
             ),
-            tabs: const [
+            unselectedLabelStyle:
+                context.textTheme.headline6?.copyWith(fontSize: 20.sp),
+            labelStyle: context.textTheme.headline6?.copyWith(fontSize: 20.sp),
+            tabs: [
               Tab(
-                text: 'My Watchlist',
+                height: context.dynamicHeight(0.06),
+                text: AppLocalizations.instance.translate("watchlists_title") ??
+                    "",
               ),
               Tab(
-                text: 'Settings',
+                text:
+                    AppLocalizations.instance.translate("settings_title") ?? "",
               ),
             ],
           ),
@@ -58,7 +64,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 1000),
                 height: context.dynamicHeight(0.08),
-                width: context.dynamicWidth(0.42),
+                width: context.dynamicWidth(0.38),
                 decoration: BoxDecoration(
                   color: AppLocalizations.instance.isEnLocale
                       ? Colors.blue.shade800
@@ -66,16 +72,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   borderRadius: context.highBorderRadius,
                 ),
                 child: Stack(
+                  alignment: Alignment.center,
                   children: [
                     AnimatedPositioned(
                       curve: Curves.easeIn,
-                      top: 3.h,
                       left: AppLocalizations.instance.isEnLocale
-                          ? context.dynamicWidth(0.25)
+                          ? context.dynamicWidth(0.22)
                           : 0,
                       right: AppLocalizations.instance.isEnLocale
                           ? 0
-                          : context.dynamicWidth(0.25),
+                          : context.dynamicWidth(0.22),
                       duration: const Duration(milliseconds: 1000),
                       child: GestureDetector(
                         onTap: () {
@@ -91,7 +97,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               (Widget child, Animation<double> animation) {
                             return ScaleTransition(
                               scale: animation,
-                              child: Center(child: child),
+                              child: child,
                             );
                           },
                           child: AppLocalizations.instance.isEnLocale
@@ -100,20 +106,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   children: [
                                     CircleAvatar(
                                       backgroundColor: Colors.white,
-                                      radius: 30.r,
+                                      radius: context.dynamicHeight(0.035),
                                     ),
                                     Text(
                                       flag("us"),
-                                      style: context.textTheme.headline3,
+                                      style: context.textTheme.headline3
+                                          ?.copyWith(fontSize: 30.sp),
                                     ),
                                   ],
                                 )
                               : CircleAvatar(
                                   backgroundColor: Colors.white,
-                                  radius: 30.r,
+                                  radius: context.dynamicHeight(0.035),
                                   child: Text(
                                     flag("tr"),
-                                    style: context.textTheme.headline3,
+                                    style: context.textTheme.headline3
+                                        ?.copyWith(fontSize: 30.sp),
                                   ),
                                 ),
                         ),

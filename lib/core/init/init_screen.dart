@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:lottie/lottie.dart';
+import 'package:movie_application/core/localization/app_localizations.dart';
 import 'package:movie_application/core/routes/routes.dart';
 
 class InitScreen extends StatefulWidget {
@@ -10,8 +12,12 @@ class InitScreen extends StatefulWidget {
 }
 
 class _InitScreenState extends State<InitScreen> {
+  late Box box;
   @override
   void initState() {
+    box = Hive.box('locale');
+    box.put('locale', AppLocalizations.instance.locale.languageCode);
+    print(box.get('locale'));
     Future.delayed(const Duration(seconds: 2), () {
       Navigator.pushNamedAndRemoveUntil(context, Routes.home, (route) => false);
     });

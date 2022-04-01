@@ -32,13 +32,16 @@ class ExploreScreen extends StatelessWidget {
                 physics: const BouncingScrollPhysics(),
                 children: [
                   context.emptySizedHeightBoxLow,
-                  HomeTitle(
-                    title: AppLocalizations.of(context)
-                            ?.translate("upcoming_movie_title") ??
-                        "",
-                    onPress: () {
-                      context.read<ExploreCubit>().seeAllUpcomingMovies();
-                    },
+                  Padding(
+                    padding: context.horizontalPaddingLow,
+                    child: HomeTitle(
+                      title: AppLocalizations.of(context)
+                              ?.translate("upcoming_movie_title") ??
+                          "",
+                      onPress: () {
+                        context.read<ExploreCubit>().seeAllUpcomingMovies();
+                      },
+                    ),
                   ),
                   context.emptySizedHeightBoxLow,
                   UpcomingMoviesList(upcomingMovies: state.upcomingMovies),

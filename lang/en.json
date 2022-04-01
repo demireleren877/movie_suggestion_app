@@ -12,5 +12,7 @@
   "runtime": "Runtime",
   "screenshots": "Screenshots",
   "see_all": "See All",
-  "discover_page_title": "Discover New Movies"
+  "discover_page_title": "Discover New Movies",
+  "settings_title": "Settings",
+  "watchlists_title": "My Watchlists"
 }

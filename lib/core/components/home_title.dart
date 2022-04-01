@@ -23,6 +23,7 @@ class HomeTitle extends StatelessWidget {
           title,
           style: context.textTheme.headline3?.copyWith(
             fontFamily: GoogleFonts.josefinSans().fontFamily,
+            fontSize: 30.sp,
           ),
         ),
         TextButton(
