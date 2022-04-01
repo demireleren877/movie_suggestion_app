@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
 import '../../../core/models/movie_model.dart';
-import '../../home/popular_movies/components/movie_card.dart';
+import '../../../core/components/movie_card.dart';
 
 class UpcomingMoviesList extends StatelessWidget {
   const UpcomingMoviesList({

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_application/feature/explore/explore_page.dart';
+import 'package:movie_application/feature/profile/profile_page.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 import '../home/home_screen.dart';
@@ -49,7 +50,7 @@ List<Widget> _buildScreens() {
     const HomeScreen(),
     const ExploreScreen(),
     Container(color: Colors.amber),
-    Container(color: Colors.amber),
+    const ProfileScreen()
   ];
 }
 

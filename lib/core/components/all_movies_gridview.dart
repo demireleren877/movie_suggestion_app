@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kartal/kartal.dart';
 import 'package:movie_application/core/models/movie_model.dart';
 
-import '../../feature/home/popular_movies/components/movie_card.dart';
+import 'movie_card.dart';
 import '../../feature/home/popular_movies/components/shimmer_widget.dart';
 
 class MoviesGridview extends StatelessWidget {

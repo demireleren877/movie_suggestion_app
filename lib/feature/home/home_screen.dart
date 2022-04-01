@@ -4,7 +4,6 @@ import 'package:kartal/kartal.dart';
 import 'package:movie_application/core/components/home_title.dart';
 import 'package:movie_application/core/components/all_movies_gridview.dart';
 import 'package:movie_application/core/localization/app_localizations.dart';
-import 'package:movie_application/core/localization/cubit/localization_cubit.dart';
 import '../../core/components/all_movies_gridview.dart';
 import '../../core/components/centered_progress.dart';
 import 'cubit/home_cubit.dart';
@@ -38,18 +37,9 @@ class HomeScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      FloatingActionButton(
-                          onPressed: () {
-                            if (AppLocalizations.of(context)!.isEnLocale) {
-                              context.read<LocalizationCubit>().toTurkish();
-                            } else {
-                              context.read<LocalizationCubit>().toEnglish();
-                            }
-                          },
-                          child: const Icon(Icons.language)),
                       context.emptySizedHeightBoxLow3x,
                       HomeTitle(
-                        title: AppLocalizations.instance
+                        title: AppLocalizations.of(context)!
                                 .translate("playing_movie_title") ??
                             "",
                         onPress: () {
@@ -60,7 +50,7 @@ class HomeScreen extends StatelessWidget {
                       PlayingMoviesSlider(state: state),
                       context.emptySizedHeightBoxNormal,
                       HomeTitle(
-                        title: AppLocalizations.instance
+                        title: AppLocalizations.of(context)!
                                 .translate("popular_movie_title") ??
                             "",
                         onPress: () {
