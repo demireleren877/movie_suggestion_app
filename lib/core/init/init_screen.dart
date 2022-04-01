@@ -17,7 +17,6 @@ class _InitScreenState extends State<InitScreen> {
   void initState() {
     box = Hive.box('locale');
     box.put('locale', AppLocalizations.instance.locale.languageCode);
-    print(box.get('locale'));
     Future.delayed(const Duration(seconds: 2), () {
       Navigator.pushNamedAndRemoveUntil(context, Routes.home, (route) => false);
     });
