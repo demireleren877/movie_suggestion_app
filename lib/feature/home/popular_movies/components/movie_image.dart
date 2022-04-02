@@ -30,7 +30,8 @@ class MovieImage extends StatelessWidget {
             Positioned(
               top: -9.h,
               right: -12.w,
-              child: GestureDetector(
+              child: InkWell(
+                splashColor: Colors.transparent,
                 onTap: () {
                   _cacheManager.saveMovieHive(popularMovies[index]);
                 },

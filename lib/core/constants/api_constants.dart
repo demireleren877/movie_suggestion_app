@@ -14,4 +14,5 @@ class ApiConstants {
   static const String appendVideoParam = "&append_to_response=videos";
   static const String discoverParam = "/discover/movie";
   static const String languageParam = "&language=";
+  static const String shareUrl = "https://www.themoviedb.org/movie/";
 }
