@@ -32,11 +32,11 @@ class AnimatedLanguageSwitcher extends StatelessWidget {
             AnimatedPositioned(
               curve: Curves.easeIn,
               left: AppLocalizations.instance.isEnLocale
-                  ? context.dynamicWidth(0.12)
-                  : 0,
-              right: AppLocalizations.instance.isEnLocale
                   ? 0
                   : context.dynamicWidth(0.12),
+              right: AppLocalizations.instance.isEnLocale
+                  ? context.dynamicWidth(0.12)
+                  : 0,
               duration: const Duration(milliseconds: 1000),
               child: GestureDetector(
                 onTap: () {
