@@ -50,7 +50,7 @@ List<Widget> _buildScreens() {
     const HomeScreen(),
     const ExploreScreen(),
     Container(color: Colors.amber),
-    const ProfileScreen()
+    ProfileScreen()
   ];
 }
 

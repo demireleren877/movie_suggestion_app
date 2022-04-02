@@ -19,7 +19,7 @@ class AnimatedLanguageSwitcher extends StatelessWidget {
         margin: EdgeInsets.only(right: ScreenUtil().setWidth(20)),
         duration: const Duration(milliseconds: 1000),
         height: context.dynamicHeight(0.06),
-        width: context.dynamicWidth(0.25),
+        width: context.dynamicWidth(0.24),
         decoration: BoxDecoration(
           color: AppLocalizations.instance.isEnLocale
               ? Colors.blue.shade800
@@ -66,7 +66,7 @@ class AnimatedLanguageSwitcher extends StatelessWidget {
                             Text(
                               flag("us"),
                               style: context.textTheme.headline3
-                                  ?.copyWith(fontSize: 26.sp),
+                                  ?.copyWith(fontSize: 22.sp),
                             ),
                           ],
                         )
@@ -75,8 +75,8 @@ class AnimatedLanguageSwitcher extends StatelessWidget {
                           radius: context.dynamicHeight(0.025),
                           child: Text(
                             flag("tr"),
-                            style: context.textTheme.headline3
-                                ?.copyWith(fontSize: 26.sp),
+                            style: context.textTheme.headline4
+                                ?.copyWith(fontSize: 22.sp),
                           ),
                         ),
                 ),

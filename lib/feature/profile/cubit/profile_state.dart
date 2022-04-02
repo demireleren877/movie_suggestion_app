@@ -7,4 +7,7 @@ abstract class ProfileState extends Equatable {
   List<Object> get props => [];
 }
 
-class ProfileInitial extends ProfileState {}
+class ProfileLoaded extends ProfileState {
+  final Box<Movie> movieBox;
+  const ProfileLoaded(this.movieBox);
+}

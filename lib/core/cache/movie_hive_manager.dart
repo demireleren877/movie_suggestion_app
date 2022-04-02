@@ -1,38 +1,37 @@
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:movie_application/core/constants/hive_constants.dart';
 
 import '../models/movie_model.dart';
 
 abstract class ICacheManager<T> {
-  T? getMovieHive(String movieId);
-  Future<void> saveMovieHive(Movie movie);
-  Future<void> deleteMovieHive(String movieId);
-  Future<void> deleteAllMovieHives();
+  T? getMovieHive(int key);
+  void saveMovieHive(T item);
+  void deleteMovieHive(int key);
+  void deleteAllMovieHives();
 }
 
 class CacheManager implements ICacheManager<Movie> {
-  final String _movieHiveName = 'movie_hive';
-
   @override
-  Future<void> saveMovieHive(Movie movie) async {
-    final movieHive = await Hive.openBox<Movie>(_movieHiveName);
-    movieHive.put(movie.id, movie);
+  void saveMovieHive(Movie movie) {
+    final movieHive = Hive.box(HiveConstants.hiveMovieList);
+    movieHive.add(movie);
   }
 
   @override
-  Future<void> deleteMovieHive(String movieId) async {
-    final movieHive = await Hive.openBox<Movie>(_movieHiveName);
-    movieHive.delete(movieId);
+  void deleteMovieHive(int key) {
+    final movieHive = Hive.box(HiveConstants.hiveMovieList);
+    movieHive.delete(key);
   }
 
   @override
-  Future<void> deleteAllMovieHives() async {
-    final movieHive = await Hive.openBox<Movie>(_movieHiveName);
+  void deleteAllMovieHives() {
+    final movieHive = Hive.box(HiveConstants.hiveMovieList);
     movieHive.deleteFromDisk();
   }
 
   @override
-  Movie? getMovieHive(String movieId) {
-    final movieHive = Hive.box(_movieHiveName);
-    return movieHive.get(movieId);
+  Movie? getMovieHive(int key) {
+    final movieHive = Hive.box(HiveConstants.hiveMovieList);
+    return movieHive.get(key);
   }
 }
