@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-
+import 'package:kartal/kartal.dart';
+import 'package:movie_application/feature/movie_details/detail_screen.dart';
 import '../../../core/cache/movie_hive_manager.dart';
 import 'movie_card.dart';
 import 'remove_slidable.dart';
@@ -44,7 +45,17 @@ class MovieListItem extends StatelessWidget {
           ],
           motion: const ScrollMotion(),
         ),
-        child: MovieCardWidget(movieBox: movieBox, index: index),
+        child: GestureDetector(
+          onTap: () {
+            context.navigateToPage(
+              DetailScreen(movieId: movieBox.getAt(index).id),
+            );
+          },
+          child: MovieCardWidget(
+            movieBox: movieBox,
+            index: index,
+          ),
+        ),
       ),
     );
   }

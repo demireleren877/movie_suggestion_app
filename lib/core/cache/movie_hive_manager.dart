@@ -26,7 +26,7 @@ class CacheManager implements ICacheManager<Movie> {
   @override
   void deleteAllMovieHives() {
     final movieHive = Hive.box(HiveConstants.hiveMovieList);
-    movieHive.deleteFromDisk();
+    movieHive.clear();
   }
 
   @override
