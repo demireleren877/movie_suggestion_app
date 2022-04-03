@@ -38,7 +38,7 @@ class DetailsHeader extends StatelessWidget {
             onTap: () {
               cacheManager.saveMovieHive(
                 Movie(
-                  runtime: detail.runtime,
+                  runtime: 0,
                   backdropPath: "",
                   id: int.parse(detail.id),
                   originalLanguage: "",
@@ -53,7 +53,7 @@ class DetailsHeader extends StatelessWidget {
                 ),
               );
             },
-            child: const BookmarkButton(),
+            child: BookmarkButton(movieId: int.parse(detail.id)),
           ),
         ),
       ],

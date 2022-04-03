@@ -14,7 +14,7 @@ class CacheManager implements ICacheManager<Movie> {
   @override
   void saveMovieHive(Movie movie) {
     final movieHive = Hive.box(HiveConstants.hiveMovieList);
-    movieHive.add(movie);
+    movieHive.put(movie.id, movie);
   }
 
   @override

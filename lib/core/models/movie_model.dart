@@ -29,7 +29,7 @@ class Movie {
   @HiveField(11)
   final String voteAverage;
   @HiveField(12)
-  final String runtime;
+  final int runtime;
 
   Movie({
     required this.runtime,
