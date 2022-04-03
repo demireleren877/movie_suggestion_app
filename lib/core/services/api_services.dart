@@ -59,7 +59,7 @@ class ApiServices {
 
   Future<MovieDetail> getMovieDetails(int id) async {
     String url = ApiConstants.baseUrl +
-        "/movie/" +
+        ApiConstants.movie +
         id.toString() +
         ApiConstants.apiKeyParam +
         ApiConstants.apiKey +
@@ -90,9 +90,9 @@ class ApiServices {
 
   Future<MovieImage> getMovieImages(int id) async {
     String url = ApiConstants.baseUrl +
-        "/movie/" +
+        ApiConstants.movie +
         id.toString() +
-        "/images" +
+        ApiConstants.images +
         ApiConstants.apiKeyParam +
         ApiConstants.apiKey;
     final response = await http.get(Uri.parse(url));
@@ -108,9 +108,9 @@ class ApiServices {
 
   Future<List<Cast>> getCastList(int id) async {
     String url = ApiConstants.baseUrl +
-        "/movie/" +
+        ApiConstants.movie +
         id.toString() +
-        "/credits" +
+        ApiConstants.credits +
         ApiConstants.apiKeyParam +
         ApiConstants.apiKey +
         ApiConstants.languageParam +
@@ -131,7 +131,7 @@ class ApiServices {
 
     for (int page = 1; page < 4; page++) {
       String url = ApiConstants.baseUrl +
-          "/discover/movie" +
+          ApiConstants.discoverParam +
           ApiConstants.apiKeyParam +
           ApiConstants.apiKey +
           ApiConstants.apiPageParam +
@@ -153,7 +153,7 @@ class ApiServices {
 
   Future<List<Genre>> getGenres() async {
     String url = ApiConstants.baseUrl +
-        "/genre/movie/list" +
+        ApiConstants.categories +
         ApiConstants.apiKeyParam +
         ApiConstants.apiKey +
         ApiConstants.languageParam +

@@ -19,9 +19,9 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   Hive.registerAdapter(MovieAdapter());
-  await Hive.openBox('locale');
+  await Hive.openBox(HiveConstants.locale);
   await Hive.openBox(HiveConstants.hiveMovieList);
-  await Hive.openBox('series_list');
+  await Hive.openBox(HiveConstants.hiveSeriesList);
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky,
       overlays: [SystemUiOverlay.top]);
