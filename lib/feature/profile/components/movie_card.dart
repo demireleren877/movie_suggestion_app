@@ -19,7 +19,7 @@ class MovieCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: context.paddingLow,
+      padding: context.verticalPaddingLow,
       height: context.height * 0.22,
       width: context.width,
       child: Row(

@@ -9,7 +9,7 @@ class Movie {
   @HiveField(1)
   final int id;
   @HiveField(2)
-  final List<int> genreIds;
+  final List<int>? genreIds;
   @HiveField(3)
   final String originalLanguage;
   @HiveField(4)
@@ -29,11 +29,11 @@ class Movie {
   @HiveField(11)
   final String voteAverage;
   @HiveField(12)
-  final int runtime;
+  final String runtime;
 
   Movie({
     required this.runtime,
-    required this.genreIds,
+    this.genreIds,
     required this.backdropPath,
     required this.id,
     required this.originalLanguage,

@@ -2,18 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kartal/kartal.dart';
+import 'package:movie_application/core/cache/movie_hive_manager.dart';
+import 'package:movie_application/core/models/movie_model.dart';
+import 'package:movie_application/feature/home/popular_movies/components/bookmark_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/constants/api_constants.dart';
 import '../../../core/models/movie_detail_model.dart';
 
 class DetailsHeader extends StatelessWidget {
-  const DetailsHeader({
+  DetailsHeader({
     Key? key,
     required this.detail,
   }) : super(key: key);
 
   final MovieDetail detail;
+  final CacheManager cacheManager = CacheManager();
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +31,30 @@ class DetailsHeader extends StatelessWidget {
           onPressed: () {
             Navigator.pop(context);
           },
+        ),
+        Positioned(
+          right: 0,
+          child: InkWell(
+            onTap: () {
+              cacheManager.saveMovieHive(
+                Movie(
+                  runtime: detail.runtime,
+                  backdropPath: "",
+                  id: int.parse(detail.id),
+                  originalLanguage: "",
+                  originalTitle: detail.originalTitle,
+                  overview: detail.overview,
+                  posterPath: detail.posterPath,
+                  releaseDate: detail.releaseDate,
+                  title: detail.title,
+                  video: false,
+                  voteCount: 0,
+                  voteAverage: "",
+                ),
+              );
+            },
+            child: const BookmarkButton(),
+          ),
         ),
       ],
     );

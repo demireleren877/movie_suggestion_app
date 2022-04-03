@@ -17,7 +17,7 @@ class MovieAdapter extends TypeAdapter<Movie> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Movie(
-      runtime: fields[12] as int,
+      runtime: fields[12],
       genreIds: (fields[2] as List).cast<int>(),
       backdropPath: fields[0] as String,
       id: fields[1] as int,

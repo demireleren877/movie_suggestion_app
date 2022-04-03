@@ -18,7 +18,6 @@ class HomeCubit extends Cubit<HomeState> {
           await ApiServices().getMoviesFromApi(ApiConstants.playingMovies, 1);
       final popularMovieList =
           await ApiServices().getMoviesFromApi(ApiConstants.popularMovies, 1);
-
       emit(HomeLoaded(
           playingMovies: getSliderCards(playingMovieList),
           popularMovies: popularMovieList));

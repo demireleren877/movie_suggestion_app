@@ -94,9 +94,7 @@ class ApiServices {
         id.toString() +
         "/images" +
         ApiConstants.apiKeyParam +
-        ApiConstants.apiKey +
-        ApiConstants.languageParam +
-        AppLocalizations.instance.locale.toString();
+        ApiConstants.apiKey;
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       MovieImage movieImage = MovieImage.fromJson(jsonDecode(response.body));
@@ -146,7 +144,7 @@ class ApiServices {
         var movies = json["results"] as List;
         movieList.addAll(movies
             .map((movie) => Movie.fromJson(movie))
-            .where((element) => element.genreIds.contains(genreId))
+            .where((element) => element.genreIds?.contains(genreId) ?? false)
             .toList());
       }
     }
