@@ -14,5 +14,9 @@
   "see_all": "See All",
   "discover_page_title": "Discover New Movies",
   "my_movie_list_title": "My Movie Lists",
-  "my_series_list_title": "My Series Lists"
+  "my_series_list_title": "My Series Lists",
+  "remove_movie_title": "Remove",
+  "share_movie_title": "Share",
+  "movie_removed_snackbar": "Movie removed from list.",
+  "no_data_text": "This field has no data."
 }

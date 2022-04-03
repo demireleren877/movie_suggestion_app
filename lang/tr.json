@@ -14,5 +14,9 @@
   "see_all": "Daha Fazla",
   "discover_page_title": "Yeni Filmler Keşfet",
   "my_movie_list_title": "Film Listelerim",
-  "my_series_list_title": "Dizi Listelerim"
+  "my_series_list_title": "Dizi Listelerim",
+  "remove_movie_title": "Kaldır",
+  "share_movie_title": "Paylaş",
+  "movie_removed_snackbar": "Film listeden kaldırıldı.",
+  "no_data_text": "Bu alana ait veri bulunamadı."
 }
