@@ -32,8 +32,8 @@ class MovieImage extends StatelessWidget {
             Positioned(
               top: -9.h,
               right: -12.w,
-              child: InkWell(
-                splashColor: Colors.transparent,
+              child: BookmarkButton(
+                movieId: popularMovies[index].id,
                 onTap: () {
                   Hive.box(HiveConstants.hiveMovieList)
                           .keys
@@ -41,7 +41,6 @@ class MovieImage extends StatelessWidget {
                       ? _cacheManager.deleteMovieHive(popularMovies[index].id)
                       : _cacheManager.saveMovieHive(popularMovies[index]);
                 },
-                child: BookmarkButton(movieId: popularMovies[index].id),
               ),
             ),
           ],

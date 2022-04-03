@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:kartal/kartal.dart';
 import 'package:movie_application/core/cache/movie_hive_manager.dart';
-import 'package:movie_application/core/models/movie_model.dart';
 import 'package:movie_application/feature/home/popular_movies/components/bookmark_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/constants/api_constants.dart';
+import '../../../core/constants/hive_constants.dart';
 import '../../../core/models/movie_detail_model.dart';
+import '../../../core/models/movie_model.dart';
 
 class DetailsHeader extends StatelessWidget {
   DetailsHeader({
@@ -17,7 +19,7 @@ class DetailsHeader extends StatelessWidget {
   }) : super(key: key);
 
   final MovieDetail detail;
-  final CacheManager cacheManager = CacheManager();
+  final CacheManager _cacheManager = CacheManager();
 
   @override
   Widget build(BuildContext context) {
@@ -34,26 +36,30 @@ class DetailsHeader extends StatelessWidget {
         ),
         Positioned(
           right: 0,
-          child: InkWell(
+          child: BookmarkButton(
+            movieId: int.parse(detail.id),
             onTap: () {
-              cacheManager.saveMovieHive(
-                Movie(
-                  runtime: 0,
-                  backdropPath: "",
-                  id: int.parse(detail.id),
-                  originalLanguage: "",
-                  originalTitle: detail.originalTitle,
-                  overview: detail.overview,
-                  posterPath: detail.posterPath,
-                  releaseDate: detail.releaseDate,
-                  title: detail.title,
-                  video: false,
-                  voteCount: 0,
-                  voteAverage: "",
-                ),
-              );
+              Hive.box(HiveConstants.hiveMovieList)
+                      .keys
+                      .contains(int.parse(detail.id))
+                  ? _cacheManager.deleteMovieHive(int.parse(detail.id))
+                  : _cacheManager.saveMovieHive(
+                      Movie(
+                        runtime: 0,
+                        backdropPath: "",
+                        id: int.parse(detail.id),
+                        originalLanguage: "",
+                        originalTitle: detail.originalTitle,
+                        overview: detail.overview,
+                        posterPath: detail.posterPath,
+                        releaseDate: detail.releaseDate,
+                        title: detail.title,
+                        video: false,
+                        voteCount: 0,
+                        voteAverage: "",
+                      ),
+                    );
             },
-            child: BookmarkButton(movieId: int.parse(detail.id)),
           ),
         ),
       ],
