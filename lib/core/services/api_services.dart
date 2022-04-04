@@ -106,6 +106,26 @@ class ApiServices {
     );
   }
 
+  Future<List<Movie>> searchedMovies(String query) async {
+    String url = ApiConstants.baseUrl +
+        ApiConstants.searchUrl +
+        ApiConstants.apiKeyParam +
+        ApiConstants.apiKey +
+        ApiConstants.languageParam +
+        AppLocalizations.instance.locale.toString() +
+        ApiConstants.queryParam +
+        query;
+    final response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      final json = jsonDecode(response.body);
+      var movies = json["results"] as List;
+      List<Movie> movieList =
+          movies.map((movie) => Movie.fromJson(movie)).toList();
+      return movieList;
+    }
+    return [];
+  }
+
   Future<List<Cast>> getCastList(int id) async {
     String url = ApiConstants.baseUrl +
         ApiConstants.movie +

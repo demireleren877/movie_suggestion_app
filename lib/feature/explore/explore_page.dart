@@ -5,7 +5,7 @@ import 'package:movie_application/core/components/centered_progress.dart';
 import 'package:movie_application/core/components/home_title.dart';
 import 'package:movie_application/core/localization/app_localizations.dart';
 import 'package:movie_application/feature/explore/cubit/explore_cubit.dart';
-import 'package:movie_application/core/components/all_movies_gridview.dart';
+import 'package:movie_application/feature/movies_gridview/all_movies_gridview.dart';
 
 import 'components/discover_movie_list.dart';
 import 'components/genre_list.dart';

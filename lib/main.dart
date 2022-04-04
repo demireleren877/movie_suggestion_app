@@ -8,6 +8,7 @@ import 'package:movie_application/core/localization/app_localizations_setup.dart
 import 'package:movie_application/core/localization/cubit/localization_cubit.dart';
 import 'package:movie_application/feature/explore/cubit/explore_cubit.dart';
 import 'package:movie_application/feature/home/cubit/home_cubit.dart';
+import 'package:movie_application/feature/movies_gridview/cubit/all_movies_cubit.dart';
 import 'core/models/movie_model.dart';
 import 'core/routes/routes.dart';
 import 'core/theme/theme_data.dart';
@@ -48,6 +49,9 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) => LocalizationCubit(),
+          ),
+          BlocProvider(
+            create: (context) => AllMoviesCubit(),
           ),
         ],
         child: BlocBuilder<LocalizationCubit, LocalizationState>(
