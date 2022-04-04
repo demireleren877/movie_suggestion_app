@@ -20,5 +20,6 @@
   "movie_removed_snackbar": "Movie removed from list.",
   "no_data_text": "This field has no data.",
   "movie_reminder_title": "My Reminders",
-  "hello_title": "Hello"
+  "hello_title": "Hello",
+  "enter_user_name": "Please enter your first name."
 }

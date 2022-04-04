@@ -20,5 +20,6 @@
   "movie_removed_snackbar": "Film listeden kaldırıldı.",
   "no_data_text": "Bu alana ait veri bulunamadı.",
   "movie_reminder_title": "Hatırlatıcılarım",
-  "hello_title": "Merhaba"
+  "hello_title": "Merhaba",
+  "enter_user_name": "Lütfen adınızı girin."
 }
