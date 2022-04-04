@@ -13,10 +13,12 @@
   "screenshots": "Fotoğraflar",
   "see_all": "Daha Fazla",
   "discover_page_title": "Yeni Filmler Keşfet",
-  "my_movie_list_title": "Film Listelerim",
+  "my_movie_list_title": "Film Listem",
   "my_series_list_title": "Dizi Listelerim",
   "remove_movie_title": "Kaldır",
   "share_movie_title": "Paylaş",
   "movie_removed_snackbar": "Film listeden kaldırıldı.",
-  "no_data_text": "Bu alana ait veri bulunamadı."
+  "no_data_text": "Bu alana ait veri bulunamadı.",
+  "movie_reminder_title": "Hatırlatıcılarım",
+  "hello_title": "Merhaba"
 }

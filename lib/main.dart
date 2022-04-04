@@ -12,7 +12,6 @@ import 'package:movie_application/feature/movies_gridview/cubit/all_movies_cubit
 import 'core/models/movie_model.dart';
 import 'core/routes/routes.dart';
 import 'core/theme/theme_data.dart';
-import 'feature/movie_tinder/cubit/movie_tinder_cubit.dart';
 
 late Box box;
 
@@ -40,9 +39,6 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider<HomeCubit>(
             create: (context) => HomeCubit()..getAllMovies(),
-          ),
-          BlocProvider(
-            create: (context) => MovieTinderCubit()..getPopularMovies(),
           ),
           BlocProvider(
             create: (context) => ExploreCubit()..loadExplore(),

@@ -5,38 +5,11 @@ import 'package:movie_application/core/models/cast_list_model.dart';
 import 'package:movie_application/core/models/movie_detail_model.dart';
 import 'package:movie_application/core/models/movie_images_model.dart';
 import 'package:movie_application/core/models/movie_model.dart';
-
-import '../../feature/movie_tinder/components/image_card.dart';
 import '../constants/api_constants.dart';
 import '../localization/app_localizations.dart';
 import '../models/genre_model.dart';
 
 class ApiServices {
-  Future<List<ImageCard>> getMovieTinderFromApi() async {
-    String url = ApiConstants.baseUrl +
-        ApiConstants.popularMovies +
-        ApiConstants.apiKeyParam +
-        ApiConstants.apiKey +
-        ApiConstants.languageParam +
-        AppLocalizations.instance.locale.toString();
-    final response = await http.get(Uri.parse(url));
-    if (response.statusCode == 200) {
-      final json = jsonDecode(response.body);
-      var movies = json["results"] as List;
-      List<Movie> movieList =
-          movies.map((movie) => Movie.fromJson(movie)).toList();
-      List<ImageCard>? swipeList = [];
-      for (int i = 0; i < movieList.length; i++) {
-        swipeList.add(ImageCard(
-          i: i,
-          imageUrl: movieList[i].posterPath,
-        ));
-      }
-      return swipeList;
-    }
-    return [];
-  }
-
   Future<List<Movie>> getMoviesFromApi(String movieType, int page) async {
     String url = ApiConstants.baseUrl +
         movieType +

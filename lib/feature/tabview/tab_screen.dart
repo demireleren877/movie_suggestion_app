@@ -87,11 +87,11 @@ List<PersistentBottomNavBarItem> _navBarsItems(
     ),
     PersistentBottomNavBarItem(
       icon: Icon(
-        Icons.favorite,
+        Icons.swap_vert_circle,
         size: 35.sp,
       ),
       inactiveIcon: Icon(
-        Icons.favorite_outline,
+        Icons.swap_vert_circle_outlined,
         size: 35.sp,
       ),
       textStyle: TextStyle(fontSize: 14.sp),

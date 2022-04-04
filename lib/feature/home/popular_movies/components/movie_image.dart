@@ -27,7 +27,9 @@ class MovieImage extends StatelessWidget {
         child: Stack(
           children: [
             Image.network(
-              ApiConstants.imageurl + popularMovies[index].posterPath,
+              popularMovies[index].posterPath != ""
+                  ? ApiConstants.imageurl + popularMovies[index].posterPath
+                  : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3Id7Z-Fc6SazelMw-y_cu7CpzEFuwLMVz-Q&usqp=CAU",
             ),
             Positioned(
               top: -9.h,

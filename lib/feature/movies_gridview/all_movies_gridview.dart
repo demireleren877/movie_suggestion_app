@@ -70,7 +70,7 @@ class MoviesGridview extends StatelessWidget {
                     shrinkWrap: true,
                     physics: const BouncingScrollPhysics(),
                     controller: scrollController,
-                    itemCount: state.movies.length + 2,
+                    itemCount: state.movies.length,
                     gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                       maxCrossAxisExtent: context.width * 0.5,
                       crossAxisSpacing: 15.w,
@@ -78,10 +78,6 @@ class MoviesGridview extends StatelessWidget {
                       mainAxisSpacing: 15.h,
                     ),
                     itemBuilder: (context, index) {
-                      if (index == movies.length ||
-                          index == movies.length + 1) {
-                        return const ShimmerWidget();
-                      }
                       return MovieCard(
                         movies: state.movies,
                         index: index,

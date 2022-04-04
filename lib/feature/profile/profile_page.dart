@@ -30,7 +30,7 @@ class ProfileScreen extends StatelessWidget {
   AppBar _buildAppBar(BuildContext context) {
     return AppBar(
       title: Text(
-        'Merhaba Eren,',
+        (AppLocalizations.instance.translate("hello_title") ?? "") + "\tEren,",
         style: context.textTheme.headline6?.copyWith(
           fontFamily: GoogleFonts.josefinSans().fontFamily,
           fontSize: 32.sp,
@@ -96,7 +96,7 @@ class ProfileScreen extends StatelessWidget {
         ),
         Tab(
           text:
-              AppLocalizations.instance.translate('my_series_list_title') ?? "",
+              AppLocalizations.instance.translate('movie_reminder_title') ?? "",
         ),
       ],
     );
