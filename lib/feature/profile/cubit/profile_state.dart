@@ -7,7 +7,10 @@ abstract class ProfileState extends Equatable {
   List<Object> get props => [];
 }
 
+class UserNotLoggedIn extends ProfileState {}
+
 class ProfileLoaded extends ProfileState {
-  final Box<Movie> movieBox;
-  const ProfileLoaded(this.movieBox);
+  final Box movieBox;
+  final String user;
+  const ProfileLoaded(this.movieBox, this.user);
 }

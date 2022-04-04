@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:kartal/kartal.dart';
+import 'package:movie_application/core/components/centered_progress.dart';
 import 'package:movie_application/core/constants/hive_constants.dart';
+import 'package:movie_application/feature/profile/components/get_user_screen.dart';
+import 'package:movie_application/feature/profile/cubit/profile_cubit.dart';
 
-import '../../core/cache/movie_hive_manager.dart';
+import '../../core/cache/cache_manager.dart';
 import '../../core/localization/app_localizations.dart';
 import 'components/animated_language_switcher.dart';
 import 'components/movie_list_item.dart';
@@ -16,21 +20,32 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      animationDuration: const Duration(milliseconds: 300),
-      initialIndex: 0,
-      child: Scaffold(
-        appBar: _buildAppBar(context),
-        body: _buildTabBarView(context),
-      ),
+    return BlocBuilder<ProfileCubit, ProfileState>(
+      builder: (context, state) {
+        if (state is ProfileLoaded) {
+          return DefaultTabController(
+            length: 2,
+            animationDuration: const Duration(milliseconds: 300),
+            initialIndex: 0,
+            child: Scaffold(
+              appBar: _buildAppBar(context, state.user),
+              body: _buildTabBarView(context),
+            ),
+          );
+        } else if (state is UserNotLoggedIn) {
+          return GetUser();
+        } else {
+          return const CenteredProgressIndicator();
+        }
+      },
     );
   }
 
-  AppBar _buildAppBar(BuildContext context) {
+  AppBar _buildAppBar(BuildContext context, String user) {
     return AppBar(
       title: Text(
-        (AppLocalizations.instance.translate("hello_title") ?? "") + "\tEren,",
+        (AppLocalizations.instance.translate("hello_title") ?? "") +
+            "\t $user,",
         style: context.textTheme.headline6?.copyWith(
           fontFamily: GoogleFonts.josefinSans().fontFamily,
           fontSize: 32.sp,

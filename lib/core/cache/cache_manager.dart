@@ -8,6 +8,8 @@ abstract class ICacheManager<T> {
   void saveMovieHive(T item);
   void deleteMovieHive(int key);
   void deleteAllMovieHives();
+  void saveUser(String user);
+  String? getUser();
 }
 
 class CacheManager implements ICacheManager<Movie> {
@@ -33,5 +35,17 @@ class CacheManager implements ICacheManager<Movie> {
   Movie? getMovieHive(int key) {
     final movieHive = Hive.box(HiveConstants.hiveMovieList);
     return movieHive.get(key);
+  }
+
+  @override
+  void saveUser(String user) {
+    final userHive = Hive.box(HiveConstants.user);
+    userHive.add(user);
+  }
+
+  @override
+  String? getUser() {
+    final userHive = Hive.box(HiveConstants.user);
+    return userHive.isEmpty ? null : userHive.getAt(0);
   }
 }

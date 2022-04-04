@@ -12,6 +12,7 @@ import 'package:movie_application/feature/movies_gridview/cubit/all_movies_cubit
 import 'core/models/movie_model.dart';
 import 'core/routes/routes.dart';
 import 'core/theme/theme_data.dart';
+import 'feature/profile/cubit/profile_cubit.dart';
 
 late Box box;
 
@@ -21,7 +22,7 @@ Future<void> main() async {
   Hive.registerAdapter(MovieAdapter());
   await Hive.openBox(HiveConstants.locale);
   await Hive.openBox(HiveConstants.hiveMovieList);
-  await Hive.openBox(HiveConstants.hiveSeriesList);
+  await Hive.openBox(HiveConstants.user);
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky,
       overlays: [SystemUiOverlay.top]);
@@ -48,6 +49,9 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) => AllMoviesCubit(),
+          ),
+          BlocProvider(
+            create: (context) => ProfileCubit()..loadProfile(),
           ),
         ],
         child: BlocBuilder<LocalizationCubit, LocalizationState>(

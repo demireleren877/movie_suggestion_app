@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:hive_flutter/adapters.dart';
 
-import '../../../core/cache/movie_hive_manager.dart';
+import '../../../core/cache/cache_manager.dart';
 import '../../../core/localization/app_localizations.dart';
 
 class RemoveSlidable extends StatelessWidget {

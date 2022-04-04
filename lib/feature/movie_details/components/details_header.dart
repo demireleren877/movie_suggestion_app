@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:kartal/kartal.dart';
-import 'package:movie_application/core/cache/movie_hive_manager.dart';
+import 'package:movie_application/core/cache/cache_manager.dart';
 import 'package:movie_application/feature/home/popular_movies/components/bookmark_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
