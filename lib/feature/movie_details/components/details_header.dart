@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:kartal/kartal.dart';
 import 'package:movie_application/core/cache/cache_manager.dart';
+import 'package:movie_application/core/components/reminder_button.dart';
 import 'package:movie_application/feature/home/popular_movies/components/bookmark_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -28,8 +29,12 @@ class DetailsHeader extends StatelessWidget {
         HeaderImage(detail: detail),
         const HeaderShadow(),
         HeaderTitle(detail: detail),
-        BackButton(
+        IconButton(
           color: Colors.white,
+          icon: Icon(
+            Icons.arrow_back,
+            size: 30.sp,
+          ),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -42,7 +47,8 @@ class DetailsHeader extends StatelessWidget {
               Hive.box(HiveConstants.hiveMovieList)
                       .keys
                       .contains(int.parse(detail.id))
-                  ? _cacheManager.deleteMovieHive(int.parse(detail.id))
+                  ? _cacheManager.deleteMovieHive(int.parse(detail.id),
+                      Hive.box(HiveConstants.hiveMovieList))
                   : _cacheManager.saveMovieHive(
                       Movie(
                         runtime: 0,
@@ -58,7 +64,7 @@ class DetailsHeader extends StatelessWidget {
                         voteCount: 0,
                         voteAverage: "",
                       ),
-                    );
+                      Hive.box(HiveConstants.hiveMovieList));
             },
           ),
         ),
@@ -68,12 +74,13 @@ class DetailsHeader extends StatelessWidget {
 }
 
 class HeaderTitle extends StatelessWidget {
-  const HeaderTitle({
+  HeaderTitle({
     Key? key,
     required this.detail,
   }) : super(key: key);
 
   final MovieDetail detail;
+  final CacheManager _cacheManager = CacheManager();
 
   @override
   Widget build(BuildContext context) {
@@ -103,6 +110,33 @@ class HeaderTitle extends StatelessWidget {
               color: Colors.white,
               size: 40.sp,
             ),
+          ),
+          context.emptySizedWidthBoxLow,
+          ReminderButton(
+            movieId: int.parse(detail.id),
+            onTap: () {
+              Hive.box(HiveConstants.reminderList)
+                      .keys
+                      .contains(int.parse(detail.id))
+                  ? _cacheManager.deleteMovieHive(int.parse(detail.id),
+                      Hive.box(HiveConstants.reminderList))
+                  : _cacheManager.saveMovieHive(
+                      Movie(
+                        runtime: 0,
+                        backdropPath: "",
+                        id: int.parse(detail.id),
+                        originalLanguage: "",
+                        originalTitle: detail.originalTitle,
+                        overview: detail.overview,
+                        posterPath: detail.posterPath,
+                        releaseDate: detail.releaseDate,
+                        title: detail.title,
+                        video: false,
+                        voteCount: 0,
+                        voteAverage: "",
+                      ),
+                      Hive.box(HiveConstants.reminderList));
+            },
           )
         ],
       ),

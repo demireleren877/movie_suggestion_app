@@ -40,8 +40,10 @@ class MovieImage extends StatelessWidget {
                   Hive.box(HiveConstants.hiveMovieList)
                           .keys
                           .contains(popularMovies[index].id)
-                      ? _cacheManager.deleteMovieHive(popularMovies[index].id)
-                      : _cacheManager.saveMovieHive(popularMovies[index]);
+                      ? _cacheManager.deleteMovieHive(popularMovies[index].id,
+                          Hive.box(HiveConstants.hiveMovieList))
+                      : _cacheManager.saveMovieHive(popularMovies[index],
+                          Hive.box(HiveConstants.hiveMovieList));
                 },
               ),
             ),

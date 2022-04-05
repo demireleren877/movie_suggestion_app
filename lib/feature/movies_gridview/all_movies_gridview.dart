@@ -101,6 +101,7 @@ class MoviesGridview extends StatelessWidget {
       leading: BackButton(
         onPressed: onBackPressed,
       ),
+      iconTheme: IconThemeData(size: 30.sp),
       toolbarHeight: 70.h,
       centerTitle: true,
       title: AnimatedSwitcher(
@@ -113,7 +114,8 @@ class MoviesGridview extends StatelessWidget {
         },
         child: context.watch<AllMoviesCubit>().isSearching
             ? const SearchField()
-            : Text(title),
+            : Text(title,
+                style: context.textTheme.headline5?.copyWith(fontSize: 28.sp)),
       ),
       actions: const [
         SearchButton(),
@@ -131,15 +133,17 @@ class SearchField extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 45.h,
-      child: TextField(
-        onChanged: ((value) => value != ""
-            ? context.read<AllMoviesCubit>().onSearchChanged(value)
-            : null),
-        decoration: InputDecoration(
-          floatingLabelAlignment: FloatingLabelAlignment.center,
-          contentPadding: context.horizontalPaddingNormal,
-          hintText: 'Search any movie...',
-          border: InputBorder.none,
+      child: Center(
+        child: TextField(
+          onChanged: ((value) => value != ""
+              ? context.read<AllMoviesCubit>().onSearchChanged(value)
+              : null),
+          decoration: InputDecoration(
+            floatingLabelAlignment: FloatingLabelAlignment.center,
+            contentPadding: context.horizontalPaddingNormal,
+            hintText: 'Search any movie...',
+            border: InputBorder.none,
+          ),
         ),
       ),
     );
@@ -154,6 +158,7 @@ class SearchButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
+      iconSize: 30.sp,
       splashRadius: 5,
       icon: context.watch<AllMoviesCubit>().isSearching
           ? const Icon(Icons.clear)

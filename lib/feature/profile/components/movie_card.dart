@@ -34,29 +34,39 @@ class MovieCardWidget extends StatelessWidget {
           context.emptySizedWidthBoxLow3x,
           SizedBox(
             width: context.width * 0.6,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  movieBox.getAt(index).title,
-                  overflow: TextOverflow.ellipsis,
-                  style: context.textTheme.headline6?.copyWith(
-                    fontSize: 20.sp,
+            child: SingleChildScrollView(
+              physics: const NeverScrollableScrollPhysics(),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    movieBox.getAt(index).title,
+                    overflow: TextOverflow.ellipsis,
+                    style: context.textTheme.headline6?.copyWith(
+                      fontSize: 20.sp,
+                    ),
                   ),
-                ),
-                Text(
-                  movieBox.getAt(index).overview == ""
-                      ? AppLocalizations.instance.translate('no_data_text') ??
-                          ""
-                      : movieBox.getAt(index).overview,
-                  maxLines: 5,
-                  overflow: TextOverflow.ellipsis,
-                  style: context.textTheme.bodySmall?.copyWith(
-                    fontSize: 18.sp,
+                  Text(
+                    "( ${movieBox.getAt(index).releaseDate} )",
+                    overflow: TextOverflow.ellipsis,
+                    style: context.textTheme.headline6?.copyWith(
+                      fontSize: 20.sp,
+                    ),
                   ),
-                ),
-              ],
+                  Text(
+                    movieBox.getAt(index).overview == ""
+                        ? AppLocalizations.instance.translate('no_data_text') ??
+                            ""
+                        : movieBox.getAt(index).overview,
+                    maxLines: 5,
+                    overflow: TextOverflow.ellipsis,
+                    style: context.textTheme.bodySmall?.copyWith(
+                      fontSize: 18.sp,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],

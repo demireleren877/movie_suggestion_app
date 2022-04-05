@@ -1,6 +1,3 @@
-import 'dart:math';
-
-import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,18 +6,19 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:kartal/kartal.dart';
 import 'package:movie_application/core/components/centered_progress.dart';
 import 'package:movie_application/core/constants/hive_constants.dart';
-import 'package:movie_application/core/routes/routes.dart';
 import 'package:movie_application/feature/profile/components/get_user_screen.dart';
 import 'package:movie_application/feature/profile/cubit/profile_cubit.dart';
 
 import '../../core/cache/cache_manager.dart';
 import '../../core/localization/app_localizations.dart';
+import '../../core/services/notification_service.dart';
 import 'components/animated_language_switcher.dart';
 import 'components/movie_list_item.dart';
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({Key? key}) : super(key: key);
   final CacheManager _cacheManager = CacheManager();
+  final NotificationService _notificationService = NotificationService();
 
   @override
   Widget build(BuildContext context) {
@@ -84,34 +82,32 @@ class ProfileScreen extends StatelessWidget {
             ),
           ),
         ),
-        Center(
+        Container(
+          padding: context.paddingLow,
+          height: context.dynamicHeight(0.9),
+          child: ValueListenableBuilder(
+            valueListenable: Hive.box(HiveConstants.reminderList).listenable(),
+            builder: (context, Box movieBox, _) => ListView.builder(
+              physics: const BouncingScrollPhysics(),
+              itemCount: movieBox.length,
+              itemBuilder: (BuildContext context, int index) {
+                return MovieListItem(
+                  movieBox: movieBox,
+                  index: index,
+                  cacheManager: _cacheManager,
+                );
+              },
+            ),
+          ),
+        ),
+        /* Center(
           child: TextButton(
             child: const Text("Coming Soon"),
             onPressed: () async {
-              await AwesomeNotifications().createNotification(
-                content: NotificationContent(
-                  id: Random().nextInt(1000),
-                  notificationLayout: NotificationLayout.Default,
-                  channelKey: 'scheduled_channel',
-                  title: 'Scheduled Notification',
-                  body: 'Simple body',
-                ),
-                schedule: NotificationCalendar(
-                  weekday: 2,
-                  hour: 4,
-                  minute: 16,
-                  month: 4,
-                  second: 0,
-                  year: 2022,
-                  repeats: true,
-                ),
-              );
-              AwesomeNotifications().actionStream.listen((action) {
-                context.navigateName(Routes.home);
-              });
+              _notificationService.showNotif(2022, 4, 6, 0, 15);
             },
           ),
-        ),
+        ), */
       ],
     );
   }

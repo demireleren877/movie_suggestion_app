@@ -4,37 +4,33 @@ import 'package:movie_application/core/constants/hive_constants.dart';
 import '../models/movie_model.dart';
 
 abstract class ICacheManager<T> {
-  T? getMovieHive(int key);
-  void saveMovieHive(T item);
-  void deleteMovieHive(int key);
-  void deleteAllMovieHives();
+  T? getMovieHive(int key, Box box);
+  void saveMovieHive(T item, Box box);
+  void deleteMovieHive(int key, Box box);
+  void deleteAllMovieHives(Box box);
   void saveUser(String user);
   String? getUser();
 }
 
 class CacheManager implements ICacheManager<Movie> {
   @override
-  void saveMovieHive(Movie movie) {
-    final movieHive = Hive.box(HiveConstants.hiveMovieList);
-    movieHive.put(movie.id, movie);
+  void saveMovieHive(Movie movie, Box box) {
+    box.put(movie.id, movie);
   }
 
   @override
-  void deleteMovieHive(int key) {
-    final movieHive = Hive.box(HiveConstants.hiveMovieList);
-    movieHive.delete(key);
+  void deleteMovieHive(int key, Box box) {
+    box.delete(key);
   }
 
   @override
-  void deleteAllMovieHives() {
-    final movieHive = Hive.box(HiveConstants.hiveMovieList);
-    movieHive.clear();
+  void deleteAllMovieHives(Box box) {
+    box.clear();
   }
 
   @override
-  Movie? getMovieHive(int key) {
-    final movieHive = Hive.box(HiveConstants.hiveMovieList);
-    return movieHive.get(key);
+  Movie? getMovieHive(int key, Box box) {
+    return box.get(key);
   }
 
   @override

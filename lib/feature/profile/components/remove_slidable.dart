@@ -3,6 +3,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:hive_flutter/adapters.dart';
 
 import '../../../core/cache/cache_manager.dart';
+import '../../../core/constants/hive_constants.dart';
 import '../../../core/localization/app_localizations.dart';
 
 class RemoveSlidable extends StatelessWidget {
@@ -27,8 +28,7 @@ class RemoveSlidable extends StatelessWidget {
       label: AppLocalizations.instance.translate('remove_movie_title') ?? "",
       onPressed: (context) {
         cacheManager.deleteMovieHive(
-          movieBox.keyAt(index),
-        );
+            movieBox.keyAt(index), Hive.box(HiveConstants.hiveMovieList));
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
