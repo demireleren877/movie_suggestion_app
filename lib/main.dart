@@ -1,3 +1,4 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,6 +27,36 @@ Future<void> main() async {
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky,
       overlays: [SystemUiOverlay.top]);
+  AwesomeNotifications().initialize(
+    // set the icon to null if you want to use the default app icon
+    null,
+    [
+      NotificationChannel(
+        channelKey: 'basic_channel',
+        channelName: 'Basic notifications',
+        channelDescription: 'Basic notifications',
+        channelShowBadge: true,
+        importance: NotificationImportance.High,
+        defaultColor: const Color(0xFF9D50DD),
+        ledColor: Colors.white,
+      ),
+      NotificationChannel(
+        channelKey: 'scheduled_channel',
+        channelName: 'Scheduled notifications',
+        channelDescription: 'Scheduled notifications',
+        channelShowBadge: true,
+        importance: NotificationImportance.High,
+        defaultColor: const Color(0xFF9D50DD),
+        ledColor: Colors.green,
+        locked: true,
+      )
+    ],
+  );
+  AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
+    if (!isAllowed) {
+      AwesomeNotifications().requestPermissionToSendNotifications();
+    } else {}
+  });
   runApp(const MyApp());
 }
 
