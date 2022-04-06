@@ -1,10 +1,7 @@
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/material.dart';
+part of "../home_screen.dart";
 
-import '../cubit/home_cubit.dart';
-
-class PlayingMoviesSlider extends StatelessWidget {
-  const PlayingMoviesSlider({
+class _PlayingMoviesSlider extends StatelessWidget {
+  const _PlayingMoviesSlider({
     Key? key,
     required this.state,
   }) : super(key: key);

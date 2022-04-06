@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-import '../../../../core/constants/hive_constants.dart';
+import '../constants/hive_constants.dart';
 
 class BookmarkButton extends StatelessWidget {
   const BookmarkButton({

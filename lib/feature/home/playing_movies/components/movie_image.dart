@@ -1,9 +1,7 @@
-import 'package:flutter/material.dart';
+part of '../../home_screen.dart';
 
-import '../../../../core/constants/api_constants.dart';
-
-class MovieImage extends StatelessWidget {
-  const MovieImage({
+class _MovieImage extends StatelessWidget {
+  const _MovieImage({
     Key? key,
     required this.image,
   }) : super(key: key);

@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kartal/kartal.dart';
 
-import '../../../../core/models/movie_model.dart';
+import '../models/movie_model.dart';
 
 class MovieName extends StatelessWidget {
   const MovieName({

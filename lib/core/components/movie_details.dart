@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kartal/kartal.dart';
 
-import '../../../../core/models/movie_model.dart';
+import '../models/movie_model.dart';
 import 'vote_average.dart';
 
 class MovieDetails extends StatelessWidget {

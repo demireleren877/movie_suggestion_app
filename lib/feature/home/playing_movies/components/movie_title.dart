@@ -1,9 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kartal/kartal.dart';
+part of "../../home_screen.dart";
 
-class MovieTitle extends StatelessWidget {
-  const MovieTitle({
+class _MovieTitle extends StatelessWidget {
+  const _MovieTitle({
     Key? key,
     required this.title,
   }) : super(key: key);

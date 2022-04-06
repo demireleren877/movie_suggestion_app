@@ -1,14 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:hive_flutter/adapters.dart';
-import 'package:share_plus/share_plus.dart';
+part of "../profile_page.dart";
 
-import '../../../core/cache/cache_manager.dart';
-import '../../../core/constants/api_constants.dart';
-import '../../../core/localization/app_localizations.dart';
-
-class ShareSlidable extends StatelessWidget {
-  const ShareSlidable({
+class _ShareSlidable extends StatelessWidget {
+  const _ShareSlidable({
     Key? key,
     required this.cacheManager,
     required this.movieBox,

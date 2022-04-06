@@ -1,18 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:intl/intl.dart';
 import 'package:kartal/kartal.dart';
-import 'package:movie_application/core/components/centered_progress.dart';
-import 'package:movie_application/core/components/divider.dart';
-import 'package:movie_application/core/localization/app_localizations.dart';
-import 'package:movie_application/feature/movie_details/components/details_header.dart';
-import 'package:movie_application/feature/movie_details/components/details_page_title.dart';
-import 'package:movie_application/feature/movie_details/cubit/movie_details_cubit.dart';
-
-import 'components/cast_list.dart';
-import 'components/little_detail_list.dart';
-import 'components/movie_genres.dart';
-import 'components/overview_text.dart';
-import 'components/screenshot_list.dart';
+import '../../core/components/centered_progress.dart';
+import '../../core/components/divider.dart';
+import '../../core/localization/app_localizations.dart';
+import './cubit/movie_details_cubit.dart';
+import 'package:url_launcher/url_launcher.dart';
+import '../../core/cache/cache_manager.dart';
+import '../../core/components/bookmark_button.dart';
+import '../../core/components/image_view.dart';
+import '../../core/components/reminder_button.dart';
+import '../../core/constants/api_constants.dart';
+import '../../core/constants/hive_constants.dart';
+import '../../core/models/movie_detail_model.dart';
+import '../../core/models/movie_model.dart';
+import '../../core/services/notification_service.dart';
+part 'components/little_detail_widget.dart';
+part 'components/details_page_title.dart';
+part 'components/little_detail_list.dart';
+part 'components/movie_genres.dart';
+part 'components/overview_text.dart';
+part 'components/screenshot_list.dart';
+part 'components/cast_list.dart';
+part 'components/details_header.dart';
 
 class DetailScreen extends StatelessWidget {
   const DetailScreen({Key? key, required this.movieId}) : super(key: key);
@@ -34,28 +48,28 @@ class DetailScreen extends StatelessWidget {
                 child: ListView(
                   physics: const AlwaysScrollableScrollPhysics(),
                   children: [
-                    DetailsHeader(detail: state.detail),
-                    MovieGenres(detail: state.detail),
+                    _DetailsHeader(detail: state.detail),
+                    _MovieGenres(detail: state.detail),
                     const DetailPageDivider(),
-                    LittleMovieDetails(detail: state.detail),
+                    _LittleMovieDetails(detail: state.detail),
                     const DetailPageDivider(),
-                    DetailsPageTitle(
+                    _DetailsPageTitle(
                         title:
                             AppLocalizations.instance.translate("overview") ??
                                 ""),
-                    OverviewText(detail: state.detail),
+                    _OverviewText(detail: state.detail),
                     const DetailPageDivider(),
-                    DetailsPageTitle(
+                    _DetailsPageTitle(
                         title: AppLocalizations.instance
                                 .translate("screenshots") ??
                             ""),
                     context.emptySizedHeightBoxLow3x,
-                    ScreenshotList(detail: state.detail),
+                    _ScreenshotList(detail: state.detail),
                     const DetailPageDivider(),
-                    DetailsPageTitle(
+                    _DetailsPageTitle(
                         title:
                             AppLocalizations.instance.translate("casts") ?? ""),
-                    CastListWidget(detail: state.detail),
+                    _CastListWidget(detail: state.detail),
                     context.emptySizedHeightBoxLow3x,
                   ],
                 ),

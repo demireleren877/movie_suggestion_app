@@ -1,9 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kartal/kartal.dart';
+part of "../detail_screen.dart";
 
-class DetailsPageTitle extends StatelessWidget {
-  const DetailsPageTitle({Key? key, required this.title}) : super(key: key);
+class _DetailsPageTitle extends StatelessWidget {
+  const _DetailsPageTitle({Key? key, required this.title}) : super(key: key);
   final String title;
 
   @override

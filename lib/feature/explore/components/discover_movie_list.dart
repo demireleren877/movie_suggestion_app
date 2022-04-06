@@ -1,11 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:kartal/kartal.dart';
+part of "../explore_page.dart";
 
-import '../../../core/models/movie_model.dart';
-import '../../../core/components/movie_card.dart';
-
-class DiscoverMovieList extends StatelessWidget {
-  const DiscoverMovieList({
+class _DiscoverMovieList extends StatelessWidget {
+  const _DiscoverMovieList({
     Key? key,
     required this.movies,
   }) : super(key: key);

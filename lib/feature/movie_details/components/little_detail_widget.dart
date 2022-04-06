@@ -1,9 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kartal/kartal.dart';
+part of "../detail_screen.dart";
 
-class LittleMovieDetailWidget extends StatelessWidget {
-  const LittleMovieDetailWidget(
+class _LittleMovieDetailWidget extends StatelessWidget {
+  const _LittleMovieDetailWidget(
       {Key? key, required this.title, required this.text})
       : super(key: key);
   final String title;

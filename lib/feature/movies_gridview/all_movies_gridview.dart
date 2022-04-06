@@ -7,7 +7,9 @@ import 'package:movie_application/feature/movies_gridview/cubit/all_movies_cubit
 
 import '../../core/components/movie_card.dart';
 import '../../core/models/movie_model.dart';
-import '../home/popular_movies/components/shimmer_widget.dart';
+import 'components/search_button.dart';
+import 'components/search_field.dart';
+import 'components/shimmer_widget.dart';
 
 class MoviesGridview extends StatelessWidget {
   const MoviesGridview({
@@ -120,52 +122,6 @@ class MoviesGridview extends StatelessWidget {
       actions: const [
         SearchButton(),
       ],
-    );
-  }
-}
-
-class SearchField extends StatelessWidget {
-  const SearchField({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 45.h,
-      child: Center(
-        child: TextField(
-          onChanged: ((value) => value != ""
-              ? context.read<AllMoviesCubit>().onSearchChanged(value)
-              : null),
-          decoration: InputDecoration(
-            floatingLabelAlignment: FloatingLabelAlignment.center,
-            contentPadding: context.horizontalPaddingNormal,
-            hintText: 'Search any movie...',
-            border: InputBorder.none,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class SearchButton extends StatelessWidget {
-  const SearchButton({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      iconSize: 30.sp,
-      splashRadius: 5,
-      icon: context.watch<AllMoviesCubit>().isSearching
-          ? const Icon(Icons.clear)
-          : const Icon(Icons.search),
-      onPressed: () {
-        context.read<AllMoviesCubit>().onSearchPressed();
-      },
     );
   }
 }

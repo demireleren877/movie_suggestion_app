@@ -1,12 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:movie_application/core/localization/app_localizations.dart';
+part of "../detail_screen.dart";
 
-import '../../../core/models/movie_detail_model.dart';
-import 'little_detail_widget.dart';
-
-class LittleMovieDetails extends StatelessWidget {
-  LittleMovieDetails({
+class _LittleMovieDetails extends StatelessWidget {
+  _LittleMovieDetails({
     Key? key,
     required this.detail,
   }) : super(key: key);
@@ -18,16 +13,16 @@ class LittleMovieDetails extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        LittleMovieDetailWidget(
+        _LittleMovieDetailWidget(
           title: AppLocalizations.of(context)?.translate("budget") ?? "",
           text: "\$" + _currencyFormatter.format(int.parse(detail.budget)),
         ),
-        LittleMovieDetailWidget(
+        _LittleMovieDetailWidget(
           title: AppLocalizations.of(context)?.translate("runtime") ?? "",
           text: detail.runtime +
               (AppLocalizations.instance.translate("min") ?? ""),
         ),
-        LittleMovieDetailWidget(
+        _LittleMovieDetailWidget(
           title: AppLocalizations.of(context)?.translate("release_date") ?? "",
           text: detail.releaseDate,
         ),

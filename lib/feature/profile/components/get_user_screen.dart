@@ -1,11 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kartal/kartal.dart';
-import 'package:movie_application/core/localization/app_localizations.dart';
-import 'package:movie_application/feature/profile/cubit/profile_cubit.dart';
+part of "../profile_page.dart";
 
-class GetUser extends StatelessWidget {
-  GetUser({Key? key}) : super(key: key);
+class _GetUser extends StatelessWidget {
+  _GetUser({Key? key}) : super(key: key);
   final TextEditingController _controller = TextEditingController();
 
   @override

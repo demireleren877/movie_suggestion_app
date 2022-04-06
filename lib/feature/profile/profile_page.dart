@@ -1,24 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:kartal/kartal.dart';
 import 'package:movie_application/core/components/centered_progress.dart';
 import 'package:movie_application/core/constants/hive_constants.dart';
-import 'package:movie_application/feature/profile/components/get_user_screen.dart';
 import 'package:movie_application/feature/profile/cubit/profile_cubit.dart';
-
+import 'package:share_plus/share_plus.dart';
 import '../../core/cache/cache_manager.dart';
+import '../../core/constants/api_constants.dart';
 import '../../core/localization/app_localizations.dart';
-import '../../core/services/notification_service.dart';
-import 'components/animated_language_switcher.dart';
-import 'components/movie_list_item.dart';
+import '../../core/localization/cubit/localization_cubit.dart';
+import '../movie_details/detail_screen.dart';
+part 'components/remove_slidable.dart';
+part 'components/share_slidable.dart';
+part 'components/movie_card.dart';
+part 'components/animated_language_switcher.dart';
+part 'components/get_user_screen.dart';
+part 'components/movie_list_item.dart';
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({Key? key}) : super(key: key);
   final CacheManager _cacheManager = CacheManager();
-  final NotificationService _notificationService = NotificationService();
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +40,7 @@ class ProfileScreen extends StatelessWidget {
             ),
           );
         } else if (state is UserNotLoggedIn) {
-          return GetUser();
+          return _GetUser();
         } else {
           return const CenteredProgressIndicator();
         }
@@ -54,7 +59,7 @@ class ProfileScreen extends StatelessWidget {
         ),
       ),
       toolbarHeight: 100.h,
-      actions: const [AnimatedLanguageSwitcher()],
+      actions: const [_AnimatedLanguageSwitcher()],
       backgroundColor: Colors.transparent,
       bottom: _buildTabBar(context),
     );
@@ -73,7 +78,7 @@ class ProfileScreen extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               itemCount: movieBox.length,
               itemBuilder: (BuildContext context, int index) {
-                return MovieListItem(
+                return _MovieListItem(
                   movieBox: movieBox,
                   index: index,
                   cacheManager: _cacheManager,
@@ -91,7 +96,7 @@ class ProfileScreen extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               itemCount: movieBox.length,
               itemBuilder: (BuildContext context, int index) {
-                return MovieListItem(
+                return _MovieListItem(
                   movieBox: movieBox,
                   index: index,
                   cacheManager: _cacheManager,

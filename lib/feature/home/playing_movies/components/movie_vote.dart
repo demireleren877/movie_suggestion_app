@@ -1,9 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kartal/kartal.dart';
+part of "../../home_screen.dart";
 
-class VoteRow extends StatelessWidget {
-  const VoteRow({
+class _VoteRow extends StatelessWidget {
+  const _VoteRow({
     Key? key,
     required this.voteAverage,
   }) : super(key: key);

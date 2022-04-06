@@ -1,11 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kartal/kartal.dart';
-import 'package:movie_application/feature/movie_details/detail_screen.dart';
-import 'movie_image.dart';
-import 'movie_title.dart';
-import 'movie_vote.dart';
-import 'slider_shadow.dart';
+part of '../../home_screen.dart';
 
 class SlideCard extends StatelessWidget {
   const SlideCard({
@@ -34,16 +27,16 @@ class SlideCard extends StatelessWidget {
       child: Stack(
         fit: StackFit.expand,
         children: [
-          MovieImage(image: image),
-          const SliderShadow(),
+          _MovieImage(image: image),
+          const _SliderShadow(),
           Positioned(
             child: SizedBox(
               width: context.width * 0.9,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  MovieTitle(title: title),
-                  VoteRow(voteAverage: voteAverage),
+                  _MovieTitle(title: title),
+                  _VoteRow(voteAverage: voteAverage),
                 ],
               ),
             ),

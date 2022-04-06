@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kartal/kartal.dart';
 import 'package:movie_application/core/components/centered_progress.dart';
 import 'package:movie_application/core/components/home_title.dart';
 import 'package:movie_application/core/localization/app_localizations.dart';
 import 'package:movie_application/feature/explore/cubit/explore_cubit.dart';
-import 'package:movie_application/feature/movies_gridview/all_movies_gridview.dart';
-
-import 'components/discover_movie_list.dart';
-import 'components/genre_list.dart';
-import 'components/upcoming_movie_list.dart';
+import '../../core/components/movie_card.dart';
+import '../../core/models/movie_model.dart';
+import '../movies_gridview/all_movies_gridview.dart';
+part './components/genre_list.dart';
+part './components/upcoming_movie_list.dart';
+part './components/discover_movie_list.dart';
 
 class ExploreScreen extends StatelessWidget {
   const ExploreScreen({Key? key}) : super(key: key);
@@ -44,11 +46,11 @@ class ExploreScreen extends StatelessWidget {
                     ),
                   ),
                   context.emptySizedHeightBoxLow,
-                  UpcomingMoviesList(upcomingMovies: state.upcomingMovies),
+                  _UpcomingMoviesList(upcomingMovies: state.upcomingMovies),
                   context.emptySizedHeightBoxLow3x,
-                  GenreList(state: state),
+                  _GenreList(state: state),
                   context.emptySizedHeightBoxLow3x,
-                  DiscoverMovieList(movies: state.topRatedMovies),
+                  _DiscoverMovieList(movies: state.topRatedMovies),
                 ],
               ),
             ),

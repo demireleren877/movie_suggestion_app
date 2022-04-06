@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:kartal/kartal.dart';
+part of '../../home_screen.dart';
 
-class SliderShadow extends StatelessWidget {
-  const SliderShadow({
+class _SliderShadow extends StatelessWidget {
+  const _SliderShadow({
     Key? key,
   }) : super(key: key);
 

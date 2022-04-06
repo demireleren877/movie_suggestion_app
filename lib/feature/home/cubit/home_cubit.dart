@@ -4,7 +4,7 @@ import 'package:movie_application/core/constants/api_constants.dart';
 
 import '../../../core/models/movie_model.dart';
 import '../../../core/services/api_services.dart';
-import '../playing_movies/components/slide_card.dart';
+import '../home_screen.dart';
 
 part 'home_state.dart';
 

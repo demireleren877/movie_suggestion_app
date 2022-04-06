@@ -1,13 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kartal/kartal.dart';
+part of "../profile_page.dart";
 
-import '../../../core/localization/app_localizations.dart';
-import '../../../core/localization/cubit/localization_cubit.dart';
-
-class AnimatedLanguageSwitcher extends StatelessWidget {
-  const AnimatedLanguageSwitcher({Key? key}) : super(key: key);
+class _AnimatedLanguageSwitcher extends StatelessWidget {
+  const _AnimatedLanguageSwitcher({Key? key}) : super(key: key);
   String flag(String code) => code.toUpperCase().replaceAllMapped(
       RegExp(r'[A-Z]'),
       (match) => String.fromCharCode(match.group(0)!.codeUnitAt(0) + 127397));

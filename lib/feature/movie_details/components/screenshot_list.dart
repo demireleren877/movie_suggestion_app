@@ -1,12 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:kartal/kartal.dart';
-import 'package:movie_application/core/components/image_view.dart';
+part of "../detail_screen.dart";
 
-import '../../../core/constants/api_constants.dart';
-import '../../../core/models/movie_detail_model.dart';
-
-class ScreenshotList extends StatelessWidget {
-  const ScreenshotList({
+class _ScreenshotList extends StatelessWidget {
+  const _ScreenshotList({
     Key? key,
     required this.detail,
   }) : super(key: key);

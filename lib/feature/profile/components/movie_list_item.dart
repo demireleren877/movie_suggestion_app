@@ -1,15 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:kartal/kartal.dart';
-import 'package:movie_application/feature/movie_details/detail_screen.dart';
-import '../../../core/cache/cache_manager.dart';
-import 'movie_card.dart';
-import 'remove_slidable.dart';
-import 'share_slidable.dart';
+part of "../profile_page.dart";
 
-class MovieListItem extends StatelessWidget {
-  const MovieListItem(
+class _MovieListItem extends StatelessWidget {
+  const _MovieListItem(
       {Key? key,
       required this.movieBox,
       required this.index,
@@ -26,7 +18,7 @@ class MovieListItem extends StatelessWidget {
         endActionPane: ActionPane(
           extentRatio: 0.25,
           children: [
-            ShareSlidable(
+            _ShareSlidable(
               cacheManager: cacheManager,
               movieBox: movieBox,
               index: index,
@@ -37,7 +29,7 @@ class MovieListItem extends StatelessWidget {
         startActionPane: ActionPane(
           extentRatio: 0.25,
           children: [
-            RemoveSlidable(
+            _RemoveSlidable(
               cacheManager: cacheManager,
               movieBox: movieBox,
               index: index,
@@ -51,7 +43,7 @@ class MovieListItem extends StatelessWidget {
               DetailScreen(movieId: movieBox.getAt(index).id),
             );
           },
-          child: MovieCardWidget(
+          child: _MovieCardWidget(
             movieBox: movieBox,
             index: index,
           ),

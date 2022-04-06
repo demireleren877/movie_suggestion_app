@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:movie_application/feature/movie_details/detail_screen.dart';
-
 import '../models/movie_model.dart';
-import '../../feature/home/popular_movies/components/movie_details.dart';
-import '../../feature/home/popular_movies/components/movie_image.dart';
-import '../../feature/home/popular_movies/components/movie_name.dart';
+import 'movie_details.dart';
+import 'movie_image.dart';
+import 'movie_name.dart';
 
 class MovieCard extends StatelessWidget {
   const MovieCard({

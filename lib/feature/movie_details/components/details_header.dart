@@ -1,20 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:kartal/kartal.dart';
-import 'package:movie_application/core/cache/cache_manager.dart';
-import 'package:movie_application/core/components/reminder_button.dart';
-import 'package:movie_application/feature/home/popular_movies/components/bookmark_button.dart';
-import 'package:url_launcher/url_launcher.dart';
+part of '../detail_screen.dart';
 
-import '../../../core/constants/api_constants.dart';
-import '../../../core/constants/hive_constants.dart';
-import '../../../core/models/movie_detail_model.dart';
-import '../../../core/models/movie_model.dart';
-
-class DetailsHeader extends StatelessWidget {
-  DetailsHeader({
+class _DetailsHeader extends StatelessWidget {
+  _DetailsHeader({
     Key? key,
     required this.detail,
   }) : super(key: key);
@@ -81,6 +68,44 @@ class HeaderTitle extends StatelessWidget {
 
   final MovieDetail detail;
   final CacheManager _cacheManager = CacheManager();
+  final NotificationService _notificationService = NotificationService();
+
+  void addReminder(BuildContext context) {
+    showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.now(),
+    ).then(
+      (value) => _notificationService.saveNotif(
+        int.parse(detail.releaseDate.split('-')[0]),
+        int.parse(detail.releaseDate.split('-')[1]),
+        int.parse(detail.releaseDate.split('-')[2]),
+        value!.hour,
+        value.minute,
+      ),
+    );
+    Hive.box(HiveConstants.reminderList).keys.contains(int.parse(detail.id))
+        ? _cacheManager.deleteMovieHive(
+            int.parse(detail.id), Hive.box(HiveConstants.reminderList))
+        : _cacheManager.saveMovieHive(
+            Movie(
+              runtime: 0,
+              backdropPath: "",
+              id: int.parse(detail.id),
+              originalLanguage: "",
+              originalTitle: detail.originalTitle,
+              overview: detail.overview,
+              posterPath: detail.posterPath,
+              releaseDate: detail.releaseDate,
+              title: detail.title,
+              video: false,
+              voteCount: 0,
+              voteAverage: "",
+            ),
+            Hive.box(
+              HiveConstants.reminderList,
+            ),
+          );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -115,27 +140,7 @@ class HeaderTitle extends StatelessWidget {
           ReminderButton(
             movieId: int.parse(detail.id),
             onTap: () {
-              Hive.box(HiveConstants.reminderList)
-                      .keys
-                      .contains(int.parse(detail.id))
-                  ? _cacheManager.deleteMovieHive(int.parse(detail.id),
-                      Hive.box(HiveConstants.reminderList))
-                  : _cacheManager.saveMovieHive(
-                      Movie(
-                        runtime: 0,
-                        backdropPath: "",
-                        id: int.parse(detail.id),
-                        originalLanguage: "",
-                        originalTitle: detail.originalTitle,
-                        overview: detail.overview,
-                        posterPath: detail.posterPath,
-                        releaseDate: detail.releaseDate,
-                        title: detail.title,
-                        video: false,
-                        voteCount: 0,
-                        voteAverage: "",
-                      ),
-                      Hive.box(HiveConstants.reminderList));
+              addReminder(context);
             },
           )
         ],

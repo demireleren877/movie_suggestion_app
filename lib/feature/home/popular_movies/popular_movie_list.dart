@@ -1,11 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:kartal/kartal.dart';
+part of '../home_screen.dart';
 
-import '../../../core/models/movie_model.dart';
-import '../../../core/components/movie_card.dart';
-
-class PopularMovieList extends StatelessWidget {
-  const PopularMovieList({
+class _PopularMovieList extends StatelessWidget {
+  const _PopularMovieList({
     Key? key,
     required this.popularMovies,
   }) : super(key: key);

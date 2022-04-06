@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:awesome_notifications/awesome_notifications.dart';
 
 class NotificationService {
-  Future<void> showNotif(
+  Future<void> saveNotif(
       int year, int month, int day, int hour, int minute) async {
     await AwesomeNotifications().createNotification(
       content: NotificationContent(

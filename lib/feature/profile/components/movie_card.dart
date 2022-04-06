@@ -1,13 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:kartal/kartal.dart';
+part of "../profile_page.dart";
 
-import '../../../core/constants/api_constants.dart';
-import '../../../core/localization/app_localizations.dart';
-
-class MovieCardWidget extends StatelessWidget {
-  const MovieCardWidget({
+class _MovieCardWidget extends StatelessWidget {
+  const _MovieCardWidget({
     Key? key,
     required this.movieBox,
     required this.index,

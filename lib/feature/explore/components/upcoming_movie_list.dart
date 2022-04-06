@@ -1,11 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:kartal/kartal.dart';
+part of "../explore_page.dart";
 
-import '../../../core/models/movie_model.dart';
-import '../../../core/components/movie_card.dart';
-
-class UpcomingMoviesList extends StatelessWidget {
-  const UpcomingMoviesList({
+class _UpcomingMoviesList extends StatelessWidget {
+  const _UpcomingMoviesList({
     Key? key,
     required this.upcomingMovies,
   }) : super(key: key);

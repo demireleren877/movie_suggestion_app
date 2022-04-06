@@ -1,13 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kartal/kartal.dart';
+part of "../detail_screen.dart";
 
-import '../../../core/components/image_view.dart';
-import '../../../core/constants/api_constants.dart';
-import '../../../core/models/movie_detail_model.dart';
-
-class CastListWidget extends StatelessWidget {
-  const CastListWidget({
+class _CastListWidget extends StatelessWidget {
+  const _CastListWidget({
     Key? key,
     required this.detail,
   }) : super(key: key);

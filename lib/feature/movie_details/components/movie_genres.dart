@@ -1,11 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kartal/kartal.dart';
+part of "../detail_screen.dart";
 
-import '../../../core/models/movie_detail_model.dart';
-
-class MovieGenres extends StatelessWidget {
-  const MovieGenres({
+class _MovieGenres extends StatelessWidget {
+  const _MovieGenres({
     Key? key,
     required this.detail,
   }) : super(key: key);

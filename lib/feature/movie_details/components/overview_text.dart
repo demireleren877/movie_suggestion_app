@@ -1,12 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:kartal/kartal.dart';
+part of "../detail_screen.dart";
 
-import '../../../core/models/movie_detail_model.dart';
-
-class OverviewText extends StatelessWidget {
-  const OverviewText({
+class _OverviewText extends StatelessWidget {
+  const _OverviewText({
     Key? key,
     required this.detail,
   }) : super(key: key);
