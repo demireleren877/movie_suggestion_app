@@ -74,17 +74,35 @@ class ProfileScreen extends StatelessWidget {
           height: context.dynamicHeight(0.9),
           child: ValueListenableBuilder(
             valueListenable: Hive.box(HiveConstants.hiveMovieList).listenable(),
-            builder: (context, Box movieBox, _) => ListView.builder(
-              physics: const BouncingScrollPhysics(),
-              itemCount: movieBox.length,
-              itemBuilder: (BuildContext context, int index) {
-                return _MovieListItem(
-                  movieBox: movieBox,
-                  index: index,
-                  cacheManager: _cacheManager,
-                );
-              },
-            ),
+            builder: (context, Box movieBox, _) => movieBox.length != 0
+                ? ListView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: movieBox.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return _MovieListItem(
+                        movieBox: movieBox,
+                        index: index,
+                        cacheManager: _cacheManager,
+                      );
+                    },
+                  )
+                : Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.network(
+                        "https://www.pinclipart.com/picdir/big/67-677027_film-clipart-news-camera-circle-of-film-icon.png",
+                        fit: BoxFit.contain,
+                        height: 120.h,
+                      ),
+                      context.emptySizedHeightBoxLow3x,
+                      Text(
+                        "You haven't added any movie yet",
+                        style: context.textTheme.headline5?.copyWith(
+                          fontFamily: GoogleFonts.josefinSans().fontFamily,
+                        ),
+                      )
+                    ],
+                  ),
           ),
         ),
         Container(
@@ -92,17 +110,34 @@ class ProfileScreen extends StatelessWidget {
           height: context.dynamicHeight(0.9),
           child: ValueListenableBuilder(
             valueListenable: Hive.box(HiveConstants.reminderList).listenable(),
-            builder: (context, Box movieBox, _) => ListView.builder(
-              physics: const BouncingScrollPhysics(),
-              itemCount: movieBox.length,
-              itemBuilder: (BuildContext context, int index) {
-                return _MovieListItem(
-                  movieBox: movieBox,
-                  index: index,
-                  cacheManager: _cacheManager,
-                );
-              },
-            ),
+            builder: (context, Box movieBox, _) => movieBox.length != 0
+                ? ListView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: movieBox.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return _MovieListItem(
+                        movieBox: movieBox,
+                        index: index,
+                        cacheManager: _cacheManager,
+                      );
+                    },
+                  )
+                : Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.alarm_off_outlined,
+                        size: 100.sp,
+                      ),
+                      context.emptySizedHeightBoxLow3x,
+                      Text(
+                        "You haven't set any reminder yet",
+                        style: context.textTheme.headline5?.copyWith(
+                          fontFamily: GoogleFonts.josefinSans().fontFamily,
+                        ),
+                      )
+                    ],
+                  ),
           ),
         ),
         /* Center(
