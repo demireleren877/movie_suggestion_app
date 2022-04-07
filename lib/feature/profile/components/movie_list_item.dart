@@ -1,15 +1,17 @@
 part of "../profile_page.dart";
 
 class _MovieListItem extends StatelessWidget {
-  const _MovieListItem(
-      {Key? key,
-      required this.movieBox,
-      required this.index,
-      required this.cacheManager})
-      : super(key: key);
+  const _MovieListItem({
+    Key? key,
+    required this.movieBox,
+    required this.index,
+    required this.cacheManager,
+    this.additionalAction,
+  }) : super(key: key);
   final Box movieBox;
   final int index;
   final CacheManager cacheManager;
+  final VoidCallback? additionalAction;
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +32,7 @@ class _MovieListItem extends StatelessWidget {
           extentRatio: 0.25,
           children: [
             _RemoveSlidable(
+              additionalAction: additionalAction,
               cacheManager: cacheManager,
               movieBox: movieBox,
               index: index,

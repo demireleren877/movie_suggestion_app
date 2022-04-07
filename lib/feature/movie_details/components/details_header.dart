@@ -71,40 +71,42 @@ class HeaderTitle extends StatelessWidget {
   final NotificationService _notificationService = NotificationService();
 
   void addReminder(BuildContext context) {
-    showTimePicker(
-      context: context,
-      initialTime: TimeOfDay.now(),
-    ).then(
-      (value) => _notificationService.saveNotif(
-        int.parse(detail.releaseDate.split('-')[0]),
-        int.parse(detail.releaseDate.split('-')[1]),
-        int.parse(detail.releaseDate.split('-')[2]),
-        value!.hour,
-        value.minute,
-      ),
-    );
     Hive.box(HiveConstants.reminderList).keys.contains(int.parse(detail.id))
         ? _cacheManager.deleteMovieHive(
             int.parse(detail.id), Hive.box(HiveConstants.reminderList))
-        : _cacheManager.saveMovieHive(
-            Movie(
-              runtime: 0,
-              backdropPath: "",
-              id: int.parse(detail.id),
-              originalLanguage: "",
-              originalTitle: detail.originalTitle,
-              overview: detail.overview,
-              posterPath: detail.posterPath,
-              releaseDate: detail.releaseDate,
-              title: detail.title,
-              video: false,
-              voteCount: 0,
-              voteAverage: "",
-            ),
-            Hive.box(
-              HiveConstants.reminderList,
-            ),
-          );
+        : showTimePicker(
+            context: context,
+            initialTime: TimeOfDay.now(),
+          ).then((value) {
+            _notificationService.saveNotif(
+                int.parse(detail.releaseDate.split('-')[0]),
+                int.parse(detail.releaseDate.split('-')[1]),
+                int.parse(detail.releaseDate.split('-')[2]),
+                value!.hour,
+                value.minute,
+                detail.title,
+                ApiConstants.imageurl + detail.posterPath,
+                int.parse(detail.id));
+            _cacheManager.saveMovieHive(
+              Movie(
+                runtime: 0,
+                backdropPath: "",
+                id: int.parse(detail.id),
+                originalLanguage: "",
+                originalTitle: detail.originalTitle,
+                overview: detail.overview,
+                posterPath: detail.posterPath,
+                releaseDate: detail.releaseDate,
+                title: detail.title,
+                video: false,
+                voteCount: 0,
+                voteAverage: "",
+              ),
+              Hive.box(
+                HiveConstants.reminderList,
+              ),
+            );
+          });
   }
 
   @override
