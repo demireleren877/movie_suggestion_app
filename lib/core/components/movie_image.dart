@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:kartal/kartal.dart';
+import 'package:movie_application/core/constants/url_constants.dart';
 
 import '../cache/cache_manager.dart';
 import '../constants/api_constants.dart';
@@ -29,7 +30,7 @@ class MovieImage extends StatelessWidget {
             Image.network(
               popularMovies[index].posterPath != ""
                   ? ApiConstants.imageurl + popularMovies[index].posterPath
-                  : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3Id7Z-Fc6SazelMw-y_cu7CpzEFuwLMVz-Q&usqp=CAU",
+                  : UrlConstants.nullImage,
             ),
             Positioned(
               top: -9.h,

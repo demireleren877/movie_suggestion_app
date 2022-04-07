@@ -21,5 +21,10 @@
   "no_data_text": "This field has no data.",
   "movie_reminder_title": "My Reminders",
   "hello_title": "Hello",
-  "enter_user_name": "Please enter your first name."
+  "enter_user_name": "Please enter your first name.",
+  "notif_title": "Playing Now🥳🥳🥳",
+  "notif_body": "now playing.",
+  "search_title": "Search any movie...",
+  "empty_movie_list_title": "You haven't added any movie yet",
+  "empty_reminder_list_title": "You haven't set any reminder yet"
 }

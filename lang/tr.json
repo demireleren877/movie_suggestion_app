@@ -21,5 +21,10 @@
   "no_data_text": "Bu alana ait veri bulunamadı.",
   "movie_reminder_title": "Hatırlatıcılarım",
   "hello_title": "Merhaba",
-  "enter_user_name": "Lütfen adınızı girin."
+  "enter_user_name": "Lütfen adınızı girin.",
+  "notif_title": "Vizyonda🥳🥳🥳",
+  "notif_body": "vizyona girdi.",
+  "search_title": "Film Arayın...",
+  "empty_movie_list_title": "Henüz bir film eklemediniz",
+  "empty_reminder_list_title": "Henüz bir hatırlatıcı kurmadınız"
 }

@@ -87,7 +87,7 @@ class MyApp extends StatelessWidget {
               themeMode: ThemeMode.dark,
               debugShowCheckedModeBanner: false,
               darkTheme: AppThemeData.themeData,
-              title: 'Material App',
+              title: 'Movie Jungle',
               initialRoute: Routes.init,
               routes: Routes.routes,
             );

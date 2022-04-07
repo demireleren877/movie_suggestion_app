@@ -21,7 +21,7 @@ class _CastListWidget extends StatelessWidget {
             onTap: () => context.navigateToPage(
               ImageViewer(
                 image: detail.castList?[index].profilePath == ""
-                    ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3Id7Z-Fc6SazelMw-y_cu7CpzEFuwLMVz-Q&usqp=CAU"
+                    ? UrlConstants.nullImage
                     : ApiConstants.imageurl +
                         detail.castList![index].profilePath,
               ),
@@ -35,7 +35,7 @@ class _CastListWidget extends StatelessWidget {
                       borderRadius: context.lowBorderRadius,
                       child: Image.network(
                         detail.castList?[index].profilePath == ""
-                            ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3Id7Z-Fc6SazelMw-y_cu7CpzEFuwLMVz-Q&usqp=CAU"
+                            ? UrlConstants.nullImage
                             : ApiConstants.imageurl +
                                 detail.castList![index].profilePath,
                       ),

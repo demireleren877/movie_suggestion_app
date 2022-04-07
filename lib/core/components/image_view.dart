@@ -12,8 +12,7 @@ class ImageViewer extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-            AppLocalizations.of(context)!.translate("image_viewer_title") ??
-                ""),
+            AppLocalizations.instance.translate("image_viewer_title") ?? ""),
       ),
       body: Center(
         child: SizedBox(

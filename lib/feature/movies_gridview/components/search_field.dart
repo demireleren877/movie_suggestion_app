@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kartal/kartal.dart';
+import 'package:movie_application/core/localization/app_localizations.dart';
 
 import '../cubit/all_movies_cubit.dart';
 
@@ -22,7 +23,7 @@ class SearchField extends StatelessWidget {
           decoration: InputDecoration(
             floatingLabelAlignment: FloatingLabelAlignment.center,
             contentPadding: context.horizontalPaddingNormal,
-            hintText: 'Search any movie...',
+            hintText: AppLocalizations.instance.translate("search_title"),
             border: InputBorder.none,
           ),
         ),

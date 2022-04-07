@@ -23,10 +23,10 @@ class _RemoveSlidable extends StatelessWidget {
       flex: 15,
       label: AppLocalizations.instance.translate('remove_movie_title') ?? "",
       onPressed: (context) {
-        cacheManager.deleteMovieHive(movieBox.keyAt(index), movieBox);
         if (additionalAction != null) {
           additionalAction;
         }
+        cacheManager.deleteMovieHive(movieBox.keyAt(index), movieBox);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(

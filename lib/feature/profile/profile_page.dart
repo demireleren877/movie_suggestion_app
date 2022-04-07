@@ -9,6 +9,7 @@ import 'package:kartal/kartal.dart';
 import 'package:movie_application/core/colors/app_colors.dart';
 import 'package:movie_application/core/components/centered_progress.dart';
 import 'package:movie_application/core/constants/hive_constants.dart';
+import 'package:movie_application/core/constants/url_constants.dart';
 import 'package:movie_application/feature/profile/cubit/profile_cubit.dart';
 import 'package:share_plus/share_plus.dart';
 import '../../core/cache/cache_manager.dart';
@@ -92,13 +93,15 @@ class ProfileScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.network(
-                        "https://www.pinclipart.com/picdir/big/67-677027_film-clipart-news-camera-circle-of-film-icon.png",
+                        UrlConstants.nullMovieImage,
                         fit: BoxFit.contain,
                         height: 120.h,
                       ),
                       context.emptySizedHeightBoxLow3x,
                       Text(
-                        "You haven't added any movie yet",
+                        AppLocalizations.instance
+                                .translate("empty_movie_list_title") ??
+                            "",
                         style: context.textTheme.headline5?.copyWith(
                           fontFamily: GoogleFonts.josefinSans().fontFamily,
                         ),
@@ -119,8 +122,8 @@ class ProfileScreen extends StatelessWidget {
                     itemBuilder: (BuildContext context, int index) {
                       return _MovieListItem(
                         additionalAction: () {
-                          AwesomeNotifications().dismiss(
-                            movieBox.getAt(index).id,
+                          AwesomeNotifications().cancel(
+                            int.parse(movieBox.getAt(index).id),
                           );
                         },
                         movieBox: movieBox,
@@ -138,7 +141,9 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       context.emptySizedHeightBoxLow3x,
                       Text(
-                        "You haven't set any reminder yet",
+                        AppLocalizations.instance
+                                .translate("empty_reminder_list_title") ??
+                            "",
                         style: context.textTheme.headline5?.copyWith(
                           fontFamily: GoogleFonts.josefinSans().fontFamily,
                         ),
@@ -147,14 +152,6 @@ class ProfileScreen extends StatelessWidget {
                   ),
           ),
         ),
-        /* Center(
-          child: TextButton(
-            child: const Text("Coming Soon"),
-            onPressed: () async {
-              _notificationService.showNotif(2022, 4, 6, 0, 15);
-            },
-          ),
-        ), */
       ],
     );
   }

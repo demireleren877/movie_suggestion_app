@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:movie_application/core/constants/hive_constants.dart';
+import 'package:movie_application/core/constants/url_constants.dart';
 import 'package:movie_application/core/localization/app_localizations.dart';
 import 'package:movie_application/core/routes/routes.dart';
 
@@ -31,7 +32,7 @@ class _InitScreenState extends State<InitScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Lottie.asset('assets/animations/splash_anim.json'),
+        child: Lottie.asset(UrlConstants.lottiImage),
       ),
     );
   }

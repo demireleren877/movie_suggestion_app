@@ -1,4 +1,5 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:movie_application/core/localization/app_localizations.dart';
 
 class NotificationService {
   Future<void> saveNotif(int year, int month, int day, int hour, int minute,
@@ -9,8 +10,9 @@ class NotificationService {
         notificationLayout: NotificationLayout.BigPicture,
         bigPicture: image,
         channelKey: 'scheduled_channel',
-        title: "Playing Now🥳🥳🥳",
-        body: "$title now playing",
+        title: AppLocalizations.instance.translate("notif_title") ?? "",
+        body:
+            "$title ${AppLocalizations.instance.translate('notif_body') ?? ""}",
       ),
       actionButtons: [
         NotificationActionButton(key: "MARK_DONE", label: "Mark Done")

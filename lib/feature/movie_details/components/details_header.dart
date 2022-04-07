@@ -51,7 +51,10 @@ class _DetailsHeader extends StatelessWidget {
                         voteCount: 0,
                         voteAverage: "",
                       ),
-                      Hive.box(HiveConstants.hiveMovieList));
+                      Hive.box(
+                        HiveConstants.hiveMovieList,
+                      ),
+                    );
             },
           ),
         ),
@@ -77,36 +80,38 @@ class HeaderTitle extends StatelessWidget {
         : showTimePicker(
             context: context,
             initialTime: TimeOfDay.now(),
-          ).then((value) {
-            _notificationService.saveNotif(
-                int.parse(detail.releaseDate.split('-')[0]),
-                int.parse(detail.releaseDate.split('-')[1]),
-                int.parse(detail.releaseDate.split('-')[2]),
-                value!.hour,
-                value.minute,
-                detail.title,
-                ApiConstants.imageurl + detail.posterPath,
-                int.parse(detail.id));
-            _cacheManager.saveMovieHive(
-              Movie(
-                runtime: 0,
-                backdropPath: "",
-                id: int.parse(detail.id),
-                originalLanguage: "",
-                originalTitle: detail.originalTitle,
-                overview: detail.overview,
-                posterPath: detail.posterPath,
-                releaseDate: detail.releaseDate,
-                title: detail.title,
-                video: false,
-                voteCount: 0,
-                voteAverage: "",
-              ),
-              Hive.box(
-                HiveConstants.reminderList,
-              ),
-            );
-          });
+          ).then(
+            (value) {
+              _notificationService.saveNotif(
+                  int.parse(detail.releaseDate.split('-')[0]),
+                  int.parse(detail.releaseDate.split('-')[1]),
+                  int.parse(detail.releaseDate.split('-')[2]),
+                  value!.hour,
+                  value.minute,
+                  detail.title,
+                  ApiConstants.imageurl + detail.posterPath,
+                  int.parse(detail.id));
+              _cacheManager.saveMovieHive(
+                Movie(
+                  runtime: 0,
+                  backdropPath: "",
+                  id: int.parse(detail.id),
+                  originalLanguage: "",
+                  originalTitle: detail.originalTitle,
+                  overview: detail.overview,
+                  posterPath: detail.posterPath,
+                  releaseDate: detail.releaseDate,
+                  title: detail.title,
+                  video: false,
+                  voteCount: 0,
+                  voteAverage: "",
+                ),
+                Hive.box(
+                  HiveConstants.reminderList,
+                ),
+              );
+            },
+          );
   }
 
   @override
