@@ -16,7 +16,7 @@ class _ShareSlidable extends StatelessWidget {
   Widget build(BuildContext context) {
     return SlidableAction(
       autoClose: true,
-      backgroundColor: Colors.green,
+      backgroundColor: AppColors.green,
       icon: Icons.share,
       label: AppLocalizations.instance.translate('share_movie_title') ?? "",
       onPressed: (context) {

@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:intl/intl.dart';
 import 'package:kartal/kartal.dart';
+import 'package:movie_application/core/colors/app_colors.dart';
 import '../../core/components/centered_progress.dart';
 import '../../core/components/divider.dart';
 import '../../core/localization/app_localizations.dart';

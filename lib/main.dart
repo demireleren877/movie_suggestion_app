@@ -33,22 +33,11 @@ Future<void> main() async {
     null,
     [
       NotificationChannel(
-        channelKey: 'basic_channel',
-        channelName: 'Basic notifications',
-        channelDescription: 'Basic notifications',
-        channelShowBadge: true,
-        importance: NotificationImportance.High,
-        defaultColor: const Color(0xFF9D50DD),
-        ledColor: Colors.white,
-      ),
-      NotificationChannel(
         channelKey: 'scheduled_channel',
         channelName: 'Scheduled notifications',
         channelDescription: 'Scheduled notifications',
         channelShowBadge: true,
         importance: NotificationImportance.High,
-        defaultColor: const Color(0xFF9D50DD),
-        ledColor: Colors.green,
         locked: true,
       )
     ],

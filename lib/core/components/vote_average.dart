@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kartal/kartal.dart';
+import 'package:movie_application/core/colors/app_colors.dart';
 
 import '../models/movie_model.dart';
 
@@ -27,7 +28,7 @@ class VoteAverage extends StatelessWidget {
         Icon(
           Icons.star,
           size: 18.sp,
-          color: Colors.yellow,
+          color: AppColors.yellow,
         ),
       ],
     );

@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movie_application/core/colors/app_colors.dart';
 import 'package:movie_application/feature/explore/explore_page.dart';
 import 'package:movie_application/feature/profile/profile_page.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
@@ -49,7 +49,7 @@ List<Widget> _buildScreens() {
   return [
     const HomeScreen(),
     const ExploreScreen(),
-    Container(color: Colors.amber),
+    Container(color: AppColors.amber),
     ProfileScreen()
   ];
 }
@@ -68,8 +68,8 @@ List<PersistentBottomNavBarItem> _navBarsItems(
       ),
       title: ("Home"),
       textStyle: TextStyle(fontSize: 14.sp),
-      activeColorPrimary: CupertinoColors.activeBlue,
-      inactiveColorPrimary: CupertinoColors.systemGrey,
+      activeColorPrimary: AppColors.iosBlue,
+      inactiveColorPrimary: AppColors.iosGrey,
     ),
     PersistentBottomNavBarItem(
       icon: Icon(
@@ -82,8 +82,8 @@ List<PersistentBottomNavBarItem> _navBarsItems(
       ),
       textStyle: TextStyle(fontSize: 14.sp),
       title: ("Explore"),
-      activeColorPrimary: CupertinoColors.activeOrange,
-      inactiveColorPrimary: CupertinoColors.systemGrey,
+      activeColorPrimary: AppColors.iosOrange,
+      inactiveColorPrimary: AppColors.iosGrey,
     ),
     PersistentBottomNavBarItem(
       icon: Icon(
@@ -96,8 +96,8 @@ List<PersistentBottomNavBarItem> _navBarsItems(
       ),
       textStyle: TextStyle(fontSize: 14.sp),
       title: ("Later"),
-      activeColorPrimary: CupertinoColors.systemRed,
-      inactiveColorPrimary: CupertinoColors.systemGrey,
+      activeColorPrimary: AppColors.iosRed,
+      inactiveColorPrimary: AppColors.iosGrey,
     ),
     PersistentBottomNavBarItem(
       icon: Icon(
@@ -110,8 +110,8 @@ List<PersistentBottomNavBarItem> _navBarsItems(
       ),
       textStyle: TextStyle(fontSize: 14.sp),
       title: ("Settings"),
-      activeColorPrimary: CupertinoColors.activeGreen,
-      inactiveColorPrimary: CupertinoColors.systemGrey,
+      activeColorPrimary: AppColors.iosGreen,
+      inactiveColorPrimary: AppColors.iosGrey,
     ),
   ];
 }

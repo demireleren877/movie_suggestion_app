@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
+import 'package:movie_application/core/colors/app_colors.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ShimmerWidget extends StatelessWidget {
@@ -13,12 +14,12 @@ class ShimmerWidget extends StatelessWidget {
         child: ClipRRect(
           borderRadius: context.lowBorderRadius,
           child: Container(
-            color: Colors.grey,
+            color: AppColors.shimmerColors[0],
           ),
         ),
       ),
-      baseColor: Colors.black38,
-      highlightColor: Colors.black54,
+      baseColor: AppColors.shimmerColors[1],
+      highlightColor: AppColors.shimmerColors[2],
     );
   }
 }

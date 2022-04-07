@@ -6,6 +6,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:kartal/kartal.dart';
+import 'package:movie_application/core/colors/app_colors.dart';
 import 'package:movie_application/core/components/centered_progress.dart';
 import 'package:movie_application/core/constants/hive_constants.dart';
 import 'package:movie_application/feature/profile/cubit/profile_cubit.dart';
@@ -61,7 +62,7 @@ class ProfileScreen extends StatelessWidget {
       ),
       toolbarHeight: 100.h,
       actions: const [_AnimatedLanguageSwitcher()],
-      backgroundColor: Colors.transparent,
+      backgroundColor: AppColors.transparent,
       bottom: _buildTabBar(context),
     );
   }
@@ -161,13 +162,13 @@ class ProfileScreen extends StatelessWidget {
   TabBar _buildTabBar(BuildContext context) {
     return TabBar(
       padding: context.paddingNormal,
-      labelColor: Colors.amber,
-      unselectedLabelColor: Colors.grey,
-      indicatorColor: Colors.amber,
+      labelColor: AppColors.amber,
+      unselectedLabelColor: AppColors.grey,
+      indicatorColor: AppColors.amber,
       indicator: BoxDecoration(
         borderRadius: context.lowBorderRadius,
         border: Border.all(
-          color: Colors.amber,
+          color: AppColors.amber,
           width: 2.0,
         ),
       ),

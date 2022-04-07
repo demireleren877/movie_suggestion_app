@@ -17,7 +17,7 @@ class _DetailsHeader extends StatelessWidget {
         const HeaderShadow(),
         HeaderTitle(detail: detail),
         IconButton(
-          color: Colors.white,
+          color: AppColors.white,
           icon: Icon(
             Icons.arrow_back,
             size: 30.sp,
@@ -122,7 +122,7 @@ class HeaderTitle extends StatelessWidget {
               detail.title + "  " + '(${detail.releaseDate.split('-')[0]})',
               style: context.textTheme.headline4?.copyWith(
                 fontSize: 28.sp,
-                color: Colors.white,
+                color: AppColors.white,
                 fontFamily: GoogleFonts.josefinSans().fontFamily,
               ),
             ),
@@ -134,7 +134,7 @@ class HeaderTitle extends StatelessWidget {
             },
             child: Icon(
               Icons.play_circle_outline,
-              color: Colors.white,
+              color: AppColors.white,
               size: 40.sp,
             ),
           ),

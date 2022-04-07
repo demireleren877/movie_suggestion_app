@@ -17,7 +17,7 @@ class _MovieGenres extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           return Container(
             decoration: BoxDecoration(
-              border: Border.all(color: Colors.white),
+              border: Border.all(color: AppColors.white),
               borderRadius: context.lowBorderRadius,
             ),
             margin: context.horizontalPaddingLow,

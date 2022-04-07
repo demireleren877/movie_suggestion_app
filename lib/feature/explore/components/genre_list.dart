@@ -30,12 +30,12 @@ class _GenreList extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: context.normalBorderRadius,
                 border: Border.all(
-                  color: index != 0 ? Colors.white : Colors.blue,
+                  color: index != 0 ? AppColors.white : AppColors.blue,
                 ),
                 color: state.genres[index].id ==
                         context.read<ExploreCubit>().selectedGenre
-                    ? Colors.white70
-                    : const Color(0xFF252a31),
+                    ? AppColors.white70
+                    : AppColors.genreColor,
               ),
               height: context.dynamicHeight(0.05),
               child: Center(
@@ -45,8 +45,8 @@ class _GenreList extends StatelessWidget {
                     fontSize: 16.sp,
                     color: state.genres[index].id ==
                             context.read<ExploreCubit>().selectedGenre
-                        ? const Color(0xFF252a31)
-                        : Colors.white70,
+                        ? AppColors.genreColor
+                        : AppColors.white70,
                   ),
                 ),
               ),

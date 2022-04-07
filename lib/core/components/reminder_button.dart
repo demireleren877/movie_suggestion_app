@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+import '../colors/app_colors.dart';
 import '../constants/hive_constants.dart';
 
 class ReminderButton extends StatelessWidget {
@@ -16,7 +17,7 @@ class ReminderButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      splashColor: Colors.transparent,
+      splashColor: AppColors.transparent,
       onTap: onTap,
       child: ValueListenableBuilder(
         valueListenable: Hive.box(HiveConstants.reminderList).listenable(),

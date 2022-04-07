@@ -18,7 +18,7 @@ class _RemoveSlidable extends StatelessWidget {
   Widget build(BuildContext context) {
     return SlidableAction(
       autoClose: true,
-      backgroundColor: Colors.red,
+      backgroundColor: AppColors.red,
       icon: Icons.delete_forever_outlined,
       flex: 15,
       label: AppLocalizations.instance.translate('remove_movie_title') ?? "",

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:movie_application/core/colors/app_colors.dart';
 
 import '../constants/hive_constants.dart';
 
@@ -16,7 +17,7 @@ class BookmarkButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      splashColor: Colors.transparent,
+      splashColor: AppColors.transparent,
       onTap: onTap,
       child: Stack(
         alignment: Alignment.center,
@@ -24,7 +25,7 @@ class BookmarkButton extends StatelessWidget {
           Icon(
             Icons.bookmark_sharp,
             size: 55.sp,
-            color: Colors.black.withOpacity(0.75),
+            color: AppColors.black075,
           ),
           ValueListenableBuilder(
             valueListenable: Hive.box(HiveConstants.hiveMovieList).listenable(),

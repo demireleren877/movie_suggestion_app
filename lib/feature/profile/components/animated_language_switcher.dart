@@ -16,8 +16,8 @@ class _AnimatedLanguageSwitcher extends StatelessWidget {
         width: context.dynamicWidth(0.24),
         decoration: BoxDecoration(
           color: AppLocalizations.instance.isEnLocale
-              ? Colors.blue.shade800
-              : Colors.red.shade800,
+              ? AppColors.languageColors[0]
+              : AppColors.languageColors[1],
           borderRadius: context.highBorderRadius,
         ),
         child: Stack(
@@ -54,7 +54,7 @@ class _AnimatedLanguageSwitcher extends StatelessWidget {
                           alignment: Alignment.center,
                           children: [
                             CircleAvatar(
-                              backgroundColor: Colors.white,
+                              backgroundColor: AppColors.white,
                               radius: context.dynamicHeight(0.025),
                             ),
                             Text(
@@ -65,7 +65,7 @@ class _AnimatedLanguageSwitcher extends StatelessWidget {
                           ],
                         )
                       : CircleAvatar(
-                          backgroundColor: Colors.white,
+                          backgroundColor: AppColors.white,
                           radius: context.dynamicHeight(0.025),
                           child: Text(
                             flag("tr"),

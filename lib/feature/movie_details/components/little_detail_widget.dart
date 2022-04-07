@@ -11,7 +11,7 @@ class _LittleMovieDetailWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(title, style: TextStyle(fontSize: 16.sp, color: Colors.amber)),
+        Text(title, style: TextStyle(fontSize: 16.sp, color: AppColors.amber)),
         context.emptySizedHeightBoxLow,
         Text(
           text,
