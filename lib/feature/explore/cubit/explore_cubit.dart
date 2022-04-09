@@ -32,13 +32,13 @@ class ExploreCubit extends Cubit<ExploreState> {
       final ScrollController scrollController = ScrollController();
       int page = 1;
       final upcomingMovieList = await ApiServices()
-          .getMoviesFromApi(ApiConstants.upcomingMovies, page);
+          .getMoviesFromApi(ApiConstants.upcomingMovies, page, DateTime.now());
       scrollController.addListener(() async {
         if (scrollController.position.maxScrollExtent ==
             scrollController.offset) {
           page++;
-          final newMovies = await ApiServices()
-              .getMoviesFromApi(ApiConstants.upcomingMovies, page);
+          final newMovies = await ApiServices().getMoviesFromApi(
+              ApiConstants.upcomingMovies, page, DateTime.now());
           if (newMovies.length > 1) {
             emit(ExploreLoading());
             upcomingMovieList.addAll(newMovies);
@@ -64,14 +64,14 @@ class ExploreCubit extends Cubit<ExploreState> {
     try {
       final ScrollController scrollController = ScrollController();
       int page = 1;
-      final movies = await ApiServices()
-          .getMoviesFromApi(ApiConstants.discoverParam, page);
+      final movies = await ApiServices().getMoviesFromApi(
+          ApiConstants.discoverParam, page, DateTime(0, 0, 0));
       scrollController.addListener(() async {
         if (scrollController.position.maxScrollExtent ==
             scrollController.offset) {
           page++;
-          final newMovies = await ApiServices()
-              .getMoviesFromApi(ApiConstants.discoverParam, page);
+          final newMovies = await ApiServices().getMoviesFromApi(
+              ApiConstants.discoverParam, page, DateTime(0, 0, 0));
           if (newMovies.length > 1) {
             emit(ExploreLoading());
             movies.addAll(newMovies);
@@ -101,8 +101,8 @@ class ExploreCubit extends Cubit<ExploreState> {
           name: AppLocalizations.instance.translate("discover") ?? ""));
       genres.addAll(await ApiServices().getGenres());
 
-      final upcomingMovies =
-          await ApiServices().getMoviesFromApi(ApiConstants.upcomingMovies, 1);
+      final upcomingMovies = await ApiServices()
+          .getMoviesFromApi(ApiConstants.upcomingMovies, 1, DateTime.now());
       final discoverMovies =
           await ApiServices().getMoviesByGenre(selectedGenre);
       emit(ExploreLoaded(

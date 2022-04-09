@@ -16,6 +16,7 @@ class ApiConstants {
   static const String languageParam = "&language=";
   static const String searchUrl = "/search/movie";
   static const String queryParam = "&query=";
+  static const String primaryReleaseDateGteParam = "&primary_release_date.gte=";
   static const String movie = "/movie/";
   static const String credits = "/credits";
   static const String images = "/images";

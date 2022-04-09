@@ -16,14 +16,14 @@ class ForYouCubit extends Cubit<ForYouState> {
     try {
       final ScrollController scrollController = ScrollController();
       int page = 1;
-      final topRatedMovieList = await ApiServices()
-          .getMoviesFromApi(ApiConstants.topratedMovies, page);
+      final topRatedMovieList = await ApiServices().getMoviesFromApi(
+          ApiConstants.topratedMovies, page, DateTime(0, 0, 0));
       scrollController.addListener(() async {
         if (scrollController.position.maxScrollExtent ==
             scrollController.offset) {
           page++;
-          final newMovies = await ApiServices()
-              .getMoviesFromApi(ApiConstants.topratedMovies, page);
+          final newMovies = await ApiServices().getMoviesFromApi(
+              ApiConstants.topratedMovies, page, DateTime(0, 0, 0));
           if (newMovies.length > 1) {
             emit(ForYouLoading());
             topRatedMovieList.addAll(newMovies);

@@ -30,6 +30,9 @@ part 'components/overview_text.dart';
 part 'components/screenshot_list.dart';
 part 'components/cast_list.dart';
 part 'components/details_header.dart';
+part 'components/header_title.dart';
+part 'components/header_shadow.dart';
+part 'components/header_image.dart';
 
 class DetailScreen extends StatelessWidget {
   const DetailScreen({Key? key, required this.movieId}) : super(key: key);

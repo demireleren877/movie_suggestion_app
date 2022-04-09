@@ -14,10 +14,10 @@ class HomeCubit extends Cubit<HomeState> {
   void getAllMovies() async {
     emit(HomeLoading());
     try {
-      final playingMovieList =
-          await ApiServices().getMoviesFromApi(ApiConstants.playingMovies, 1);
-      final popularMovieList =
-          await ApiServices().getMoviesFromApi(ApiConstants.popularMovies, 1);
+      final playingMovieList = await ApiServices()
+          .getMoviesFromApi(ApiConstants.playingMovies, 1, DateTime(0, 0, 0));
+      final popularMovieList = await ApiServices()
+          .getMoviesFromApi(ApiConstants.popularMovies, 1, DateTime(0, 0, 0));
       emit(HomeLoaded(
           playingMovies: getSliderCards(playingMovieList),
           popularMovies: popularMovieList));
@@ -31,14 +31,14 @@ class HomeCubit extends Cubit<HomeState> {
     try {
       final ScrollController scrollController = ScrollController();
       int page = 1;
-      final popularMovieList = await ApiServices()
-          .getMoviesFromApi(ApiConstants.popularMovies, page);
+      final popularMovieList = await ApiServices().getMoviesFromApi(
+          ApiConstants.popularMovies, page, DateTime(0, 0, 0));
       scrollController.addListener(() async {
         if (scrollController.position.maxScrollExtent ==
             scrollController.offset) {
           page++;
-          final newMovies = await ApiServices()
-              .getMoviesFromApi(ApiConstants.popularMovies, page);
+          final newMovies = await ApiServices().getMoviesFromApi(
+              ApiConstants.popularMovies, page, DateTime(0, 0, 0));
           if (newMovies.length > 1) {
             emit(HomeLoading());
             popularMovieList.addAll(newMovies);
@@ -63,14 +63,14 @@ class HomeCubit extends Cubit<HomeState> {
     try {
       final ScrollController scrollController = ScrollController();
       int page = 1;
-      final playingMovieList = await ApiServices()
-          .getMoviesFromApi(ApiConstants.playingMovies, page);
+      final playingMovieList = await ApiServices().getMoviesFromApi(
+          ApiConstants.playingMovies, page, DateTime(0, 0, 0));
       scrollController.addListener(() async {
         if (scrollController.position.maxScrollExtent ==
             scrollController.offset) {
           page++;
-          final newMovies = await ApiServices()
-              .getMoviesFromApi(ApiConstants.playingMovies, page);
+          final newMovies = await ApiServices().getMoviesFromApi(
+              ApiConstants.playingMovies, page, DateTime(0, 0, 0));
           if (newMovies.length > 1) {
             emit(HomeLoading());
             playingMovieList.addAll(newMovies);

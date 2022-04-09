@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 import 'package:movie_application/core/models/cast_list_model.dart';
 import 'package:movie_application/core/models/movie_detail_model.dart';
 import 'package:movie_application/core/models/movie_images_model.dart';
@@ -10,7 +11,8 @@ import '../localization/app_localizations.dart';
 import '../models/genre_model.dart';
 
 class ApiServices {
-  Future<List<Movie>> getMoviesFromApi(String movieType, int page) async {
+  Future<List<Movie>> getMoviesFromApi(
+      String movieType, int page, DateTime dateTime) async {
     String url = ApiConstants.baseUrl +
         movieType +
         ApiConstants.apiKeyParam +
@@ -18,7 +20,9 @@ class ApiServices {
         ApiConstants.apiPageParam +
         page.toString() +
         ApiConstants.languageParam +
-        AppLocalizations.instance.locale.toString();
+        AppLocalizations.instance.locale.toString() +
+        ApiConstants.primaryReleaseDateGteParam +
+        DateFormat('yyyy-MM-dd').format(dateTime);
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       final json = jsonDecode(response.body);
