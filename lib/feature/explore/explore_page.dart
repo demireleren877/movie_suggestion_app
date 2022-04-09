@@ -51,13 +51,14 @@ class ExploreScreen extends StatelessWidget {
                   context.emptySizedHeightBoxLow3x,
                   _GenreList(state: state),
                   context.emptySizedHeightBoxLow3x,
-                  _DiscoverMovieList(movies: state.topRatedMovies),
+                  _DiscoverMovieList(movies: state.discoverMovies),
                 ],
               ),
             ),
           );
         } else if (state is SeeAllUpcomingMovies) {
           return MoviesGridview(
+            isVisible: true,
             title:
                 AppLocalizations.instance.translate("upcoming_movie_title") ??
                     "",
@@ -69,6 +70,7 @@ class ExploreScreen extends StatelessWidget {
           );
         } else if (state is DiscoverNewMovies) {
           return MoviesGridview(
+            isVisible: true,
             title: AppLocalizations.instance.translate("discover_page_title") ??
                 "",
             scrollController: state.scrollController,

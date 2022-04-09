@@ -18,7 +18,8 @@ class NotificationService {
         NotificationActionButton(key: "MARK_DONE", label: "Mark Done")
       ],
       schedule: NotificationCalendar.fromDate(
-          date: DateTime(year, month, day, hour, minute)),
+        date: DateTime(year, month, day, hour, minute),
+      ),
     );
   }
 }

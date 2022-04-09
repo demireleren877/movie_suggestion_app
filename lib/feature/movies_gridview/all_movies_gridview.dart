@@ -19,11 +19,13 @@ class MoviesGridview extends StatelessWidget {
     required this.title,
     required this.onBackPressed,
     required this.scrollController,
+    required this.isVisible,
   }) : super(key: key);
   final List<Movie> movies;
   final String title;
   final VoidCallback onBackPressed;
   final ScrollController scrollController;
+  final bool isVisible;
 
   @override
   Widget build(BuildContext context) {
@@ -101,8 +103,11 @@ class MoviesGridview extends StatelessWidget {
   AppBar _buildAppBar(BuildContext context) {
     return AppBar(
       backgroundColor: AppColors.transparent,
-      leading: BackButton(
-        onPressed: onBackPressed,
+      leading: Visibility(
+        visible: isVisible,
+        child: BackButton(
+          onPressed: onBackPressed,
+        ),
       ),
       iconTheme: IconThemeData(size: 30.sp),
       toolbarHeight: 70.h,

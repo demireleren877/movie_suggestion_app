@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_application/core/colors/app_colors.dart';
 import 'package:movie_application/feature/explore/explore_page.dart';
+import 'package:movie_application/feature/for_you_page/for_you_page.dart';
 import 'package:movie_application/feature/profile/profile_page.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
@@ -49,7 +50,7 @@ List<Widget> _buildScreens() {
   return [
     HomeScreen(),
     const ExploreScreen(),
-    Container(color: AppColors.amber),
+    const ForYouPage(),
     ProfileScreen()
   ];
 }

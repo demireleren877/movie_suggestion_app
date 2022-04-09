@@ -7,7 +7,6 @@ import 'package:kartal/kartal.dart';
 import 'package:movie_application/core/cache/cache_manager.dart';
 import 'package:movie_application/core/colors/app_colors.dart';
 import 'package:movie_application/core/components/home_title.dart';
-import 'package:movie_application/core/constants/hive_constants.dart';
 import 'package:movie_application/core/localization/app_localizations.dart';
 import '../../core/components/centered_progress.dart';
 import '../../core/components/movie_card.dart';
@@ -73,15 +72,7 @@ class HomeScreen extends StatelessWidget {
                         },
                       ),
                       context.emptySizedHeightBoxLow3x,
-                      _PopularMovieList(
-                        popularMovies: _cacheManager
-                                .getAllMovies(HiveConstants.popularMovies)
-                                .isEmpty
-                            ? state.popularMovies
-                            : _cacheManager.getAllMovies(
-                                HiveConstants.popularMovies,
-                              ),
-                      ),
+                      _PopularMovieList(popularMovies: state.popularMovies),
                     ],
                   ),
                 )
@@ -90,6 +81,7 @@ class HomeScreen extends StatelessWidget {
           );
         } else if (state is SeeAllPopularMovies) {
           return MoviesGridview(
+            isVisible: true,
             title: AppLocalizations.instance.translate("popular_movie_title") ??
                 "",
             scrollController: state.scrollController,
@@ -100,6 +92,7 @@ class HomeScreen extends StatelessWidget {
           );
         } else if (state is SeeAllPlayingMovies) {
           return MoviesGridview(
+            isVisible: true,
             movies: state.playingMovies,
             scrollController: state.scrollController,
             title: AppLocalizations.instance.translate("playing_movie_title") ??

@@ -14,10 +14,10 @@ class ExploreLoading extends ExploreState {}
 class ExploreLoaded extends ExploreState {
   final List<Movie> upcomingMovies;
   final List<Genre> genres;
-  final List<Movie> topRatedMovies;
+  final List<Movie> discoverMovies;
   final int selectedGenre;
   const ExploreLoaded({
-    required this.topRatedMovies,
+    required this.discoverMovies,
     required this.selectedGenre,
     required this.genres,
     required this.upcomingMovies,

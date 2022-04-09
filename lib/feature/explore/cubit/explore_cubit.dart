@@ -16,10 +16,10 @@ class ExploreCubit extends Cubit<ExploreState> {
 
   void changeGenre(int genre, ExploreLoaded state) async {
     selectedGenre = genre;
-    final topRatedMovies = await ApiServices().getMoviesByGenre(genre);
+    final discoverMovies = await ApiServices().getMoviesByGenre(genre);
     emit(ExploreLoading());
     emit(ExploreLoaded(
-      topRatedMovies: topRatedMovies,
+      discoverMovies: discoverMovies,
       upcomingMovies: state.upcomingMovies,
       genres: state.genres,
       selectedGenre: selectedGenre,
@@ -38,7 +38,7 @@ class ExploreCubit extends Cubit<ExploreState> {
             scrollController.offset) {
           page++;
           final newMovies = await ApiServices()
-              .getMoviesFromApi(ApiConstants.popularMovies, page);
+              .getMoviesFromApi(ApiConstants.upcomingMovies, page);
           if (newMovies.length > 1) {
             emit(ExploreLoading());
             upcomingMovieList.addAll(newMovies);
@@ -103,13 +103,13 @@ class ExploreCubit extends Cubit<ExploreState> {
 
       final upcomingMovies =
           await ApiServices().getMoviesFromApi(ApiConstants.upcomingMovies, 1);
-      final topRatedMovies =
+      final discoverMovies =
           await ApiServices().getMoviesByGenre(selectedGenre);
       emit(ExploreLoaded(
         selectedGenre: selectedGenre,
         genres: genres,
         upcomingMovies: upcomingMovies,
-        topRatedMovies: topRatedMovies,
+        discoverMovies: discoverMovies,
       ));
     } catch (e) {
       emit(ExploreInitial());

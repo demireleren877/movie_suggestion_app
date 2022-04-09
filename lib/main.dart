@@ -8,6 +8,7 @@ import 'package:movie_application/core/constants/hive_constants.dart';
 import 'package:movie_application/core/localization/app_localizations_setup.dart';
 import 'package:movie_application/core/localization/cubit/localization_cubit.dart';
 import 'package:movie_application/feature/explore/cubit/explore_cubit.dart';
+import 'package:movie_application/feature/for_you_page/cubit/for_you_cubit.dart';
 import 'package:movie_application/feature/home/cubit/home_cubit.dart';
 import 'package:movie_application/feature/movies_gridview/cubit/all_movies_cubit.dart';
 import 'core/models/movie_model.dart';
@@ -74,6 +75,9 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) => ProfileCubit()..loadProfile(),
+          ),
+          BlocProvider(
+            create: (context) => ForYouCubit()..loadTopRatedMovies(),
           ),
         ],
         child: BlocBuilder<LocalizationCubit, LocalizationState>(
