@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -27,8 +28,8 @@ class MovieImage extends StatelessWidget {
         borderRadius: context.lowBorderRadius,
         child: Stack(
           children: [
-            Image.network(
-              popularMovies[index].posterPath != ""
+            CachedNetworkImage(
+              imageUrl: popularMovies[index].posterPath != ""
                   ? ApiConstants.imageurl + popularMovies[index].posterPath
                   : UrlConstants.nullImage,
             ),

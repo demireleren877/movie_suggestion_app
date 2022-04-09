@@ -1,10 +1,13 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kartal/kartal.dart';
+import 'package:movie_application/core/cache/cache_manager.dart';
 import 'package:movie_application/core/colors/app_colors.dart';
 import 'package:movie_application/core/components/home_title.dart';
+import 'package:movie_application/core/constants/hive_constants.dart';
 import 'package:movie_application/core/localization/app_localizations.dart';
 import '../../core/components/centered_progress.dart';
 import '../../core/components/movie_card.dart';
@@ -22,7 +25,8 @@ part 'playing_movies/playing_movies_slider.dart';
 part 'popular_movies/popular_movie_list.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  HomeScreen({Key? key}) : super(key: key);
+  final CacheManager _cacheManager = CacheManager();
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +73,15 @@ class HomeScreen extends StatelessWidget {
                         },
                       ),
                       context.emptySizedHeightBoxLow3x,
-                      _PopularMovieList(popularMovies: state.popularMovies),
+                      _PopularMovieList(
+                        popularMovies: _cacheManager
+                                .getAllMovies(HiveConstants.popularMovies)
+                                .isEmpty
+                            ? state.popularMovies
+                            : _cacheManager.getAllMovies(
+                                HiveConstants.popularMovies,
+                              ),
+                      ),
                     ],
                   ),
                 )

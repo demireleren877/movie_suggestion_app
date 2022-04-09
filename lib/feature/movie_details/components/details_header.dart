@@ -192,8 +192,8 @@ class HeaderImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.network(
-      ApiConstants.imageurl + detail.posterPath,
+    return CachedNetworkImage(
+      imageUrl: ApiConstants.imageurl + detail.posterPath,
       height: context.height * 0.5,
       width: double.infinity,
       fit: BoxFit.fitWidth,

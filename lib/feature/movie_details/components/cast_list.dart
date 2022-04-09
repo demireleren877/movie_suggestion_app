@@ -33,8 +33,8 @@ class _CastListWidget extends StatelessWidget {
                   Expanded(
                     child: ClipRRect(
                       borderRadius: context.lowBorderRadius,
-                      child: Image.network(
-                        detail.castList?[index].profilePath == ""
+                      child: CachedNetworkImage(
+                        imageUrl: detail.castList?[index].profilePath == ""
                             ? UrlConstants.nullImage
                             : ApiConstants.imageurl +
                                 detail.castList![index].profilePath,

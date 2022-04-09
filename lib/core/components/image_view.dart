@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:movie_application/core/localization/app_localizations.dart';
@@ -19,10 +20,7 @@ class ImageViewer extends StatelessWidget {
           height: context.height,
           width: context.width,
           child: InteractiveViewer(
-            child: Image.network(
-              image,
-              fit: BoxFit.contain,
-            ),
+            child: CachedNetworkImage(imageUrl: image),
           ),
         ),
       ),

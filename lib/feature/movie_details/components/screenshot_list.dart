@@ -29,8 +29,8 @@ class _ScreenshotList extends StatelessWidget {
               margin: context.horizontalPaddingLow,
               child: ClipRRect(
                 borderRadius: context.lowBorderRadius,
-                child: Image.network(
-                  ApiConstants.imageurl +
+                child: CachedNetworkImage(
+                  imageUrl: ApiConstants.imageurl +
                       (detail.movieImage?.backdrops[index].imagePath ?? ""),
                   fit: BoxFit.cover,
                 ),

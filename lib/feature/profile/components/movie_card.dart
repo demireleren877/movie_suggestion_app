@@ -20,8 +20,9 @@ class _MovieCardWidget extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: context.lowBorderRadius,
-            child: Image.network(
-              ApiConstants.imageurl + movieBox.getAt(index).posterPath,
+            child: CachedNetworkImage(
+              imageUrl:
+                  ApiConstants.imageurl + movieBox.getAt(index).posterPath,
               fit: BoxFit.cover,
             ),
           ),

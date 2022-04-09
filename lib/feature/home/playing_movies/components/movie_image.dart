@@ -12,8 +12,8 @@ class _MovieImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(15),
-      child: Image.network(
-        ApiConstants.imageurl + image,
+      child: CachedNetworkImage(
+        imageUrl: ApiConstants.imageurl + image,
         fit: BoxFit.cover,
       ),
     );

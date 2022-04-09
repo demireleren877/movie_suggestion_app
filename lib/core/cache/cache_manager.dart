@@ -9,6 +9,8 @@ abstract class ICacheManager<T> {
   void deleteMovieHive(int key, Box box);
   void deleteAllMovieHives(Box box);
   void saveUser(String user);
+  void saveAllMovies(List<Movie> movies, String boxName);
+  void getAllMovies(String boxName);
   String? getUser();
 }
 
@@ -43,5 +45,17 @@ class CacheManager implements ICacheManager<Movie> {
   String? getUser() {
     final userHive = Hive.box(HiveConstants.user);
     return userHive.isEmpty ? null : userHive.getAt(0);
+  }
+
+  @override
+  void saveAllMovies(List<Movie> movies, String box) {
+    final movieListHive = Hive.box<Movie>(box);
+    movieListHive.clear();
+    movieListHive.addAll(movies);
+  }
+
+  @override
+  List<Movie> getAllMovies(String boxName) {
+    return Hive.box<Movie>(boxName).values.toList();
   }
 }

@@ -25,11 +25,11 @@ Future<void> main() async {
   await Hive.openBox(HiveConstants.hiveMovieList);
   await Hive.openBox(HiveConstants.user);
   await Hive.openBox(HiveConstants.reminderList);
+  await Hive.openBox<Movie>(HiveConstants.popularMovies);
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky,
       overlays: [SystemUiOverlay.top]);
   AwesomeNotifications().initialize(
-    // set the icon to null if you want to use the default app icon
     null,
     [
       NotificationChannel(
