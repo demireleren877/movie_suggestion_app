@@ -10,47 +10,6 @@ class _HeaderTitle extends StatelessWidget {
   final CacheManager _cacheManager = CacheManager();
   final NotificationService _notificationService = NotificationService();
 
-  void addReminder(BuildContext context) {
-    Hive.box(HiveConstants.reminderList).keys.contains(int.parse(detail.id))
-        ? _cacheManager.deleteMovieHive(
-            int.parse(detail.id), Hive.box(HiveConstants.reminderList))
-        : showTimePicker(
-            context: context,
-            initialTime: TimeOfDay.now(),
-          ).then(
-            (value) {
-              _notificationService.saveNotif(
-                  int.parse(detail.releaseDate.split('-')[0]),
-                  int.parse(detail.releaseDate.split('-')[1]),
-                  int.parse(detail.releaseDate.split('-')[2]),
-                  value!.hour,
-                  value.minute,
-                  detail.title,
-                  ApiConstants.imageurl + detail.posterPath,
-                  int.parse(detail.id));
-              _cacheManager.saveMovieHive(
-                Movie(
-                  runtime: 0,
-                  backdropPath: "",
-                  id: int.parse(detail.id),
-                  originalLanguage: "",
-                  originalTitle: detail.originalTitle,
-                  overview: detail.overview,
-                  posterPath: detail.posterPath,
-                  releaseDate: detail.releaseDate,
-                  title: detail.title,
-                  video: false,
-                  voteCount: 0,
-                  voteAverage: "",
-                ),
-                Hive.box(
-                  HiveConstants.reminderList,
-                ),
-              );
-            },
-          );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Positioned(
@@ -84,11 +43,88 @@ class _HeaderTitle extends StatelessWidget {
           ReminderButton(
             movieId: int.parse(detail.id),
             onTap: () {
-              addReminder(context);
+              isOkToRemind() ? addReminder(context) : showErrorDialog(context);
             },
           )
         ],
       ),
+    );
+  }
+
+  void addReminder(BuildContext context) {
+    Hive.box(HiveConstants.reminderList).keys.contains(int.parse(detail.id))
+        ? _cacheManager.deleteMovieHive(
+            int.parse(detail.id),
+            Hive.box(HiveConstants.reminderList),
+          )
+        : showTimePicker(
+            context: context,
+            initialTime: TimeOfDay.now(),
+          ).then(
+            (value) {
+              _notificationService.saveNotif(
+                int.parse(detail.releaseDate.split('-')[0]),
+                int.parse(detail.releaseDate.split('-')[1]),
+                int.parse(detail.releaseDate.split('-')[2]),
+                value!.hour,
+                value.minute,
+                detail.title,
+                ApiConstants.imageurl + detail.posterPath,
+                int.parse(detail.id),
+              );
+              _cacheManager.saveMovieHive(
+                Movie(
+                  runtime: 0,
+                  backdropPath: "",
+                  id: int.parse(detail.id),
+                  originalLanguage: "",
+                  originalTitle: detail.originalTitle,
+                  overview: detail.overview,
+                  posterPath: detail.posterPath,
+                  releaseDate: detail.releaseDate,
+                  title: detail.title,
+                  video: false,
+                  voteCount: 0,
+                  voteAverage: "",
+                ),
+                Hive.box(
+                  HiveConstants.reminderList,
+                ),
+              );
+            },
+          );
+  }
+
+  bool isOkToRemind() {
+    return int.parse(detail.releaseDate.split("-")[1]) >=
+            DateTime.now().month &&
+        int.parse(detail.releaseDate.split("-")[0]) >= DateTime.now().year &&
+        int.parse(detail.releaseDate.split("-")[2]) >= DateTime.now().day;
+  }
+
+  void showErrorDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(
+              AppLocalizations.instance.translate("already_released_title") ??
+                  ""),
+          content: Text(
+              AppLocalizations.instance.translate("already_released_body") ??
+                  ""),
+          actions: [
+            TextButton(
+              child: Text(AppLocalizations.instance
+                      .translate("already_released_button") ??
+                  ""),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

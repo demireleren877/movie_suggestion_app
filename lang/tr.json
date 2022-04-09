@@ -26,5 +26,8 @@
   "notif_body": "vizyona girdi.",
   "search_title": "Film Arayın...",
   "empty_movie_list_title": "Henüz bir film eklemediniz",
-  "empty_reminder_list_title": "Henüz bir hatırlatıcı kurmadınız"
+  "empty_reminder_list_title": "Henüz bir hatırlatıcı kurmadınız",
+  "already_released_title": "Uyarı",
+  "already_released_body": "Film çoktan yayınlanmış.",
+  "already_released_button": "Tamam"
 }

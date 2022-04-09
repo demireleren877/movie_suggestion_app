@@ -10,7 +10,6 @@ import 'package:kartal/kartal.dart';
 import 'package:movie_application/core/colors/app_colors.dart';
 import 'package:movie_application/core/components/centered_progress.dart';
 import 'package:movie_application/core/constants/hive_constants.dart';
-import 'package:movie_application/core/constants/url_constants.dart';
 import 'package:movie_application/feature/profile/cubit/profile_cubit.dart';
 import 'package:share_plus/share_plus.dart';
 import '../../core/cache/cache_manager.dart';
@@ -24,6 +23,8 @@ part 'components/movie_card.dart';
 part 'components/animated_language_switcher.dart';
 part 'components/get_user_screen.dart';
 part 'components/movie_list_item.dart';
+part 'components/movies_tab_view.dart';
+part 'components/reminders_tab_view.dart';
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({Key? key}) : super(key: key);
@@ -73,86 +74,8 @@ class ProfileScreen extends StatelessWidget {
     return TabBarView(
       physics: const BouncingScrollPhysics(),
       children: [
-        Container(
-          padding: context.paddingLow,
-          height: context.dynamicHeight(0.9),
-          child: ValueListenableBuilder(
-            valueListenable: Hive.box(HiveConstants.hiveMovieList).listenable(),
-            builder: (context, Box movieBox, _) => movieBox.length != 0
-                ? ListView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    itemCount: movieBox.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return _MovieListItem(
-                        movieBox: movieBox,
-                        index: index,
-                        cacheManager: _cacheManager,
-                      );
-                    },
-                  )
-                : Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CachedNetworkImage(
-                        imageUrl: UrlConstants.nullMovieImage,
-                        fit: BoxFit.contain,
-                        height: 120.h,
-                      ),
-                      context.emptySizedHeightBoxLow3x,
-                      Text(
-                        AppLocalizations.instance
-                                .translate("empty_movie_list_title") ??
-                            "",
-                        style: context.textTheme.headline5?.copyWith(
-                          fontFamily: GoogleFonts.josefinSans().fontFamily,
-                        ),
-                      )
-                    ],
-                  ),
-          ),
-        ),
-        Container(
-          padding: context.paddingLow,
-          height: context.dynamicHeight(0.9),
-          child: ValueListenableBuilder(
-            valueListenable: Hive.box(HiveConstants.reminderList).listenable(),
-            builder: (context, Box movieBox, _) => movieBox.length != 0
-                ? ListView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    itemCount: movieBox.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return _MovieListItem(
-                        additionalAction: () {
-                          AwesomeNotifications().cancel(
-                            int.parse(movieBox.getAt(index).id),
-                          );
-                        },
-                        movieBox: movieBox,
-                        index: index,
-                        cacheManager: _cacheManager,
-                      );
-                    },
-                  )
-                : Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.alarm_off_outlined,
-                        size: 100.sp,
-                      ),
-                      context.emptySizedHeightBoxLow3x,
-                      Text(
-                        AppLocalizations.instance
-                                .translate("empty_reminder_list_title") ??
-                            "",
-                        style: context.textTheme.headline5?.copyWith(
-                          fontFamily: GoogleFonts.josefinSans().fontFamily,
-                        ),
-                      )
-                    ],
-                  ),
-          ),
-        ),
+        _MoviesTabView(cacheManager: _cacheManager),
+        _RemindersTabView(cacheManager: _cacheManager)
       ],
     );
   }

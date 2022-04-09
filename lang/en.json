@@ -26,5 +26,8 @@
   "notif_body": "now playing.",
   "search_title": "Search any movie...",
   "empty_movie_list_title": "You haven't added any movie yet",
-  "empty_reminder_list_title": "You haven't set any reminder yet"
+  "empty_reminder_list_title": "You haven't set any reminder yet",
+  "already_released_title": "Warning",
+  "already_released_body": "This movie is already released.",
+  "already_released_button": "OK"
 }
