@@ -48,7 +48,7 @@ class TabViewScreen extends StatelessWidget {
 
 List<Widget> _buildScreens() {
   return [
-    HomeScreen(),
+    const HomeScreen(),
     const ExploreScreen(),
     const ForYouPage(),
     ProfileScreen()
