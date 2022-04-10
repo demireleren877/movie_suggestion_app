@@ -2,7 +2,7 @@
     package="com.example.movie_application">
    <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="movie_application"
+        android:label="Movie Jungle"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
@@ -21,6 +21,10 @@
               android:name="io.flutter.embedding.android.NormalTheme"
               android:resource="@style/NormalTheme"
               />
+            <meta-data
+                android:name="io.flutter.embedding.android.SplashScreen"
+                android:resource="@drawable/splash"            
+            />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
